@@ -47,6 +47,20 @@ def is_prime(n: int) -> bool:
     return True
 
 
+def eratosthenes(n):
+    primes = [True] * (n + 1)
+    primes[0], primes[1] = False, False
+    i = 2
+    while i**2 <= n:
+        if primes[i]:
+            for k in range(i * 2, n + 1, i):
+                primes[k] = False
+
+        i += 1
+
+    return [i for i, p in enumerate(primes) if p]
+
+
 def gcd(a, b):
     while a > 0 and b > 0:
         if a > b:
