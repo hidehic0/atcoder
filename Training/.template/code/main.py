@@ -5,6 +5,7 @@ from math import pi
 from itertools import permutations
 import bisect
 import sys
+import heapq
 
 # cortedcontainersは使うときだけ wandbox非対応なので
 # from sortedcontainers import SortedDict, SortedSet, SortedList
@@ -73,6 +74,23 @@ def gcd(a, b):
 
 def lcm(a, b):
     return (a * b) // gcd(a, b)
+
+
+def calc_divisors(N):
+    result = []
+
+    for i in range(1, N + 1):
+        if i * i > N:
+            break
+
+        if N % i != 0:
+            continue
+
+        heapq.heappush(result, i)
+        if N // i != i:
+            heapq.heappush(result, N // i)
+
+    return result
 
 
 # 標準入力系
