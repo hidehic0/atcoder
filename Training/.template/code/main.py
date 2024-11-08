@@ -10,6 +10,8 @@ import heapq
 # cortedcontainersは使うときだけ wandbox非対応なので
 # from sortedcontainers import SortedDict, SortedSet, SortedList
 
+sys.setrecursionlimit(10**7)
+
 
 # 関数
 def pow(x: int, n: int, t: int = 1):
