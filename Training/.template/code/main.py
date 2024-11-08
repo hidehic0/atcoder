@@ -10,6 +10,8 @@ import heapq
 # cortedcontainersは使うときだけ wandbox非対応なので
 # from sortedcontainers import SortedDict, SortedSet, SortedList
 
+sys.setrecursionlimit(10**7)
+
 
 # 関数
 def pow(x: int, n: int, t: int = 1):
@@ -77,6 +79,7 @@ def lcm(a, b):
 
 
 def calc_divisors(N):
+    # 約数全列挙
     result = []
 
     for i in range(1, N + 1):
@@ -89,6 +92,27 @@ def calc_divisors(N):
         heapq.heappush(result, i)
         if N // i != i:
             heapq.heappush(result, N // i)
+
+    return result
+
+
+def factorization(n):
+    # 素因数分解
+    result = []
+    tmp = n
+    for i in range(2, int(-(-(n**0.5) // 1)) + 1):
+        if tmp % i == 0:
+            cnt = 0
+            while tmp % i == 0:
+                cnt += 1
+                tmp //= i
+            result.append([i, cnt])
+
+    if tmp != 1:
+        result.append([tmp, 1])
+
+    if result == []:
+        result.append([n, 1])
 
     return result
 
