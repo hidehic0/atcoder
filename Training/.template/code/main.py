@@ -6,6 +6,7 @@ from itertools import permutations
 import bisect
 import sys
 import heapq
+from typing import List
 
 # cortedcontainersは使うときだけ wandbox非対応なので
 # from sortedcontainers import SortedDict, SortedSet, SortedList
@@ -115,6 +116,106 @@ def factorization(n):
         result.append([n, 1])
 
     return result
+
+
+# 自作型
+class Heap:
+    def __init__(self) -> None:
+        self.heap: List[int] = []
+
+    def push(self, x: int):
+        """
+        値を挿入する関数
+
+        計算量 O(log N)
+        Nはheapのサイズ
+        """
+
+        # 末尾に挿入
+        self.heap.append(x)
+        # 現在地の変数
+        ind: int = len(self.heap) - 1
+
+        # 更新処理
+        while ind > 0:
+            # 現在地の親を求める
+            # 求め方はセグ木の要領で
+            parent: int = (ind - 1) // 2
+
+            # 親の方が小さかったら処理を終了
+            if self.heap[parent] <= x:
+                break
+
+            # 親より小さかったら入れ替える
+            self.heap[ind] = self.heap[parent]
+            # 現在地を更新
+            ind = parent
+
+        # 最後に現在地にxを代入
+        self.heap[ind] = x
+
+    def min(self):
+        """
+        最小値を出力する関数
+
+        計算量
+        O(1)
+        """
+        if len(self.heap) == 0:
+            print("\033[31m error heap is empty \033[0m")
+            return
+        return self.heap[0]
+
+    def pop(self):
+        """
+        最小値を削除する関数
+        返り値は削除した最小値
+
+        計算量
+        N = len(self.heap)
+        O(log N)
+        """
+        # 返り値を取っておく
+        result = self.min()
+
+        # self.heapが空ならエラーを吐く
+        if len(self.heap) == 0:
+            print("\033[31m error heap is empty \033[0m")
+            return
+
+        # 末尾の値を取得
+        x: int = self.heap.pop()
+        # 現在地
+        ind = 0
+
+        # 要素がなくなった場合それが最小値なので出力する
+        if len(self.heap) == 0:
+            return result
+
+        # 更新処理
+        while ind * 2 + 1 < len(self.heap):
+            # 現在地の子のインデックスを変数に入れとく
+            child1 = ind * 2 + 1
+            child2 = ind * 2 + 2
+            # child2の要素がchild1の要素より小さければchild1をchild2にする
+            if child2 < len(self.heap) and self.heap[child2] < self.heap[child1]:
+                child1 = child2
+
+            # child1の要素がxより大きければ処理を終了
+            if self.heap[child1] >= x:
+                break
+
+            # 入れ替え
+            self.heap[ind] = self.heap[child1]
+
+            # 現在地を移動
+            ind = child1
+
+        # 現在地の要素をxにする
+        self.heap[ind] = x
+
+        # 削除した値を返す
+        return result
 
 
 # 標準入力系
