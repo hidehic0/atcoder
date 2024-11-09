@@ -11,7 +11,7 @@ from typing import List
 # cortedcontainersは使うときだけ wandbox非対応なので
 # from sortedcontainers import SortedDict, SortedSet, SortedList
 
-sys.setrecursionlimit(10**7)
+sys.setrecursionlimit(5 * 10**5)
 
 
 # 関数
