@@ -1,0 +1,4 @@
+# 参考にどうぞ
+
+performansとtrainingにおいてあるgenerate.pyでディレクトリが作成される仕組みです
+テンプレはperformansとtrainingの.template/codeにあります
