@@ -118,6 +118,32 @@ def factorization(n):
     return result
 
 
+# 標準入力系
+# 一行に一つのstring
+def s():
+    return sys.stdin.readline().rstrip()
+
+
+# 一行に複数のstring
+def sl():
+    return s().split()
+
+
+# 一つのint
+def ii():
+    return int(s())
+
+
+# 一行に複数のint
+def il(add_num: int = 0):
+    return list(map(lambda i: int(i) + add_num, sl()))
+
+
+# 複数行の入力をサポート
+def li(n: int, func, *args):
+    return [func(*args) for _ in [0] * n]
+
+
 # 自作型
 class Heap:
     def __init__(self) -> None:
@@ -218,21 +244,68 @@ class Heap:
         return result
 
 
-# 標準入力系
-def s():
-    return sys.stdin.readline().rstrip()
+# 無向グラフ
+class Graph:
+    def __init__(self, N: int, dire: bool = False) -> None:
+        self.N = N
+        self.dire = dire
+        self.grath = [[] for _ in [0] * self.N]
+
+    def new_side(self, a: int, b: int):
+        # 注意　0-indexedが前提
+        self.grath[a].append(b)
+        if not self.dire:
+            self.grath[b].append(a)
+
+    def side_input(self):
+        # 新しい辺をinput
+        a, b = il(-1)
+        self.new_side(a, b)
+
+    def input(self, M: int):
+        # 複数行の辺のinput
+        for _ in [0] * M:
+            self.side_input()
+
+    def get(self, a: int):
+        # 頂点aの隣接点を出力
+        return self.grath[a]
+
+    def all(self):
+        # グラフの内容をすべて出力
+        return self.grath
 
 
-def sl():
-    return s().split()
+# 有向グラフ
+class GraphW:
+    def __init__(self, N: int, dire: bool = False) -> None:
+        self.N = N
+        self.dire = dire
+        self.grath = [[] for _ in [0] * self.N]
 
+    def new_side(self, a: int, b: int, w: int):
+        # 注意　0-indexedが前提
+        self.grath[a].append((b, w))
+        if not self.dire:
+            self.grath[b].append((a, w))
 
-def ii():
-    return int(s())
+    def side_input(self):
+        # 新しい辺をinput
+        a, b, w = il(-1)
+        self.new_side(a, b, w)
 
+    def input(self, M: int):
+        # 複数行の辺のinput
+        for _ in [0] * M:
+            self.side_input()
 
-def il(add_num: int = 0):
-    return list(map(lambda i: int(i) + add_num, sl()))
+    def get(self, a: int):
+        # 頂点aの隣接点を出力
+        return self.grath[a]
+
+    def all(self):
+        # グラフの内容をすべて出力
+        return self.grath
 
 
 # 便利変数
