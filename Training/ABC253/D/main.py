@@ -85,3 +85,13 @@ upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 
 # コード
+N, A, B = il()
+
+
+def f(n):
+    return n * (n + 1) // 2
+
+
+lc = lcm(A, B)
+
+print(f(N) - (A * f(N // A)) - (B * f(N // B)) + (lc * f(N // lc)))
