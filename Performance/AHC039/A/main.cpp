@@ -99,100 +99,102 @@ int main() {
   rep(i, N) { cin >> S[i].first >> S[i].second; }
 
   pair<ll, ll> a;
+  pair<ll, ll> b;
+  pair<ll, ll> c;
+  pair<ll, ll> d;
   a.first = 0;
   a.second = 0;
-  pair<ll, ll> b;
   b.first = pow(10, 5);
   b.second = 0;
-  pair<ll, ll> c;
   c.first = 0;
   c.second = pow(10, 5);
-  pair<ll, ll> d;
   d.first = pow(10, 5);
   d.second = pow(10, 5);
   ll score = 0;
-  rep(i, 31000) {
-    // 山登り法
-    ll t = rnd() % 4;
+  rep(i, 3) {
+    rep(i, 10000) {
+      // 山登り法
+      ll t = rnd() % 4;
 
-    if (t == 0) {
-      ll bx = b.first;
-      ll r = RandInt(a.first + 1, xma);
-      b.first = r;
-      d.first = r;
-      ll ts = GetScore(a, b, c, d, M, S);
-      double T = 40.00 - 38.00 * (i + 1) / 30000.0;
-      double Probability = exp(min(0.0, (ts - score) / T));
-      if (RD() < Probability) {
-        score = ts;
-        cout << 4 << endl;
-        cout << a.first << " " << a.second << endl;
-        cout << c.first << " " << c.second << endl;
-        cout << d.first << " " << d.second << endl;
-        cout << b.first << " " << b.second << endl;
-      } else {
-        b.first = bx;
-        d.first = bx;
-      }
-    } else if (t == 1) {
+      if (t == 0) {
+        ll bx = b.first;
+        ll r = RandInt(a.first + 1, xma);
+        b.first = r;
+        d.first = r;
+        ll ts = GetScore(a, b, c, d, M, S);
+        double T = 40.00 - 38.00 * (i + 1) / 30000.0;
+        double Probability = exp(min(0.0, (ts - score) / T));
+        if (RD() < Probability) {
+          score = ts;
+          /*cout << 4 << endl;*/
+          /*cout << a.first << " " << a.second << endl;*/
+          /*cout << c.first << " " << c.second << endl;*/
+          /*cout << d.first << " " << d.second << endl;*/
+          /*cout << b.first << " " << b.second << endl;*/
+        } else {
+          b.first = bx;
+          d.first = bx;
+        }
+      } else if (t == 1) {
 
-      ll by = a.second;
-      ll r = RandInt(ymi, c.second - 1);
-      b.second = r;
-      a.second = r;
-      ll ts = GetScore(a, b, c, d, M, S);
-      double T = 40.00 - 38.00 * (i + 1) / 30000.0;
-      double Probability = exp(min(0.0, (ts - score) / T));
-      if (RD() < Probability) {
-        score = ts;
-        cout << 4 << endl;
-        cout << a.first << " " << a.second << endl;
-        cout << c.first << " " << c.second << endl;
-        cout << d.first << " " << d.second << endl;
-        cout << b.first << " " << b.second << endl;
-      } else {
-        a.second = by;
-        b.second = by;
-      }
-    } else if (t == 2) {
+        ll by = a.second;
+        ll r = RandInt(ymi, c.second - 1);
+        b.second = r;
+        a.second = r;
+        ll ts = GetScore(a, b, c, d, M, S);
+        double T = 40.00 - 38.00 * (i + 1) / 30000.0;
+        double Probability = exp(min(0.0, (ts - score) / T));
+        if (RD() < Probability) {
+          score = ts;
+          /*cout << 4 << endl;*/
+          /*cout << a.first << " " << a.second << endl;*/
+          /*cout << c.first << " " << c.second << endl;*/
+          /*cout << d.first << " " << d.second << endl;*/
+          /*cout << b.first << " " << b.second << endl;*/
+        } else {
+          a.second = by;
+          b.second = by;
+        }
+      } else if (t == 2) {
 
-      ll bx = a.first;
-      ll r = RandInt(xmi, b.first - 1);
-      a.first = r;
-      c.first = r;
-      ll ts = GetScore(a, b, c, d, M, S);
-      double T = 40.00 - 38.00 * (i + 1) / 30000.0;
-      double Probability = exp(min(0.0, (ts - score) / T));
-      if (RD() < Probability) {
-        score = ts;
-        cout << 4 << endl;
-        cout << a.first << " " << a.second << endl;
-        cout << c.first << " " << c.second << endl;
-        cout << d.first << " " << d.second << endl;
-        cout << b.first << " " << b.second << endl;
-      } else {
-        a.first = bx;
-        c.first = bx;
-      }
-    } else if (t == 3) {
+        ll bx = a.first;
+        ll r = RandInt(xmi, b.first - 1);
+        a.first = r;
+        c.first = r;
+        ll ts = GetScore(a, b, c, d, M, S);
+        double T = 40.00 - 38.00 * (i + 1) / 30000.0;
+        double Probability = exp(min(0.0, (ts - score) / T));
+        if (RD() < Probability) {
+          score = ts;
+          /*cout << 4 << endl;*/
+          /*cout << a.first << " " << a.second << endl;*/
+          /*cout << c.first << " " << c.second << endl;*/
+          /*cout << d.first << " " << d.second << endl;*/
+          /*cout << b.first << " " << b.second << endl;*/
+        } else {
+          a.first = bx;
+          c.first = bx;
+        }
+      } else if (t == 3) {
 
-      ll by = c.second;
-      ll r = RandInt(b.second + 1, yma);
-      c.second = r;
-      d.second = r;
-      ll ts = GetScore(a, b, c, d, M, S);
-      double T = 40.00 - 38.00 * (i + 1) / 30000.0;
-      double Probability = exp(min(0.0, (ts - score) / T));
-      if (RD() < Probability) {
-        score = ts;
-        cout << 4 << endl;
-        cout << a.first << " " << a.second << endl;
-        cout << c.first << " " << c.second << endl;
-        cout << d.first << " " << d.second << endl;
-        cout << b.first << " " << b.second << endl;
-      } else {
-        c.second = by;
-        d.second = by;
+        ll by = c.second;
+        ll r = RandInt(b.second + 1, yma);
+        c.second = r;
+        d.second = r;
+        ll ts = GetScore(a, b, c, d, M, S);
+        double T = 40.00 - 38.00 * (i + 1) / 30000.0;
+        double Probability = exp(min(0.0, (ts - score) / T));
+        if (RD() < Probability) {
+          score = ts;
+          /*cout << 4 << endl;*/
+          /*cout << a.first << " " << a.second << endl;*/
+          /*cout << c.first << " " << c.second << endl;*/
+          /*cout << d.first << " " << d.second << endl;*/
+          /*cout << b.first << " " << b.second << endl;*/
+        } else {
+          c.second = by;
+          d.second = by;
+        }
       }
     }
   }
