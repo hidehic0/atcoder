@@ -115,5 +115,34 @@ class SegmentTree:
 
 
 # コード
+def binary_search(array, key):
+    # 存在判定の二分探索
+    ng, ok = -1, len(array)
+
+    while ok - ng > 1:
+        mid = (ok + ng) // 2
+        if array[mid] == key:
+            return True
+        elif array[mid] >= key:
+            ok = mid
+        else:
+            ng = mid
+
+    return False
+
+
+INF = 10**19
+
 N, Q = il()
 A = il()
+B = [A[i] - (i + 1) for i in range(N)]
+
+for _ in [0] * Q:
+    K = ii()
+
+    if A[-1] < K:
+        print(N + K)
+    elif A[0] > K:
+        print(K)
+    else:
+        print(bisect.bisect_left(B, K) + K)
