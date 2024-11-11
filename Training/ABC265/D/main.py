@@ -2,7 +2,7 @@
 # ライブラリ
 from collections import deque, defaultdict, Counter
 from math import pi
-from itertools import permutations
+from itertools import permutations, accumulate
 import bisect
 import sys
 import heapq
@@ -345,5 +345,21 @@ class SegmentTree:
 
 
 # コード
-N, M, K = il()
-G = GraphW(N)
+
+
+N, P, Q, R = il()
+L = il()
+A = list([0] + list(accumulate(L)))
+S = set()
+
+for i in A:
+    S.add(i)
+
+for i in range(N):
+    x = A[i]
+
+    if x - P in S and x + Q in S and x + Q + R in S:
+        print("Yes")
+        exit()
+
+print("No")
