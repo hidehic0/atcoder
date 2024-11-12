@@ -85,3 +85,33 @@ upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 
 # コード
+N = ii()
+S = s()
+
+mode = 0
+
+result = ""
+
+ST = deque()
+
+for t in S:
+    if mode == 0:
+        if t == "(":
+            mode = 1
+            ST.append(t)
+        else:
+            result += t
+    elif mode == 1:
+        if t == ")":
+            ST.pop()
+            if len(ST) == 0:
+                mode = 0
+        elif t == "(":
+            ST.append("(")
+        else:
+            ST[-1] += t
+
+for r in ST:
+    result += r
+
+print(result)
