@@ -345,3 +345,28 @@ class SegmentTree:
 
 
 # コード
+N = ii()
+D = {"a": -1, "t": -1, "c": -1, "o": -1, "d": -1, "e": -1, "r": -1}
+BACK = {"t": "a", "c": "t", "o": "c", "d": "o", "e": "d", "r": "e"}
+MOD = 10**9 + 7
+S = s()
+ATCODER = ["a", "t", "c", "o", "d", "e", "r"]
+
+
+def add(s):
+    if D[s] == -1:
+        D[s] = 0
+    if s == "a":
+        D["a"] += 1
+    else:
+        if D[BACK[s]] == -1:
+            return
+        D[s] += D[BACK[s]]
+        D[s] %= MOD
+
+
+for i in range(N):
+    if S[i] in ATCODER:
+        add(S[i])
+
+print(D["r"])
