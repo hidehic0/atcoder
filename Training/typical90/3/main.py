@@ -7,6 +7,7 @@ import bisect
 import sys
 import heapq
 from typing import List
+from operator import itemgetter
 
 # cortedcontainersは使うときだけ wandbox非対応なので
 # from sortedcontainers import SortedDict, SortedSet, SortedList
@@ -345,3 +346,29 @@ class SegmentTree:
 
 
 # コード
+N = ii()
+G = Graph(N)
+G.input(N - 1)
+
+
+def dfs(s):
+    used = [-1] * N
+    used[s] = 0
+
+    S = deque()
+    S.append(s)
+
+    while S:
+        v = S.popleft()
+
+        for new in G.get(v):
+            if used[new] == -1:
+                S.append(new)
+                used[new] = used[v] + 1
+
+    return used
+
+
+mz = max(enumerate(dfs(0)), key=itemgetter(1))[0]
+
+print(max(dfs(mz)) + 1)
