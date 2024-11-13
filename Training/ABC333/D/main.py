@@ -7,6 +7,7 @@ import bisect
 import sys
 import heapq
 from typing import List
+from atcoder.dsu import DSU
 
 # cortedcontainersは使うときだけ wandbox非対応なので
 # from sortedcontainers import SortedDict, SortedSet, SortedList
@@ -345,3 +346,17 @@ class SegmentTree:
 
 
 # コード
+N = ii()
+D = DSU(N)
+
+for _ in [0] * (N - 1):
+    u, v = il(-1)
+
+    if u != 0:
+        D.merge(u, v)
+
+m = 0
+for g in D.groups():
+    m = max(m, D.size(D.leader(g[0])))
+
+print(N - m)
