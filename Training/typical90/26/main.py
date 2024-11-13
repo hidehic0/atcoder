@@ -7,6 +7,7 @@ import bisect
 import sys
 import heapq
 from typing import List
+from warnings import warn
 
 # cortedcontainersは使うときだけ wandbox非対応なので
 # from sortedcontainers import SortedDict, SortedSet, SortedList
@@ -345,3 +346,38 @@ class SegmentTree:
 
 
 # コード
+import pypyjit
+
+pypyjit.set_param("max_unroll_recursion=-1")
+
+N = ii()
+G = Graph(N)
+G.input(N - 1)
+
+used = [0 for _ in [0] * N]
+A, B = [], []
+
+
+def dfs(v):
+    for next in G.get(v):
+        if used[next] == 0:
+            match used[v]:
+                case 1:
+                    B.append(next)
+                    used[next] = -1
+                case -1:
+                    A.append(next)
+                    used[next] = 1
+
+            dfs(next)
+
+
+used[0] = 1
+dfs(0)
+A = [i + 1 for i in A]
+B = [i + 1 for i in B]
+
+if len(A) >= N // 2:
+    print(*A[: N // 2])
+else:
+    print(*B[: N // 2])
