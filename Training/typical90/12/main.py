@@ -1,12 +1,14 @@
 # ライブラリと関数と便利変数
 # ライブラリ
 from collections import deque, defaultdict, Counter
+from contextlib import contextmanager
 from math import pi
 from itertools import permutations
 import bisect
 import sys
 import heapq
 from typing import List
+from atcoder.dsu import DSU
 
 # cortedcontainersは使うときだけ wandbox非対応なので
 # from sortedcontainers import SortedDict, SortedSet, SortedList
@@ -344,4 +346,45 @@ class SegmentTree:
         return max(self.query(l, r, a, m, u * 2), self.query(l, r, m, b, u * 2 + 1))
 
 
+def hash(h, w):
+    # ゴミハッシュ関数
+    h += 1
+    w += 1
+    return (h * 10000) + w
+
+
 # コード
+H, W = il()
+Q = ii()
+
+# ufの作成 aclを使わせていただく
+UF = DSU(20002005)
+
+used = [[False] * W for _ in [0] * H]
+
+MOVES = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+
+for _ in [0] * Q:
+    l = il(-1)
+
+    match l[0]:
+        case 0:
+            used[l[1]][l[2]] = True
+
+            for i in range(4):
+                h, w = l[1] + MOVES[i][0], l[2] + MOVES[i][1]
+
+                if not (0 <= h < H and 0 <= w < W):
+                    continue
+
+                if used[h][w]:
+                    UF.merge(hash(h, w), hash(l[1], l[2]))
+        case 1:
+            if not used[l[1]][l[2]] or not used[l[3]][l[4]]:
+                print("No")
+                continue
+
+            if UF.same(hash(l[1], l[2]), hash(l[3], l[4])):
+                print("Yes")
+            else:
+                print("No")
