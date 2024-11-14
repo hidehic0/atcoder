@@ -345,3 +345,31 @@ class SegmentTree:
 
 
 # コード
+N, K = il()
+A = il()
+
+r = 0
+D = defaultdict(lambda: 0)
+s = 0
+ans = 0
+re = 0
+
+for i in range(N):
+    while r < N and not (D[A[r]] == 0 and s + 1 > K):
+        if D[A[r]] == 0:
+            s += 1
+
+        D[A[r]] += 1
+        re += 1
+        r += 1
+    ans = max(re, ans)
+    re -= 1
+
+    if D[A[i]] == 1:
+        s -= 1
+        D[A[i]] = 0
+    else:
+        D[A[i]] -= 1
+
+
+print(ans)
