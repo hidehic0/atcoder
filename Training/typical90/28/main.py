@@ -1,3 +1,4 @@
+# コードは一番下です(コード長が8000byteレベルだから敬遠されてるか)
 # ライブラリと関数と便利変数
 # ライブラリ
 from collections import deque, defaultdict, Counter
@@ -7,6 +8,7 @@ import bisect
 import sys
 import heapq
 from typing import List
+from warnings import warn
 
 # cortedcontainersは使うときだけ wandbox非対応なので
 # from sortedcontainers import SortedDict, SortedSet, SortedList
@@ -345,3 +347,31 @@ class SegmentTree:
 
 
 # コード
+N = ii()
+G = [[0] * 1005 for _ in [0] * 1005]
+
+for _ in [0] * N:
+    a, b, c, d = il()
+
+    G[a][b] += 1
+    G[a][d] -= 1
+    G[c][b] -= 1
+    G[c][d] += 1
+
+for i in range(1001):
+    for k in range(1, 1001):
+        G[i][k] += G[i][k - 1]
+
+for i in range(1, 1001):
+    for k in range(1001):
+        G[i][k] += G[i - 1][k]
+
+D = defaultdict(lambda: 0)
+
+for i in range(1001):
+    for k in range(1001):
+        if G[i][k] >= 1:
+            D[G[i][k]] += 1
+
+for i in range(1, N + 1):
+    print(D[i])
