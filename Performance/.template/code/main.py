@@ -363,7 +363,7 @@ class RMIQ:
 
     def query(self, l: int, r: int, a: int, b: int, u: int):
         if r <= a or l >= b:
-            return -INF
+            return INF
         if l <= a and b <= r:
             return self.data[u]
 
