@@ -315,8 +315,7 @@ upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 
 # テンプレ
-class SegmentTree:
-    # 鉄則本のパクリですけどよろしく
+class RMAQ:
     def __init__(self, N) -> None:
         # サイズは要素の数
 
@@ -334,7 +333,7 @@ class SegmentTree:
             ind //= 2
             self.data[ind] = max(self.data[ind * 2], self.data[ind * 2 + 1])
 
-    def query(self, l, r, a, b, u):
+    def query(self, l: int, r: int, a: int, b: int, u: int):
         if r <= a or l >= b:
             return -INF
         if l <= a and b <= r:
@@ -342,6 +341,59 @@ class SegmentTree:
 
         m = (a + b) // 2
         return max(self.query(l, r, a, m, u * 2), self.query(l, r, m, b, u * 2 + 1))
+
+
+class RMIQ:
+    def __init__(self, N) -> None:
+        # サイズは要素の数
+
+        self.size = 1
+        while self.size < N:
+            self.size *= 2
+
+        self.data = [0] * (self.size * 2)
+
+    def update(self, ind, x):
+        ind = ind + self.size - 1
+        self.data[ind] = x
+
+        while ind >= 2:
+            ind //= 2
+            self.data[ind] = min(self.data[ind * 2], self.data[ind * 2 + 1])
+
+    def query(self, l: int, r: int, a: int, b: int, u: int):
+        if r <= a or l >= b:
+            return -INF
+        if l <= a and b <= r:
+            return self.data[u]
+
+        m = (a + b) // 2
+        return min(self.query(l, r, a, m, u * 2), self.query(l, r, m, b, u * 2 + 1))
+
+
+class RSQ:
+    def __init__(self, n) -> None:
+        self.size = 1
+        while self.size < n:
+            self.size *= 2
+
+        self.data = [0] * (self.size * 2)
+
+    def update(self, ind, x):
+        ind += self.size
+        self.data[ind] = x
+        while ind >= 2:
+            ind //= 2
+            self.data[ind] = self.data[ind * 2] + self.data[ind * 2 + 1]
+
+    def query(self, l, r, a, b, u):
+        if r <= a or b <= l:
+            return 0
+        if l <= a and b <= r:
+            return self.data[u]
+        m = (a + b) // 2
+
+        return self.query(l, r, a, m, u * 2) + self.query(l, r, m, b, u * 2 + 1)
 
 
 # コード
