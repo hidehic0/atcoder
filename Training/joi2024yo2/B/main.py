@@ -426,7 +426,7 @@ for t, l in C.items():
         T.update(i, p // 2)
 
     for i, L, R in l:
-        ans[i] = T.query(L - 1, R - 1, 0, T.size, 1)
+        ans[i] = T.query(L - 1, R, 0, T.size, 1)
 
     # 元の状態に戻す
     for i, p in S[t]:
