@@ -5,6 +5,7 @@ from math import pi
 from itertools import permutations
 import bisect
 import sys
+from atcoder.dsu import DSU
 
 # cortedcontainersは使うときだけ wandbox非対応なので
 # from sortedcontainers import SortedDict, SortedSet, SortedList
@@ -85,3 +86,22 @@ upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 
 # コード
+N, M = il()
+G = [[] for _ in [0] * N]
+
+for _ in [0] * M:
+    a, b = il(-1)
+    G[min(a, b)].append(max(a, b))
+
+UF = DSU(N)
+ans = 0
+re = [0]
+for i in range(N - 1, 0, -1):
+    for k in G[i]:
+        if not UF.same(i, k):
+            ans += 1
+        UF.merge(i, k)
+
+    re.append(N - i - ans)
+
+print(*reversed(re), sep="\n")
