@@ -34,19 +34,36 @@ def pow(x: int, n: int, t: int = 1):
     return ans
 
 
-def is_prime(n: int) -> bool:
-    # O(√N)
-    if n == 1:
+def is_prime(n):
+    def f(a, t, n):
+        x = pow(a, t, n)
+        nt = n - 1
+        while t != nt and x != 1 and x != nt:
+            x = pow(x, 2, n)
+            t <<= 1
+
+        return t & 1 or x == nt
+
+    if n == 2:
+        return True
+    elif n % 2 == 0:
         return False
 
-    i = 2
-    s = n**0.5
+    d = n - 1
+    d >>= 1
 
-    while i < s:
-        if n % i == 0:
+    while d & 1 == 0:
+        d >>= 1
+
+    checklist = (
+        [2, 7, 61] if 2**32 > n else [2, 325, 9375, 28178, 450775, 9780504, 1795265022]
+    )
+
+    for i in checklist:
+        if i >= n:
+            break
+        if not f(i, d, n):
             return False
-
-        i += 1
 
     return True
 
