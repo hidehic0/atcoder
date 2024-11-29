@@ -7,6 +7,8 @@ import bisect
 import sys
 from operator import mul
 from functools import reduce
+from scipy.special import comb
+
 
 # cortedcontainersは使うときだけ wandbox非対応なので
 # from sortedcontainers import SortedDict, SortedSet, SortedList
@@ -143,12 +145,12 @@ def cmb(n, r):
 N = ii()
 A = il()
 A.sort()
-ans = 0
-r = 0
-for i, a in enumerate(A[:-1]):
-    # ans = max(, ans)
-    if ans < factorial(A[-1]) // (factorial(a) * factorial(A[-1] - a)):
-        ans = factorial(A[-1]) // (factorial(a) * factorial(A[-1] - a))
-        r = a
 
-print(A[-1], r)
+n = A.pop()
+c = A[0]
+
+for i in range(1, N - 1):
+    if abs(A[i] - n // 2) <= abs(c - n // 2):
+        c = A[i]
+
+print(n, c)
