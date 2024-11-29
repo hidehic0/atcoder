@@ -147,3 +147,36 @@ class SegmentTree:
 
 
 # コード
+N, M = il()
+dp = [[INF] * (1 << N) for _ in [0] * (M + 1)]
+dp[0][0] = 0
+
+for i in range(M):
+    A, B = il()
+    C = il(-1)
+
+    for k in range(1 << N):
+        already = []
+
+        for d in range(N):
+            if k // (1 << d) % 2 == 0:
+                already.append(False)
+            else:
+                already.append(True)
+
+        for c in C:
+            already[c] = True
+
+        v = 0
+
+        for d in range(N):
+            if already[d]:
+                v += 1 << d
+
+        dp[i + 1][k] = min(dp[i][k], dp[i + 1][k])
+        dp[i + 1][v] = min(dp[i + 1][v], dp[i][k] + A)
+
+if dp[-1][-1] == INF:
+    print(1)
+else:
+    print(dp[-1][-1])
