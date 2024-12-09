@@ -454,5 +454,46 @@ def solve():
     query(new)
 
 
+def new_solve(yoko: int):
+    # 残りのピースの数(そのまんま)
+    nokori = N
+    # 現在地
+    i = 0
+    # 現在の横幅
+    wi = 0
+    # 現在の段数
+    he = 0
+    # 出力するリスト
+    new = []
+
+    while nokori > 0:
+        W, H = wh[i]
+        p, r, d, b = i, random.randint(0, 1), "U", i - 1
+
+        # 回転するんだったら更新しまっせ
+        if r == 1:
+            W, H = H, W
+
+        if he == 0:
+            b = -1
+            d = "L"
+        if wi == 0:
+            b = -1
+
+        new.append([p, r, d, b])
+
+        # 更新処理
+        wi += W
+
+        if wi >= yoko:
+            he += 1
+            wi = 0
+
+        i += 1
+        nokori -= 1
+
+    query(new)
+
+
 for _ in [0] * T:
-    solve()
+    new_solve(random.randint(1000, 10**9))
