@@ -397,3 +397,34 @@ class RSQ:
 
 
 # コード
+N, M = il()
+G = Graph(N, dire=True)
+G.input(M)
+
+used = [False] * N
+result = []
+
+
+def dfs(dst):
+    used[dst] = True
+
+    for next in G.get(dst):
+        if not used[next]:
+            dfs(next)
+
+    result.append(dst)
+
+
+for i in range(N):
+    if not used[i]:
+        dfs(i)
+
+
+result.reverse()
+
+ans = []
+
+for i, dst in enumerate(result):
+    ans[dst] = i + 1
+
+print(*ans)

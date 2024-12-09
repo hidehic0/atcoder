@@ -8,6 +8,7 @@ import sys
 
 # cortedcontainersは使うときだけ wandbox非対応なので
 # from sortedcontainers import SortedDict, SortedSet, SortedList
+sys.setrecursionlimit(10**6 * 3)
 
 
 # 関数
@@ -114,4 +115,63 @@ class SegmentTree:
         return max(self.query(l, r, a, m, u * 2), self.query(l, r, m, b, u * 2 + 1))
 
 
+class Graph:
+    def __init__(self, N: int, dire: bool = False) -> None:
+        self.N = N
+        self.dire = dire
+        self.grath = [[] for _ in [0] * self.N]
+
+    def new_side(self, a: int, b: int):
+        # 注意　0-indexedが前提
+        self.grath[a].append(b)
+        if not self.dire:
+            self.grath[b].append(a)
+
+    def side_input(self):
+        # 新しい辺をinput
+        a, b = il(-1)
+        self.new_side(a, b)
+
+    def input(self, M: int):
+        # 複数行の辺のinput
+        for _ in [0] * M:
+            self.side_input()
+
+    def get(self, a: int):
+        # 頂点aの隣接点を出力
+        return self.grath[a]
+
+    def all(self):
+        # グラフの内容をすべて出力
+        return self.grath
+
+
 # コード
+N, M = il()
+G = Graph(N)
+G.input(M)
+used = [False] * N
+used[0] = True
+
+K = 1
+
+
+def dfs(dst):
+    global K
+    global used
+
+    if K >= 10**6:
+        print(10**6)
+        exit()
+
+    for next in G.get(dst):
+        if not used[next]:
+            used[next] = True
+            K += 1
+            dfs(next)
+
+    used[dst] = False
+
+
+dfs(0)
+print(K)

@@ -83,5 +83,78 @@ INF = 10**18
 lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
-
+dx = [1, -1, 0, 0]
+dy = [0, 0, 1, -1]
 # コード
+H, W = il()
+L = [list(s()) for _ in [0] * H]
+sy, sx = -1, -1
+gx, gy = -1, -1
+
+
+HL = []
+
+for i in range(H):
+    for k in range(W):
+        t = True
+        match L[i][k]:
+            case ">":
+                HL.append((i, k, 2))
+
+            case "v":
+                HL.append((i, k, 0))
+
+            case "<":
+                HL.append((i, k, 3))
+
+            case "^":
+                HL.append((i, k, 1))
+
+            case "S":
+                sx, sy = i, k
+                t = False
+
+            case "G":
+                gx, gy = i, k
+                t = False
+
+            case _:
+                t = False
+
+        if t:
+            L[i][k] = "#"
+
+for i, k, mode in HL:
+    i, k = i + dx[mode], k + dy[mode]
+    while 0 <= i < H and 0 <= k < W:
+        if L[i][k] == "#":
+            break
+
+        L[i][k] = "!"
+        i, k = i + dx[mode], k + dy[mode]
+
+
+used = [[-1] * W for _ in [0] * H]
+used[sx][sy] = 0
+Q = deque()
+Q.append((sx, sy))
+
+while Q:
+    x, y = Q.popleft()
+
+    for i in range(4):
+        nx, ny = x + dx[i], y + dy[i]
+
+        if not (0 <= nx < H and 0 <= ny < W):
+            continue
+
+        if L[nx][ny] == "#" or L[nx][ny] == "!":
+            continue
+
+        if used[nx][ny] != -1:
+            continue
+
+        Q.append((nx, ny))
+        used[nx][ny] = used[x][y] + 1
+
+print(used[gx][gy])

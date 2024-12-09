@@ -5,6 +5,8 @@ from math import pi
 from itertools import permutations
 import bisect
 import sys
+import heapq
+
 
 # cortedcontainersは使うときだけ wandbox非対応なので
 # from sortedcontainers import SortedDict, SortedSet, SortedList
@@ -79,11 +81,52 @@ def il(add_num: int = 0):
 
 
 # 便利変数
-INF = 10**18
+INF = 1 << 63 - 1
 lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 
-import heapq
-
 # コード
+N, A, B, C = il()
+D = [il() for _ in [0] * N]
+
+used1 = [INF] * N
+used1[0] = 0
+PQ = [(0, 0)]
+
+while PQ:
+    cost, cur = heapq.heappop(PQ)
+    if used1[cur] < cost:
+        continue
+
+    for next in range(N):
+        nco = cost + D[cur][next] * A
+
+        if used1[next] > nco:
+            heapq.heappush(PQ, (nco, next))
+            used1[next] = nco
+
+
+used2 = [INF] * N
+used2[N - 1] = 0
+PQ = [(0, N - 1)]
+
+while PQ:
+    cost, cur = heapq.heappop(PQ)
+
+    if used2[cur] < cost:
+        continue
+
+    for next in range(N):
+        nco = cost + D[cur][next] * B + C
+
+        if used2[next] > nco:
+            heapq.heappush(PQ, (nco, next))
+            used2[next] = nco
+
+ans = INF
+
+for i in range(N):
+    ans = min(ans, used1[i] + used2[i])
+
+print(ans)

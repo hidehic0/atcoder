@@ -7,6 +7,7 @@ import bisect
 import sys
 import heapq
 from typing import List
+from operator import itemgetter
 
 # cortedcontainersは使うときだけ wandbox非対応なので
 # from sortedcontainers import SortedDict, SortedSet, SortedList
@@ -397,3 +398,20 @@ class RSQ:
 
 
 # コード
+N = ii()
+L = li(N, il)
+L.sort(reverse=True, key=itemgetter(0))
+
+current_time = 0
+current_plase = 0
+
+for a, t in L:
+    current_time = abs(current_plase - a) + current_time
+    current_plase = a
+
+    if t <= current_time:
+        continue
+    else:
+        current_time = t
+
+print(current_time + current_plase)
