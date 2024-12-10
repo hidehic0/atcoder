@@ -421,37 +421,15 @@ def query(prdb):
     for p, r, d, b in prdb:
         print(p, r, d, b)
     W, H = map(int, input().split())
-    return W, H
+    return W + H
 
 
 N, T, sig = map(int, input().split())
 wh = [tuple(map(int, input().split())) for _ in range(N)]
 
+souwa = sum([l[0] for l in wh])
+
 sq = floor(N**0.5)
-
-
-def solve():
-    # 残りのピースの数(そのまんま)
-    nokori = N
-    # 現在地
-    i = 0
-    # 出力するリスト
-    new = []
-
-    while nokori > 0:
-        p, r, d, b = i, random.randint(0, 1), "U", i - 1
-        if i % sq == 0 or i < sq:
-            b = -1
-        if i < sq:
-            d = "L"
-
-        new.append([p, r, d, b])
-
-        # 更新処理
-        i += 1
-        nokori -= 1
-
-    query(new)
 
 
 def new_solve(yoko: int):
@@ -483,7 +461,7 @@ def new_solve(yoko: int):
         new.append([p, r, d, b])
 
         # 更新処理
-        wi += W
+        wi += max(W, 0)
 
         if wi >= yoko:
             he += 1
@@ -495,5 +473,11 @@ def new_solve(yoko: int):
     query(new)
 
 
-for _ in [0] * T:
-    new_solve(random.randint(1000, 10**9))
+for _ in [0] * (T):
+    new_solve(
+        random.randint(
+            min(int(souwa**0.5) * 5, 65000 * N), max(int(souwa**0.5) * 5, 65000 * N)
+        )
+    )
+
+# TODO:最初の5回ぐらいをsqrt解法でやって横幅の最小値と最大値で、ランダム決定する
