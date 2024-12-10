@@ -252,7 +252,7 @@ class Graph:
         self.grath = [[] for _ in [0] * self.N]
 
     def new_side(self, a: int, b: int):
-        # 注意　0-indexedが前提
+        # warning: 0-indexedが前提
         self.grath[a].append(b)
         if not self.dire:
             self.grath[b].append(a)
@@ -401,30 +401,41 @@ N, M = il()
 G = Graph(N, dire=True)
 G.input(M)
 
-used = [False] * N
-result = []
+in_d = [0] * N
 
+for dst in range(N):
+    for i in G.get(dst):
+        in_d[i] += 1
 
-def dfs(dst):
-    used[dst] = True
-
-    for next in G.get(dst):
-        if not used[next]:
-            dfs(next)
-
-    result.append(dst)
-
+S = deque()
 
 for i in range(N):
-    if not used[i]:
-        dfs(i)
+    if in_d[i] == 0:
+        S.append(i)
 
+re = []
 
-result.reverse()
+while S:
+    if len(S) != 1:
+        print("No")
+        exit()
+    cur = S.pop()
+    re.append(cur)
 
-ans = []
+    for nex in G.get(cur):
+        in_d[nex] -= 1
 
-for i, dst in enumerate(result):
-    ans[dst] = i + 1
+        if in_d[nex] == 0:
+            S.append(nex)
 
+if sum(in_d) > 0:
+    print("No")
+    exit()
+
+ans = [0] * N
+
+for i in range(N):
+    ans[re[i]] = i + 1
+
+print("Yes")
 print(*ans)
