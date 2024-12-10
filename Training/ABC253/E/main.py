@@ -2,7 +2,7 @@
 # ライブラリ
 from collections import deque, defaultdict, Counter
 from math import pi
-from itertools import permutations
+from itertools import permutations, accumulate
 import bisect
 import sys
 
@@ -85,3 +85,30 @@ upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 
 # コード
+N, M, K = il()
+MOD = 998244353
+
+dp = [[0] * M for _ in [0] * N]
+dp[0] = [1] * M
+
+for i in range(1, N):
+    su = [0] * (M + 1)
+
+    for k in range(1, M + 1):
+        su[k] = su[k - 1] + dp[i - 1][k - 1]
+        su[k] %= MOD
+
+    for k in range(M):
+        if K == 0:
+            dp[i][k] = su[-1]
+            continue
+        if k - K >= 0:
+            dp[i][k] += su[k - K + 1] - su[0]
+
+        if k + K < M:
+            dp[i][k] += su[M] - su[k + K]
+
+        dp[i][k] %= MOD
+
+
+print(sum(dp[N - 1]) % MOD)
