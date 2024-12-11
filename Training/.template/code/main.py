@@ -12,6 +12,9 @@ from atcoder.segtree import SegTree
 # cortedcontainersは使うときだけ wandbox非対応なので
 # from sortedcontainers import SortedDict, SortedSet, SortedList
 
+# import pypyjit
+# pypyjit.set_param("max_unroll_recursion=-1")
+
 sys.setrecursionlimit(5 * 10**5)
 
 
