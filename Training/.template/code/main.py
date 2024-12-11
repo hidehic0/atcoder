@@ -249,7 +249,7 @@ class GraphW:
 
 
 # 便利変数
-INF = 10**18
+INF = 1 << 63
 lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
