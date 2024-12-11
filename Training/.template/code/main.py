@@ -1,7 +1,7 @@
 # ライブラリと関数と便利変数
 # ライブラリ
 from collections import deque, defaultdict, Counter
-from math import pi
+from math import pi, gcd, lcm
 from itertools import permutations
 import bisect
 import sys
@@ -19,25 +19,6 @@ sys.setrecursionlimit(5 * 10**5)
 
 
 # 関数
-def pow(x: int, n: int, t: int = 1):
-    # O(log N)
-    if t == 1:
-        ans = 1
-        while n:
-            if n % 2:
-                ans = ans * x
-            x = x * x
-            n >>= 1
-        return ans
-    ans = 1
-    while n:
-        if n % 2:
-            ans = (ans * x) % t
-        x = (x * x) % t
-        n >>= 1
-    return ans
-
-
 def is_prime(n):
     def f(a, t, n):
         x = pow(a, t, n)
@@ -84,20 +65,6 @@ def eratosthenes(n):
         i += 1
 
     return [i for i, p in enumerate(primes) if p]
-
-
-def gcd(a, b):
-    while a > 0 and b > 0:
-        if a > b:
-            a = a % b
-        else:
-            b = b % a
-
-    return max(a, b)
-
-
-def lcm(a, b):
-    return (a * b) // gcd(a, b)
 
 
 def calc_divisors(N):
