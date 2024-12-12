@@ -200,9 +200,36 @@ class Graph:
         # グラフの内容をすべて出力
         return self.grath
 
-    def topological(self, unique):
+    def topological(self, unique: bool = False):
         if not self.dire:
             raise ValueError("グラフが有向グラフでは有りません (╥﹏╥)")
+
+        in_deg = self.in_deg[:]
+
+        S: deque[int] = deque([])
+        order: List[int] = []
+
+        for i in range(self.N):
+            if in_deg[i] == 0:
+                S.append(i)
+
+        while S:
+            if unique and len(S) != 1:
+                return [-1]
+
+            cur = S.pop()
+            order.append(cur)
+
+            for nxt in self.get(cur):
+                in_deg[nxt] -= 1
+
+                if in_deg[nxt] == 0:
+                    S.append(nxt)
+
+        if sum(in_deg) > 0:
+            return [-1]
+        else:
+            return [x for x in order]
 
 
 # 有向グラフ
