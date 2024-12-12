@@ -1,39 +1,42 @@
+"""
+ ______________________
+< it's hidehico's code >
+ ----------------------
+   \
+    \
+        .--.
+       |o_o |
+       |:_/ |
+      //   \ \
+     (|     | )
+    /'\_   _/`\
+    \___)=(___/
+"""
+
 # ライブラリと関数と便利変数
 # ライブラリ
 from collections import deque, defaultdict, Counter
-from math import pi
+from math import pi, gcd, lcm
 from itertools import permutations
 import bisect
 import sys
 import heapq
-from typing import List
+from typing import List, Any
+
+# from atcoder.segtree import SegTree
+# from atcoder.lazysegtree import LazySegTree
+# from atcoder.dsu import DSU
 
 # cortedcontainersは使うときだけ wandbox非対応なので
 # from sortedcontainers import SortedDict, SortedSet, SortedList
+
+# import pypyjit
+# pypyjit.set_param("max_unroll_recursion=-1")
 
 sys.setrecursionlimit(5 * 10**5)
 
 
 # 関数
-def pow(x: int, n: int, t: int = 1):
-    # O(log N)
-    if t == 1:
-        ans = 1
-        while n:
-            if n % 2:
-                ans = ans * x
-            x = x * x
-            n >>= 1
-        return ans
-    ans = 1
-    while n:
-        if n % 2:
-            ans = (ans * x) % t
-        x = (x * x) % t
-        n >>= 1
-    return ans
-
-
 def is_prime(n):
     def f(a, t, n):
         x = pow(a, t, n)
@@ -82,20 +85,6 @@ def eratosthenes(n):
     return [i for i, p in enumerate(primes) if p]
 
 
-def gcd(a, b):
-    while a > 0 and b > 0:
-        if a > b:
-            a = a % b
-        else:
-            b = b % a
-
-    return max(a, b)
-
-
-def lcm(a, b):
-    return (a * b) // gcd(a, b)
-
-
 def calc_divisors(N):
     # 約数全列挙
     result = []
@@ -135,6 +124,20 @@ def factorization(n):
     return result
 
 
+def create_array2(a: int, b: int, default: Any = 0) -> List[List[Any]]:
+    """
+    ２次元配列を初期化する関数
+    """
+    return [[default] * b for _ in [0] * a]
+
+
+def create_array3(a: int, b: int, c: int, default: Any = 0) -> List[List[List[Any]]]:
+    """
+    ３次元配列を初期化する関数
+    """
+    return [[[default] * c for _ in [0] * b] for _ in [0] * a]
+
+
 # 標準入力系
 # 一行に一つのstring
 def s():
@@ -161,104 +164,23 @@ def li(n: int, func, *args):
     return [func(*args) for _ in [0] * n]
 
 
-# 自作型
-class Heap:
-    def __init__(self) -> None:
-        self.heap: List[int] = []
+# ac-library用メモ
+"""
+segtree
 
-    def push(self, x: int):
-        """
-        値を挿入する関数
+初期化するとき
+Segtree(op,e,v)
 
-        計算量 O(log N)
-        Nはheapのサイズ
-        """
+opはマージする関数
+例
 
-        # 末尾に挿入
-        self.heap.append(x)
-        # 現在地の変数
-        ind: int = len(self.heap) - 1
+def op(a,b):
+    return a+b
 
-        # 更新処理
-        while ind > 0:
-            # 現在地の親を求める
-            # 求め方はセグ木の要領で
-            parent: int = (ind - 1) // 2
+eは初期化する値
 
-            # 親の方が小さかったら処理を終了
-            if self.heap[parent] <= x:
-                break
-
-            # 親より小さかったら入れ替える
-            self.heap[ind] = self.heap[parent]
-            # 現在地を更新
-            ind = parent
-
-        # 最後に現在地にxを代入
-        self.heap[ind] = x
-
-    def min(self):
-        """
-        最小値を出力する関数
-
-        計算量
-        O(1)
-        """
-        if len(self.heap) == 0:
-            print("\033[31m error heap is empty \033[0m")
-            return
-        return self.heap[0]
-
-    def pop(self):
-        """
-        最小値を削除する関数
-        返り値は削除した最小値
-
-        計算量
-        N = len(self.heap)
-        O(log N)
-        """
-        # 返り値を取っておく
-        result = self.min()
-
-        # self.heapが空ならエラーを吐く
-        if len(self.heap) == 0:
-            print("\033[31m error heap is empty \033[0m")
-            return
-
-        # 末尾の値を取得
-        x: int = self.heap.pop()
-        # 現在地
-        ind = 0
-
-        # 要素がなくなった場合それが最小値なので出力する
-        if len(self.heap) == 0:
-            return result
-
-        # 更新処理
-        while ind * 2 + 1 < len(self.heap):
-            # 現在地の子のインデックスを変数に入れとく
-            child1 = ind * 2 + 1
-            child2 = ind * 2 + 2
-            # child2の要素がchild1の要素より小さければchild1をchild2にする
-            if child2 < len(self.heap) and self.heap[child2] < self.heap[child1]:
-                child1 = child2
-
-            # child1の要素がxより大きければ処理を終了
-            if self.heap[child1] >= x:
-                break
-
-            # 入れ替え
-            self.heap[ind] = self.heap[child1]
-
-            # 現在地を移動
-            ind = child1
-
-        # 現在地の要素をxにする
-        self.heap[ind] = x
-
-        # 削除した値を返す
-        return result
+vは配列の長さまたは、初期化する内容
+"""
 
 
 # 無向グラフ
@@ -267,10 +189,14 @@ class Graph:
         self.N = N
         self.dire = dire
         self.grath = [[] for _ in [0] * self.N]
+        self.in_deg = [0] * N
 
     def new_side(self, a: int, b: int):
         # 注意　0-indexedが前提
         self.grath[a].append(b)
+        if self.dire:
+            self.in_deg[b] += 1
+
         if not self.dire:
             self.grath[b].append(a)
 
@@ -292,8 +218,39 @@ class Graph:
         # グラフの内容をすべて出力
         return self.grath
 
+    def topological(self, unique: bool = False):
+        if not self.dire:
+            raise ValueError("グラフが有向グラフでは有りません (╥﹏╥)")
 
-# 有向グラフ
+        in_deg = self.in_deg[:]
+
+        S: deque[int] = deque([])
+        order: List[int] = []
+
+        for i in range(self.N):
+            if in_deg[i] == 0:
+                S.append(i)
+
+        while S:
+            if unique and len(S) != 1:
+                return [-1]
+
+            cur = S.pop()
+            order.append(cur)
+
+            for nxt in self.get(cur):
+                in_deg[nxt] -= 1
+
+                if in_deg[nxt] == 0:
+                    S.append(nxt)
+
+        if sum(in_deg) > 0:
+            return [-1]
+        else:
+            return [x for x in order]
+
+
+# 重み付きグラフ
 class GraphW:
     def __init__(self, N: int, dire: bool = False) -> None:
         self.N = N
@@ -326,91 +283,9 @@ class GraphW:
 
 
 # 便利変数
-INF = 10**18
+INF = 1 << 63
 lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-
-
-# テンプレ
-class RMAQ:
-    def __init__(self, N) -> None:
-        # サイズは要素の数
-
-        self.size = 1
-        while self.size < N:
-            self.size *= 2
-
-        self.data = [0] * (self.size * 2)
-
-    def update(self, ind, x):
-        ind = ind + self.size - 1
-        self.data[ind] = x
-
-        while ind >= 2:
-            ind //= 2
-            self.data[ind] = max(self.data[ind * 2], self.data[ind * 2 + 1])
-
-    def query(self, l: int, r: int, a: int, b: int, u: int):
-        if r <= a or l >= b:
-            return -INF
-        if l <= a and b <= r:
-            return self.data[u]
-
-        m = (a + b) // 2
-        return max(self.query(l, r, a, m, u * 2), self.query(l, r, m, b, u * 2 + 1))
-
-
-class RMIQ:
-    def __init__(self, N) -> None:
-        # サイズは要素の数
-
-        self.size = 1
-        while self.size < N:
-            self.size *= 2
-
-        self.data = [0] * (self.size * 2)
-
-    def update(self, ind, x):
-        ind = ind + self.size - 1
-        self.data[ind] = x
-
-        while ind >= 2:
-            ind //= 2
-            self.data[ind] = min(self.data[ind * 2], self.data[ind * 2 + 1])
-
-    def query(self, l: int, r: int, a: int, b: int, u: int):
-        if r <= a or l >= b:
-            return INF
-        if l <= a and b <= r:
-            return self.data[u]
-
-        m = (a + b) // 2
-        return min(self.query(l, r, a, m, u * 2), self.query(l, r, m, b, u * 2 + 1))
-
-
-class RSQ:
-    def __init__(self, n) -> None:
-        self.size = 1
-        while self.size < n:
-            self.size *= 2
-
-        self.data = [0] * (self.size * 2)
-
-    def update(self, ind, x):
-        ind += self.size
-        self.data[ind] = x
-        while ind >= 2:
-            ind //= 2
-            self.data[ind] = self.data[ind * 2] + self.data[ind * 2 + 1]
-
-    def query(self, l, r, a, b, u):
-        if r <= a or b <= l:
-            return 0
-        if l <= a and b <= r:
-            return self.data[u]
-        m = (a + b) // 2
-
-        return self.query(l, r, a, m, u * 2) + self.query(l, r, m, b, u * 2 + 1)
 
 
 # コード
