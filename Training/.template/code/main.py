@@ -171,10 +171,14 @@ class Graph:
         self.N = N
         self.dire = dire
         self.grath = [[] for _ in [0] * self.N]
+        self.in_deg = [0] * N
 
     def new_side(self, a: int, b: int):
         # 注意　0-indexedが前提
         self.grath[a].append(b)
+        if self.dire:
+            self.in_deg[b] += 1
+
         if not self.dire:
             self.grath[b].append(a)
 
@@ -195,6 +199,10 @@ class Graph:
     def all(self):
         # グラフの内容をすべて出力
         return self.grath
+
+    def topological(self, unique):
+        if not self.dire:
+            raise ValueError("グラフが有向グラフでは有りません (╥﹏╥)")
 
 
 # 有向グラフ
