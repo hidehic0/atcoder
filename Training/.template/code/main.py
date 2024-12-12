@@ -7,7 +7,10 @@ import bisect
 import sys
 import heapq
 from typing import List, Any
-from atcoder.segtree import SegTree
+
+# from atcoder.segtree import SegTree
+# from atcoder.lazysegtree import LazySegTree
+# from atcoder.dsu import DSU
 
 # cortedcontainersは使うときだけ wandbox非対応なので
 # from sortedcontainers import SortedDict, SortedSet, SortedList
