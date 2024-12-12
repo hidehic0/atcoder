@@ -115,3 +115,28 @@ class SegmentTree:
 
 
 # コード
+N, Q = il()
+X = il()
+
+D = defaultdict(lambda: -1)
+S = set()
+ans = [0] * N
+A = [0]
+
+for i in range(Q):
+    x = X[i]
+
+    if x in S:
+        ans[x - 1] += A[-1] - A[D[x]]
+        del D[x]
+        S.remove(x)
+    else:
+        D[x] = i
+        S.add(x)
+
+    A.append(A[-1] + len(S))
+
+for x in S:
+    ans[x - 1] += A[-1] - A[D[x]]
+
+print(*ans)
