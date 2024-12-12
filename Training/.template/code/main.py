@@ -232,7 +232,7 @@ class Graph:
             return [x for x in order]
 
 
-# 有向グラフ
+# 重み付きグラフ
 class GraphW:
     def __init__(self, N: int, dire: bool = False) -> None:
         self.N = N
