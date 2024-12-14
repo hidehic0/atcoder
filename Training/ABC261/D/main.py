@@ -85,3 +85,30 @@ upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 
 # コード
+N, M = il()
+X = il()
+DF = defaultdict(lambda: -1)
+
+for _ in [0] * M:
+    C, Y = il()
+    DF[C] = Y
+
+dp = [[-INF] * (N + 1) for _ in [0] * (N + 1)]
+dp[0][0] = 0
+
+for i in range(N):
+    for k in range(len(dp[0])):
+        if dp[i][k] == -INF:
+            continue
+
+        dp[i + 1][0] = max(dp[i + 1][0], dp[i][k])
+
+        nxt = k + 1
+        nm = dp[i][k] + X[i]
+
+        if DF[nxt] != -1:
+            nm += DF[nxt]
+
+        dp[i + 1][nxt] = max(dp[i + 1][nxt], nm)
+
+print(max(dp[-1]))
