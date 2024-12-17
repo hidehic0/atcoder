@@ -115,3 +115,35 @@ class SegmentTree:
 
 
 # コード
+N = ii()
+A = il()
+L = [[INF] * N for _ in [0] * N]
+V = [[0] * N for _ in [0] * N]
+
+for i in range(N):
+    S = s()
+    L[i][i] = 0
+
+    for k in range(N):
+        if S[k] == "Y":
+            L[i][k] = 1
+            V[i][k] = A[k]
+
+for nxt in range(N):
+    for i in range(N):
+        for k in range(N):
+            if L[i][nxt] + L[nxt][k] < L[i][k]:
+                L[i][k] = L[i][nxt] + L[nxt][k]
+                V[i][k] = V[i][nxt] + V[nxt][k]
+            elif L[i][nxt] + L[nxt][k] == L[i][k] and V[i][nxt] + V[nxt][k] > V[i][k]:
+                V[i][k] = V[i][nxt] + V[nxt][k]
+
+
+Q = ii()
+for _ in [0] * Q:
+    u, v = il(-1)
+
+    if L[u][v] == INF:
+        print("Impossible")
+    else:
+        print(L[u][v], V[u][v] + A[u])
