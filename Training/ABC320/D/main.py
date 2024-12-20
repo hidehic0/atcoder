@@ -10,6 +10,9 @@ from typing import List
 
 # cortedcontainersは使うときだけ wandbox非対応なので
 # from sortedcontainers import SortedDict, SortedSet, SortedList
+import pypyjit
+
+pypyjit.set_param("max_unroll_recursion=-1")
 
 sys.setrecursionlimit(5 * 10**5)
 
@@ -414,3 +417,31 @@ class RSQ:
 
 
 # コード
+N, M = il()
+used = [[INF, INF] for _ in [0] * N]
+
+G = defaultdict(list)
+
+for _ in [0] * M:
+    A, B, X, Y = il()
+    A -= 1
+    B -= 1
+
+    G[A].append([B, X, Y])
+    G[B].append([A, -X, -Y])
+
+
+def dfs(cur, x, y):
+    used[cur] = [x, y]
+
+    for nxt, mx, my in G[cur]:
+        if used[nxt] == [INF, INF]:
+            dfs(nxt, x + mx, y + my)
+
+
+dfs(0, 0, 0)
+for i in range(N):
+    if used[i] != [INF, INF]:
+        print(*used[i])
+    else:
+        print("undecidable")
