@@ -1,0 +1,3 @@
+[submodule "Training/.template"]
+	path = Training/.template
+	url = git@github.com:hidehic0/library.git
