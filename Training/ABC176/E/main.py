@@ -22,6 +22,7 @@ import bisect
 import sys
 import heapq
 from typing import List, Any
+import unittest
 
 # from atcoder.segtree import SegTree
 # from atcoder.lazysegtree import LazySegTree
@@ -38,6 +39,9 @@ sys.setrecursionlimit(5 * 10**5)
 
 # 関数
 def is_prime(n):
+    if n == 1:
+        return False
+
     def f(a, t, n):
         x = pow(a, t, n)
         nt = n - 1
@@ -122,6 +126,24 @@ def factorization(n):
         result.append([n, 1])
 
     return result
+
+
+class TestMathFunctions(unittest.TestCase):
+    def test_is_prime(self):
+        test_cases = [
+            (1, False),
+            (2, True),
+            (3, True),
+            (4, False),
+            (5, True),
+            (6, False),
+            (1747, True),
+            (256, False),
+        ]
+
+        for i, ans in test_cases:
+            with self.subTest(i=i):
+                self.assertEqual(is_prime(i), ans)
 
 
 def create_array2(a: int, b: int, default: Any = 0) -> List[List[Any]]:
@@ -287,44 +309,8 @@ INF = 1 << 63
 lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
+# テストを実行する
+if sys.argv == ["code/main.py"]:
+    unittest.main()
 
 # コード
-H, W, M = il()
-S = defaultdict(set)
-
-A = [0] * H
-B = [0] * W
-
-for _ in [0] * M:
-    h, w = il(-1)
-
-    S[h].add(w)
-    A[h] += 1
-    B[w] += 1
-
-ans = 0
-
-mh = max(A)
-ma = []
-
-for i in range(H):
-    if mh == A[i]:
-        ma.append(i)
-
-
-mw = max(B)
-mb = []
-
-for i in range(W):
-    if mw == B[i]:
-        mb.append(i)
-
-ans = mh + mw - 1
-
-for x in ma:
-    for y in mb:
-        if y not in S[x]:
-            print(ans + 1)
-            exit()
-
-print(ans)
