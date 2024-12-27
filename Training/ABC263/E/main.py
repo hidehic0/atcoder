@@ -1,52 +1,76 @@
+r"""
+ ______________________
+< it's hidehico's code >
+ ----------------------
+   \
+    \
+        .--.
+       |o_o |
+       |:_/ |
+      //   \ \
+     (|     | )
+    /'\_   _/`\
+    \___)=(___/
+"""
+
 # ライブラリと関数と便利変数
 # ライブラリ
 from collections import deque, defaultdict, Counter
-from math import pi
+from math import pi, gcd, lcm
 from itertools import permutations
 import bisect
 import sys
 import heapq
-from typing import List
+from typing import List, Any
+import unittest
+
+# from atcoder.segtree import SegTree
+# from atcoder.lazysegtree import LazySegTree
+# from atcoder.dsu import DSU
 
 # cortedcontainersは使うときだけ wandbox非対応なので
 # from sortedcontainers import SortedDict, SortedSet, SortedList
+
+# import pypyjit
+# pypyjit.set_param("max_unroll_recursion=-1")
 
 sys.setrecursionlimit(5 * 10**5)
 
 
 # 関数
-def pow(x: int, n: int, t: int = 1):
-    # O(log N)
-    if t == 1:
-        ans = 1
-        while n:
-            if n % 2:
-                ans = ans * x
-            x = x * x
-            n >>= 1
-        return ans
-    ans = 1
-    while n:
-        if n % 2:
-            ans = (ans * x) % t
-        x = (x * x) % t
-        n >>= 1
-    return ans
-
-
-def is_prime(n: int) -> bool:
-    # O(√N)
+def is_prime(n):
     if n == 1:
         return False
 
-    i = 2
-    s = n**0.5
+    def f(a, t, n):
+        x = pow(a, t, n)
+        nt = n - 1
+        while t != nt and x != 1 and x != nt:
+            x = pow(x, 2, n)
+            t <<= 1
 
-    while i < s:
-        if n % i == 0:
+        return t & 1 or x == nt
+
+    if n == 2:
+        return True
+    elif n % 2 == 0:
+        return False
+
+    d = n - 1
+    d >>= 1
+
+    while d & 1 == 0:
+        d >>= 1
+
+    checklist = (
+        [2, 7, 61] if 2**32 > n else [2, 325, 9375, 28178, 450775, 9780504, 1795265022]
+    )
+
+    for i in checklist:
+        if i >= n:
+            break
+        if not f(i, d, n):
             return False
-
-        i += 1
 
     return True
 
@@ -63,20 +87,6 @@ def eratosthenes(n):
         i += 1
 
     return [i for i, p in enumerate(primes) if p]
-
-
-def gcd(a, b):
-    while a > 0 and b > 0:
-        if a > b:
-            a = a % b
-        else:
-            b = b % a
-
-    return max(a, b)
-
-
-def lcm(a, b):
-    return (a * b) // gcd(a, b)
 
 
 def calc_divisors(N):
@@ -118,6 +128,38 @@ def factorization(n):
     return result
 
 
+class TestMathFunctions(unittest.TestCase):
+    def test_is_prime(self):
+        test_cases = [
+            (1, False),
+            (2, True),
+            (3, True),
+            (4, False),
+            (5, True),
+            (6, False),
+            (1747, True),
+            (256, False),
+        ]
+
+        for i, ans in test_cases:
+            with self.subTest(i=i):
+                self.assertEqual(is_prime(i), ans)
+
+
+def create_array2(a: int, b: int, default: Any = 0) -> List[List[Any]]:
+    """
+    ２次元配列を初期化する関数
+    """
+    return [[default] * b for _ in [0] * a]
+
+
+def create_array3(a: int, b: int, c: int, default: Any = 0) -> List[List[List[Any]]]:
+    """
+    ３次元配列を初期化する関数
+    """
+    return [[[default] * c for _ in [0] * b] for _ in [0] * a]
+
+
 # 標準入力系
 # 一行に一つのstring
 def s():
@@ -144,104 +186,23 @@ def li(n: int, func, *args):
     return [func(*args) for _ in [0] * n]
 
 
-# 自作型
-class Heap:
-    def __init__(self) -> None:
-        self.heap: List[int] = []
+# ac-library用メモ
+"""
+segtree
 
-    def push(self, x: int):
-        """
-        値を挿入する関数
+初期化するとき
+Segtree(op,e,v)
 
-        計算量 O(log N)
-        Nはheapのサイズ
-        """
+opはマージする関数
+例
 
-        # 末尾に挿入
-        self.heap.append(x)
-        # 現在地の変数
-        ind: int = len(self.heap) - 1
+def op(a,b):
+    return a+b
 
-        # 更新処理
-        while ind > 0:
-            # 現在地の親を求める
-            # 求め方はセグ木の要領で
-            parent: int = (ind - 1) // 2
+eは初期化する値
 
-            # 親の方が小さかったら処理を終了
-            if self.heap[parent] <= x:
-                break
-
-            # 親より小さかったら入れ替える
-            self.heap[ind] = self.heap[parent]
-            # 現在地を更新
-            ind = parent
-
-        # 最後に現在地にxを代入
-        self.heap[ind] = x
-
-    def min(self):
-        """
-        最小値を出力する関数
-
-        計算量
-        O(1)
-        """
-        if len(self.heap) == 0:
-            print("\033[31m error heap is empty \033[0m")
-            return
-        return self.heap[0]
-
-    def pop(self):
-        """
-        最小値を削除する関数
-        返り値は削除した最小値
-
-        計算量
-        N = len(self.heap)
-        O(log N)
-        """
-        # 返り値を取っておく
-        result = self.min()
-
-        # self.heapが空ならエラーを吐く
-        if len(self.heap) == 0:
-            print("\033[31m error heap is empty \033[0m")
-            return
-
-        # 末尾の値を取得
-        x: int = self.heap.pop()
-        # 現在地
-        ind = 0
-
-        # 要素がなくなった場合それが最小値なので出力する
-        if len(self.heap) == 0:
-            return result
-
-        # 更新処理
-        while ind * 2 + 1 < len(self.heap):
-            # 現在地の子のインデックスを変数に入れとく
-            child1 = ind * 2 + 1
-            child2 = ind * 2 + 2
-            # child2の要素がchild1の要素より小さければchild1をchild2にする
-            if child2 < len(self.heap) and self.heap[child2] < self.heap[child1]:
-                child1 = child2
-
-            # child1の要素がxより大きければ処理を終了
-            if self.heap[child1] >= x:
-                break
-
-            # 入れ替え
-            self.heap[ind] = self.heap[child1]
-
-            # 現在地を移動
-            ind = child1
-
-        # 現在地の要素をxにする
-        self.heap[ind] = x
-
-        # 削除した値を返す
-        return result
+vは配列の長さまたは、初期化する内容
+"""
 
 
 # 無向グラフ
@@ -250,10 +211,14 @@ class Graph:
         self.N = N
         self.dire = dire
         self.grath = [[] for _ in [0] * self.N]
+        self.in_deg = [0] * N
 
     def new_side(self, a: int, b: int):
         # 注意　0-indexedが前提
         self.grath[a].append(b)
+        if self.dire:
+            self.in_deg[b] += 1
+
         if not self.dire:
             self.grath[b].append(a)
 
@@ -275,8 +240,39 @@ class Graph:
         # グラフの内容をすべて出力
         return self.grath
 
+    def topological(self, unique: bool = False):
+        if not self.dire:
+            raise ValueError("グラフが有向グラフでは有りません (╥﹏╥)")
 
-# 有向グラフ
+        in_deg = self.in_deg[:]
+
+        S: deque[int] = deque([])
+        order: List[int] = []
+
+        for i in range(self.N):
+            if in_deg[i] == 0:
+                S.append(i)
+
+        while S:
+            if unique and len(S) != 1:
+                return [-1]
+
+            cur = S.pop()
+            order.append(cur)
+
+            for nxt in self.get(cur):
+                in_deg[nxt] -= 1
+
+                if in_deg[nxt] == 0:
+                    S.append(nxt)
+
+        if sum(in_deg) > 0:
+            return [-1]
+        else:
+            return [x for x in order]
+
+
+# 重み付きグラフ
 class GraphW:
     def __init__(self, N: int, dire: bool = False) -> None:
         self.N = N
@@ -308,40 +304,94 @@ class GraphW:
         return self.grath
 
 
+class Trie:
+    class Data:
+        def __init__(self, value, ind):
+            self.count = 1
+            self.value = value
+            self.childs = {}
+            self.ind = ind
+
+    def __init__(self):
+        self.data = [self.Data("ab", 0)]  # 初期値はabにして被らないようにする
+
+    def add(self, value: str) -> int:
+        cur = 0
+        result = 0
+
+        # 再帰的に探索する
+        for t in value:
+            childs = self.data[cur].childs  # 参照渡しで
+
+            if t in childs:
+                self.data[childs[t]].count += 1
+            else:
+                nd = self.Data(t, len(self.data))
+                childs[t] = len(self.data)
+                self.data.append(nd)
+
+            result += self.data[childs[t]].count - 1
+            cur = childs[t]
+
+        return result
+
+    def lcp_max(self, value: str) -> int:
+        cur = 0
+        result = 0
+
+        for t in value:
+            childs = self.data[cur].childs
+
+            if t not in childs:
+                break
+
+            if self.data[childs[t]].count == 1:
+                break
+
+            cur = childs[t]
+            result += 1
+
+        return result
+
+    def lcp_sum(self, value: str) -> int:
+        cur = 0
+        result = 0
+
+        for t in value:
+            childs = self.data[cur].childs
+
+            if t not in childs:
+                break
+
+            if self.data[childs[t]].count == 1:
+                break
+
+            cur = childs[t]
+            result += self.data[childs[t]].count - 1
+
+        return result
+
+
 # 便利変数
-INF = 10**18
+INF = 1 << 63
 lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
-
-# テンプレ
-class SegmentTree:
-    # 鉄則本のパクリですけどよろしく
-    def __init__(self, N) -> None:
-        # サイズは要素の数
-
-        self.size = 1
-        while self.size < N:
-            self.size *= 2
-
-        self.data = [0] * (self.size * 2)
-
-    def update(self, ind, x):
-        ind = ind + self.size - 1
-        self.data[ind] = x
-
-        while ind >= 2:
-            ind //= 2
-            self.data[ind] = max(self.data[ind * 2], self.data[ind * 2 + 1])
-
-    def query(self, l, r, a, b, u):
-        if r <= a or l >= b:
-            return -INF
-        if l <= a and b <= r:
-            return self.data[u]
-
-        m = (a + b) // 2
-        return max(self.query(l, r, a, m, u * 2), self.query(l, r, m, b, u * 2 + 1))
-
+# テストを実行する
+if sys.argv == ["code/main.py"]:
+    unittest.main()
 
 # コード
+N = ii()
+A = il()[::-1]
+MOD = 998244353
+
+acc = [0]
+dp = [0] * N
+
+for i in range(N - 1):
+    inv = pow(A[i], -1, MOD)
+    dp[i + 1] = (acc[-1] - acc[max(0, i - A[i])] + A[i] + 1) * inv % MOD
+    acc.append((acc[-1] + dp[i + 1]) % MOD)
+
+print(dp[-1])
