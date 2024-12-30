@@ -1,6 +1,3 @@
-[submodule "Performance/.template"]
-	path = Performance/.template
-	url = git@github.com:hidehic0/library.git
 [submodule "Training/.template"]
 	path = Training/.template
 	url = git@github.com:hidehic0/library.git
