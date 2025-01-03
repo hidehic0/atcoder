@@ -1,0 +1,64 @@
+{
+  "contest": {
+    "id": "adt_medium_20250102_3",
+    "title": "AtCoder Daily Training MEDIUM 2025/01/02 20:30start",
+    "url": "https://atcoder.jp/contests/adt_medium_20250102_3"
+  },
+  "tasks": [
+    {
+      "id": "abc253_b",
+      "label": "C",
+      "title": "Distance Between Tokens",
+      "url": "https://atcoder.jp/contests/adt_medium_20250102_3/tasks/abc253_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc231_b",
+      "label": "D",
+      "title": "Election",
+      "url": "https://atcoder.jp/contests/adt_medium_20250102_3/tasks/abc231_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc261_c",
+      "label": "E",
+      "title": "NewFolder(1)",
+      "url": "https://atcoder.jp/contests/adt_medium_20250102_3/tasks/abc261_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc239_c",
+      "label": "F",
+      "title": "Knight Fork",
+      "url": "https://atcoder.jp/contests/adt_medium_20250102_3/tasks/abc239_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc335_d",
+      "label": "G",
+      "title": "Loong and Takahashi",
+      "url": "https://atcoder.jp/contests/adt_medium_20250102_3/tasks/abc335_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
