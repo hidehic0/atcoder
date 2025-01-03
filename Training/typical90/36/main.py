@@ -345,3 +345,19 @@ class SegmentTree:
 
 
 # コード
+N, Q = il()
+X, Y = [], []
+
+for _ in [0] * N:
+    x, y = il()
+    X.append(x - y)
+    Y.append(x + y)
+
+x_min, x_max = min(X), max(X)
+y_min, y_max = min(Y), max(Y)
+
+for _ in [0] * Q:
+    q = ii() - 1
+    x = X[q]
+    y = Y[q]
+    print(max([x - x_min, x_max - x, y - y_min, y_max - y]))
