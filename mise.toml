@@ -1,0 +1,2 @@
+[tools]
+python = "pypy3.10-7.3.12"
