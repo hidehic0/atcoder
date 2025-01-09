@@ -485,3 +485,22 @@ if sys.argv == ["code/main.py"]:
     unittest.main()
 
 # コード
+X = ii()
+N = len(str(X))
+ans = INF
+
+for i in range(1, 10):
+    for k in range(-9, 10):
+        t = str(i)
+        cur = i
+
+        for _ in [0] * (N - 1):
+            if 0 <= cur + k <= 10:
+                cur += k
+                t += str(cur)
+
+        t = int(t)
+        if t >= X:
+            ans = min(ans, t)
+
+print(ans)

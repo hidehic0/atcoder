@@ -485,3 +485,25 @@ if sys.argv == ["code/main.py"]:
     unittest.main()
 
 # コード
+N, M = il()
+A = il()
+PQ = []
+
+for a in A:
+    heapq.heappush(PQ, a)
+
+L = li(M, il)
+L.sort(reverse=True, key=lambda x: x[1])
+for B, C in L:
+    while B and PQ[0] < C:
+        heapq.heappop(PQ)
+        heapq.heappush(PQ, C)
+        B -= 1
+
+    if B == 0:
+        continue
+    else:
+        print(sum(PQ))
+        exit()
+
+print(sum(PQ))

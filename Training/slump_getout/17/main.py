@@ -485,3 +485,48 @@ if sys.argv == ["code/main.py"]:
     unittest.main()
 
 # コード
+MOVES = [(0, 1), (0, -1), (1, 0), (1, -1)]
+
+N, M = il()
+L = li(N, s)
+S = deque()
+S.append((1, 1, -1))
+
+used = create_array2(N, M, False)
+used[1][1] = True
+
+while S:
+    x, y, md = S.popleft()
+
+    if md == -1:
+        for i in range(4):
+            nx, ny = x + MOVES[i][0], y + MOVES[i][1]
+
+            if L[nx][ny] == "#" or used[nx][ny]:
+                continue
+
+            used[nx][ny] = True
+            S.append((nx, ny, i))
+    else:
+        nx, ny = x + MOVES[md][0], y + MOVES[md][1]
+
+        if S[nx][ny] == ".":
+            if not used[nx][ny]:
+                used[nx][ny] = True
+                S.append((nx, ny, md))
+        else:
+            for i in range(4):
+                nx, ny = x + MOVES[i][0], y + MOVES[i][1]
+
+                if L[nx][ny] == "#" or used[nx][ny]:
+                    continue
+
+                used[nx][ny] = True
+                S.append((nx, ny, i))
+
+
+ans = 0
+for i in range(N):
+    ans += used[i].count(True)
+
+print(ans)

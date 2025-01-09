@@ -485,3 +485,17 @@ if sys.argv == ["code/main.py"]:
     unittest.main()
 
 # コード
+N = ii()
+S = sorted(input())
+ans = 0
+i = 0
+while i * i <= 10**N:
+    t = sorted(str(i * i))
+    t = ["0"] * (N - len(t)) + t
+
+    if t == S:
+        ans += 1
+
+    i += 1
+
+print(ans)
