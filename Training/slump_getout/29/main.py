@@ -485,3 +485,44 @@ if sys.argv == ["code/main.py"]:
     unittest.main()
 
 # コード
+H, W = il()
+S = li(H, s)
+MOVES = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+
+
+def solve(sx, sy):
+    used = create_array2(H, W, -INF)
+
+    Q = deque()
+    Q.append((sx, sy))
+    used[sx][sy] = 0
+
+    while Q:
+        x, y = Q.popleft()
+
+        for mx, my in MOVES:
+            nx, ny = x + mx, y + my
+
+            if not (0 <= nx < H and 0 <= ny < W):
+                continue
+
+            if S[nx][ny] == "#":
+                continue
+
+            if used[nx][ny] != -INF:
+                continue
+
+            used[nx][ny] = used[x][y] + 1
+            Q.append((nx, ny))
+
+    return max([max(used[i]) for i in range(H)])
+
+
+ans = 0
+
+for sx in range(H):
+    for sy in range(W):
+        if S[sx][sy] != "#":
+            ans = max(ans, solve(sx, sy))
+
+print(ans)

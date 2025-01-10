@@ -21,7 +21,7 @@ import heapq
 import sys
 import unittest
 from collections import Counter, defaultdict, deque
-from itertools import permutations
+from itertools import permutations, accumulate
 from math import gcd, lcm, pi
 from typing import Any, List
 
@@ -485,3 +485,26 @@ if sys.argv == ["code/main.py"]:
     unittest.main()
 
 # コード
+N = ii()
+D = defaultdict(list)
+L = [0] * N
+ans = []
+
+for i in range(N):
+    t, x = il()
+
+    if t == 1:
+        D[x].append((i, len(ans)))
+        ans.append(0)
+    else:
+        if len(D[x]) == 0:
+            print(-1)
+            exit()
+
+        a, b = D[x].pop()
+        L[a] += 1
+        L[i] -= 1
+        ans[b] = 1
+
+print(max(list(accumulate(L))))
+print(*ans)

@@ -485,3 +485,30 @@ if sys.argv == ["code/main.py"]:
     unittest.main()
 
 # コード
+N, Q = il()
+G = Graph(N)
+G.input(N - 1)
+
+used = [False] * N
+ans = [0] * N
+
+for _ in [0] * Q:
+    p, x = il()
+    ans[p - 1] += x
+
+Q = deque()
+Q.append(0)
+used[0] = True
+
+while Q:
+    u = Q.popleft()
+
+    for v in G.get(u):
+        if used[v]:
+            continue
+
+        ans[v] += ans[u]
+        Q.append(v)
+        used[v] = True
+
+print(*ans)

@@ -1,4 +1,3 @@
-#!/usr/bin/env pypy3
 r"""
  ______________________
 < it's hidehico's code >
@@ -36,9 +35,7 @@ from typing import Any, List
 # pypyjit.set_param("max_unroll_recursion=-1")
 
 sys.setrecursionlimit(5 * 10**5)
-
-
-# 関数
+# 数学型関数
 def is_prime(n):
     if n == 1:
         return False
@@ -92,6 +89,8 @@ def eratosthenes(n):
 
 def calc_divisors(N):
     # 約数全列挙
+    import heapq
+
     result = []
 
     for i in range(1, N + 1):
@@ -129,6 +128,9 @@ def factorization(n):
     return result
 
 
+import unittest
+
+
 class TestMathFunctions(unittest.TestCase):
     def test_is_prime(self):
         test_cases = [
@@ -145,6 +147,8 @@ class TestMathFunctions(unittest.TestCase):
         for i, ans in test_cases:
             with self.subTest(i=i):
                 self.assertEqual(is_prime(i), ans)
+# 多次元配列作成
+from typing import List, Any
 
 
 def create_array2(a: int, b: int, default: Any = 0) -> List[List[Any]]:
@@ -159,9 +163,37 @@ def create_array3(a: int, b: int, c: int, default: Any = 0) -> List[List[List[An
     ３次元配列を初期化する関数
     """
     return [[[default] * c for _ in [0] * b] for _ in [0] * a]
+from typing import Callable
 
 
-# 標準入力系
+def binary_search(fn: Callable[[int], bool], right: int = 0, left: int = -1) -> int:
+    """
+    二分探索の抽象的なライブラリ
+    評価関数の結果に応じて、二分探索する
+    最終的にはleftを出力します
+
+    関数のテンプレート
+    def check(mid:int):
+        if A[mid] > x:
+            return True
+        else:
+            return False
+
+    midは必須です。それ以外はご自由にどうぞ
+    """
+    while right - left > 1:
+        mid = (left + right) // 2
+
+        if fn(mid):
+            left = mid
+        else:
+            right = mid
+
+    return left
+# 標準入力関数
+import sys
+
+
 # 一行に一つのstring
 def s():
     return sys.stdin.readline().rstrip()
@@ -185,8 +217,6 @@ def il(add_num: int = 0):
 # 複数行の入力をサポート
 def li(n: int, func, *args):
     return [func(*args) for _ in [0] * n]
-
-
 # YesNo関数
 def YesNoTemplate(state: bool, upper: bool = False) -> str:
     """
@@ -233,9 +263,7 @@ def NE(state: bool, upper: bool = False) -> bool | None:
 
     YN(False, upper)
     exit()
-
-
-# ac-library用メモ
+# ac_libraryのメモ
 """
 segtree
 
@@ -252,9 +280,12 @@ eは初期化する値
 
 vは配列の長さまたは、初期化する内容
 """
-
-
+# グラフ構造
 # 無向グラフ
+from collections import deque
+from typing import List
+
+
 class Graph:
     def __init__(self, N: int, dire: bool = False) -> None:
         self.N = N
@@ -273,7 +304,7 @@ class Graph:
 
     def side_input(self):
         # 新しい辺をinput
-        a, b = il(-1)
+        a, b = map(lambda x: int(x) - 1, input().split())
         self.new_side(a, b)
 
     def input(self, M: int):
@@ -336,7 +367,7 @@ class GraphW:
 
     def side_input(self):
         # 新しい辺をinput
-        a, b, w = il(-1)
+        a, b, w = map(lambda x: int(x) - 1, input().split())
         self.new_side(a, b, w + 1)
 
     def input(self, M: int):
@@ -351,8 +382,6 @@ class GraphW:
     def all(self):
         # グラフの内容をすべて出力
         return self.grath
-
-
 # UnionFind木
 class UnionFind:
     """
@@ -404,8 +433,6 @@ class UnionFind:
         self.data[ra] = da
         self.data[rb] = db
         return True
-
-
 # Trie木
 class Trie:
     class Data:
@@ -473,43 +500,17 @@ class Trie:
             result += self.data[childs[t]].count - 1
 
         return result
-
-
 # 便利変数
 INF = 1 << 63
 lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
+import unittest
+import sys
+
 # テストを実行する
+
 if sys.argv == ["code/main.py"]:
     unittest.main()
 
 # コード
-N, M = il()
-P = il(-1)
-G = Graph(N, dire=True)
-
-for i in range(N - 1):
-    G.new_side(P[i], i + 1)
-
-L = [0] * N
-
-for _ in [0] * M:
-    x, y = il()
-    x -= 1
-    L[x] = max(L[x], y)
-
-Q = deque()
-Q.append((0, L[0]))
-ans = [False] * N
-
-while Q:
-    u, cur = Q.popleft()
-
-    if cur >= 1:
-        ans[u] = True
-
-    for v in G.get(u):
-        Q.append((v, max(cur - 1, L[v])))
-
-print(ans.count(True))

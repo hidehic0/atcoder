@@ -485,3 +485,27 @@ if sys.argv == ["code/main.py"]:
     unittest.main()
 
 # コード
+N = ii()
+A = il()
+
+r = 0
+D = defaultdict(int)
+ans = 0
+
+for l in range(N):
+    while r < N:
+        if D[A[r]] >= 2:
+            break
+
+        if r != 0 and A[r - 1] != A[r] and D[A[r - 1]] == 1:
+            D[A[r - 1]] -= 1
+            r -= 1
+            break
+
+        D[A[r]] += 1
+        r += 1
+
+    ans = max(ans, (r - l) // 2 * 2)
+    D[A[l]] -= 1
+
+print(ans)

@@ -485,3 +485,20 @@ if sys.argv == ["code/main.py"]:
     unittest.main()
 
 # コード
+N = ii()
+dp = create_array2(N + 1, 2 * 10**5, INF)
+dp[0][0] = 0
+su = 0
+
+for i in range(N):
+    X, Y, Z = il()
+    su += Z
+    t = (X + Y) // 2 + 1 - X
+
+    for k in range(len(dp[0])):
+        dp[i + 1][k] = min(dp[i + 1][k], dp[i][k])
+        if k + Z >= len(dp[0]):
+            continue
+        dp[i + 1][k + Z] = min(dp[i + 1][k + Z], dp[i][k] + t)
+
+print(min(dp[-1][su // 2 + 1 :]))

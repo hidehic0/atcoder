@@ -306,7 +306,7 @@ class Graph:
             if unique and len(S) != 1:
                 return [-1]
 
-            cur = S.pop()
+            cur = S.popleft()
             order.append(cur)
 
             for nxt in self.get(cur):
@@ -485,3 +485,26 @@ if sys.argv == ["code/main.py"]:
     unittest.main()
 
 # コード
+N = ii()
+G = Graph(N, dire=True)
+
+for u in range(N):
+    l = il(-1)[1:]
+
+    for v in l:
+        G.new_side(u, v)
+
+used = [False] * N
+used[0] = True
+ans = []
+
+
+def dfs(u):
+    for v in G.get(u):
+        if not used[v]:
+            used[v] = True
+            dfs(v)
+            ans.append(v)
+
+
+print(*reversed(ans))

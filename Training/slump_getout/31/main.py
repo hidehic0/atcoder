@@ -485,3 +485,29 @@ if sys.argv == ["code/main.py"]:
     unittest.main()
 
 # コード
+S = s()
+MOD = 998244353
+dp = create_array2(len(S) + 1, len(S) + 1, 0)
+
+for i in range(len(S)):
+    if S[i] != "?":
+        t = 1 if S[i] == "(" else -1
+
+        for k in range(len(S) + 1):
+            n = k + t
+            if 0 <= n <= len(S):
+                dp[i + 1][n] += dp[i][k]
+                dp[i + 1][n] %= MOD
+
+        continue
+
+    for k in range(len(S) + 1):
+        if 0 <= k - 1:
+            dp[i + 1][k - 1] += dp[i][k]
+            dp[i + 1][k - 1] %= MOD
+
+        if k + 1 <= len(S):
+            dp[i + 1][k + 1] += dp[i][k]
+            dp[i + 1][k + 1] %= MOD
+
+print(dp[-1][0])

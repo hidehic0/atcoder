@@ -485,3 +485,17 @@ if sys.argv == ["code/main.py"]:
     unittest.main()
 
 # コード
+N, D = il()
+L = li(N, il)
+L.sort(lambda x: x[1])
+cur = -INF
+ans = 0
+
+for l, r in L:
+    if l <= cur:
+        continue
+
+    cur = r + D - 1
+    ans += 1
+
+print(ans)

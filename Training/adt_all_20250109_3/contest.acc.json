@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250109_3",
+    "title": "AtCoder Daily Training ALL 2025/01/09 20:30start",
+    "url": "https://atcoder.jp/contests/adt_all_20250109_3"
+  },
+  "tasks": [
+    {
+      "id": "abc269_a",
+      "label": "A",
+      "title": "Anyway Takahashi",
+      "url": "https://atcoder.jp/contests/adt_all_20250109_3/tasks/abc269_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc286_a",
+      "label": "B",
+      "title": "Range Swap",
+      "url": "https://atcoder.jp/contests/adt_all_20250109_3/tasks/abc286_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc227_b",
+      "label": "C",
+      "title": "KEYENCE building",
+      "url": "https://atcoder.jp/contests/adt_all_20250109_3/tasks/abc227_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc252_b",
+      "label": "D",
+      "title": "Takahashi's Failure",
+      "url": "https://atcoder.jp/contests/adt_all_20250109_3/tasks/abc252_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc240_c",
+      "label": "E",
+      "title": "Jumping Takahashi",
+      "url": "https://atcoder.jp/contests/adt_all_20250109_3/tasks/abc240_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc276_c",
+      "label": "F",
+      "title": "Previous Permutation",
+      "url": "https://atcoder.jp/contests/adt_all_20250109_3/tasks/abc276_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc259_d",
+      "label": "G",
+      "title": "Circumferences",
+      "url": "https://atcoder.jp/contests/adt_all_20250109_3/tasks/abc259_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc271_e",
+      "label": "H",
+      "title": "Subsequence Path",
+      "url": "https://atcoder.jp/contests/adt_all_20250109_3/tasks/abc271_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc345_f",
+      "label": "I",
+      "title": "Many Lamps",
+      "url": "https://atcoder.jp/contests/adt_all_20250109_3/tasks/abc345_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}

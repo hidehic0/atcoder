@@ -1,4 +1,3 @@
-#!/usr/bin/env pypy3
 r"""
  ______________________
 < it's hidehico's code >
@@ -24,6 +23,7 @@ from collections import Counter, defaultdict, deque
 from itertools import permutations
 from math import gcd, lcm, pi
 from typing import Any, List
+import random
 
 # from atcoder.segtree import SegTree
 # from atcoder.lazysegtree import LazySegTree
@@ -38,7 +38,7 @@ from typing import Any, List
 sys.setrecursionlimit(5 * 10**5)
 
 
-# 関数
+# 数学型関数
 def is_prime(n):
     if n == 1:
         return False
@@ -92,6 +92,8 @@ def eratosthenes(n):
 
 def calc_divisors(N):
     # 約数全列挙
+    import heapq
+
     result = []
 
     for i in range(1, N + 1):
@@ -129,6 +131,9 @@ def factorization(n):
     return result
 
 
+import unittest
+
+
 class TestMathFunctions(unittest.TestCase):
     def test_is_prime(self):
         test_cases = [
@@ -147,6 +152,10 @@ class TestMathFunctions(unittest.TestCase):
                 self.assertEqual(is_prime(i), ans)
 
 
+# 多次元配列作成
+from typing import List, Any
+
+
 def create_array2(a: int, b: int, default: Any = 0) -> List[List[Any]]:
     """
     ２次元配列を初期化する関数
@@ -161,7 +170,39 @@ def create_array3(a: int, b: int, c: int, default: Any = 0) -> List[List[List[An
     return [[[default] * c for _ in [0] * b] for _ in [0] * a]
 
 
-# 標準入力系
+from typing import Callable
+
+
+def binary_search(fn: Callable[[int], bool], right: int = 0, left: int = -1) -> int:
+    """
+    二分探索の抽象的なライブラリ
+    評価関数の結果に応じて、二分探索する
+    最終的にはleftを出力します
+
+    関数のテンプレート
+    def check(mid:int):
+        if A[mid] > x:
+            return True
+        else:
+            return False
+
+    midは必須です。それ以外はご自由にどうぞ
+    """
+    while right - left > 1:
+        mid = (left + right) // 2
+
+        if fn(mid):
+            left = mid
+        else:
+            right = mid
+
+    return left
+
+
+# 標準入力関数
+import sys
+
+
 # 一行に一つのstring
 def s():
     return sys.stdin.readline().rstrip()
@@ -235,7 +276,7 @@ def NE(state: bool, upper: bool = False) -> bool | None:
     exit()
 
 
-# ac-library用メモ
+# ac_libraryのメモ
 """
 segtree
 
@@ -252,9 +293,12 @@ eは初期化する値
 
 vは配列の長さまたは、初期化する内容
 """
-
-
+# グラフ構造
 # 無向グラフ
+from collections import deque
+from typing import List
+
+
 class Graph:
     def __init__(self, N: int, dire: bool = False) -> None:
         self.N = N
@@ -273,7 +317,7 @@ class Graph:
 
     def side_input(self):
         # 新しい辺をinput
-        a, b = il(-1)
+        a, b = map(lambda x: int(x) - 1, input().split())
         self.new_side(a, b)
 
     def input(self, M: int):
@@ -336,7 +380,7 @@ class GraphW:
 
     def side_input(self):
         # 新しい辺をinput
-        a, b, w = il(-1)
+        a, b, w = map(lambda x: int(x) - 1, input().split())
         self.new_side(a, b, w + 1)
 
     def input(self, M: int):
@@ -480,36 +524,39 @@ INF = 1 << 63
 lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
+import unittest
+import sys
+
 # テストを実行する
+
 if sys.argv == ["code/main.py"]:
     unittest.main()
 
 # コード
-N, M = il()
-P = il(-1)
-G = Graph(N, dire=True)
+N = ii()
+P = il()
 
-for i in range(N - 1):
-    G.new_side(P[i], i + 1)
+cur = None
 
-L = [0] * N
+for i in range(N):
+    for k in range(N):
+        if i == k:
+            continue
 
-for _ in [0] * M:
-    x, y = il()
-    x -= 1
-    L[x] = max(L[x], y)
+        np = P.copy()
+        np[i], np[k] = np[k], np[i]
 
-Q = deque()
-Q.append((0, L[0]))
-ans = [False] * N
+        if P > np:
+            cur = np
+            break
 
-while Q:
-    u, cur = Q.popleft()
+for _ in [0] * 1000000:
+    a = random.randint(0, N - 2)
+    b = random.randint(0, N - 2)
+    np = cur[:]
+    np[a], np[b] = np[b], np[a]
 
-    if cur >= 1:
-        ans[u] = True
+    if P > np:
+        cur = max(cur, np)
 
-    for v in G.get(u):
-        Q.append((v, max(cur - 1, L[v])))
-
-print(ans.count(True))
+print(*cur)
