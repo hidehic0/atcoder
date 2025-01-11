@@ -485,3 +485,21 @@ if sys.argv == ["code/main.py"]:
     unittest.main()
 
 # コード
+Q = ii()
+A = []
+B = deque()
+
+for _ in [0] * Q:
+    l = il()
+
+    if l[0] == 1:
+        B.append(l[1])
+    elif l[0] == 2:
+        if len(A):
+            print(heapq.heappop(A))
+            continue
+        else:
+            print(B.popleft())
+    else:
+        while B:
+            heapq.heappush(A, B.popleft())

@@ -485,3 +485,25 @@ if sys.argv == ["code/main.py"]:
     unittest.main()
 
 # コード
+N, M = il()
+UF = UnionFind(N)
+
+for _ in [0] * M:
+    u, v = il(-1)
+    UF.unite(u, v)
+
+K = ii()
+L = set()
+
+for _ in [0] * K:
+    x, y = il(-1)
+    a, b = UF.root(x), UF.root(y)
+    L.add((a, b))
+    L.add((b, a))
+
+Q = ii()
+
+for _ in [0] * Q:
+    p, q = il(-1)
+
+    YN(not (UF.root(p), UF.root(q)) in L)
