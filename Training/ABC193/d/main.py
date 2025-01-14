@@ -1,4 +1,3 @@
-#!/usr/bin/env pypy3
 r"""
  ______________________
 < it's hidehico's code >
@@ -16,14 +15,14 @@ r"""
 
 # ライブラリと関数と便利変数
 # ライブラリ
-from collections import deque, defaultdict, Counter
-from math import pi, gcd, lcm
-from itertools import permutations, accumulate
 import bisect
-import sys
 import heapq
-from typing import List, Any
+import sys
 import unittest
+from collections import Counter, defaultdict, deque
+from itertools import permutations
+from math import gcd, lcm, pi
+from typing import Any, List
 
 # from atcoder.segtree import SegTree
 # from atcoder.lazysegtree import LazySegTree
@@ -38,7 +37,7 @@ import unittest
 sys.setrecursionlimit(5 * 10**5)
 
 
-# 関数
+# 数学型関数
 def is_prime(n):
     if n == 1:
         return False
@@ -92,6 +91,8 @@ def eratosthenes(n):
 
 def calc_divisors(N):
     # 約数全列挙
+    import heapq
+
     result = []
 
     for i in range(1, N + 1):
@@ -129,22 +130,8 @@ def factorization(n):
     return result
 
 
-class TestMathFunctions(unittest.TestCase):
-    def test_is_prime(self):
-        test_cases = [
-            (1, False),
-            (2, True),
-            (3, True),
-            (4, False),
-            (5, True),
-            (6, False),
-            (1747, True),
-            (256, False),
-        ]
-
-        for i, ans in test_cases:
-            with self.subTest(i=i):
-                self.assertEqual(is_prime(i), ans)
+# 多次元配列作成
+from typing import List, Any
 
 
 def create_array2(a: int, b: int, default: Any = 0) -> List[List[Any]]:
@@ -161,7 +148,39 @@ def create_array3(a: int, b: int, c: int, default: Any = 0) -> List[List[List[An
     return [[[default] * c for _ in [0] * b] for _ in [0] * a]
 
 
-# 標準入力系
+from typing import Callable
+
+
+def binary_search(fn: Callable[[int], bool], right: int = 0, left: int = -1) -> int:
+    """
+    二分探索の抽象的なライブラリ
+    評価関数の結果に応じて、二分探索する
+    最終的にはleftを出力します
+
+    関数のテンプレート
+    def check(mid:int):
+        if A[mid] > x:
+            return True
+        else:
+            return False
+
+    midは必須です。それ以外はご自由にどうぞ
+    """
+    while right - left > 1:
+        mid = (left + right) // 2
+
+        if fn(mid):
+            left = mid
+        else:
+            right = mid
+
+    return left
+
+
+# 標準入力関数
+import sys
+
+
 # 一行に一つのstring
 def s():
     return sys.stdin.readline().rstrip()
@@ -187,7 +206,100 @@ def li(n: int, func, *args):
     return [func(*args) for _ in [0] * n]
 
 
-# ac-library用メモ
+# YesNo関数
+def YesNoTemplate(state: bool, upper: bool = False) -> str:
+    """
+    stateがTrueなら、upperに応じてYes,YESをreturn
+    stateがFalseなら、upperに応じてNo,NOをreturnする
+    """
+    YES = ["Yes", "YES"]
+    NO = ["No", "NO"]
+
+    if state:
+        return YES[int(upper)]
+    else:
+        return NO[int(upper)]
+
+
+def YN(state: bool, upper: bool = False) -> None:
+    """
+    先程のYesNoTemplate関数の結果を出力する
+    """
+    res = YesNoTemplate(state, upper)
+
+    print(res)
+
+
+def YE(state: bool, upper: bool = False) -> bool | None:
+    """
+    boolがTrueならYesを出力してexit
+    """
+
+    if not state:
+        return False
+
+    YN(True, upper)
+    exit()
+
+
+def NE(state: bool, upper: bool = False) -> bool | None:
+    """
+    boolがTrueならNoを出力してexit
+    """
+
+    if not state:
+        return False
+
+    YN(False, upper)
+    exit()
+
+
+def coordinate_check(x: int, y: int, H: int, W: int) -> bool:
+    """
+    座標がグリッドの範囲内にあるかチェックする関数
+    0-indexedが前提
+    """
+
+    return 0 <= x < H and 0 <= y < W
+
+
+from typing import List, Tuple
+
+
+def grid_moves(
+    x: int,
+    y: int,
+    H: int,
+    W: int,
+    moves: List[Tuple[int]] = [(0, 1), (0, -1), (1, 0), (-1, 0)],
+    *check_funcs,
+) -> List[Tuple[int]]:
+    """
+    現在の座標から、移動可能な座標をmovesをもとに列挙します。
+    xとyは現在の座標
+    HとWはグリッドのサイズ
+    movesは移動する座標がいくつかを保存する
+    check_funcsは、その座標の点が#だとかを自前で実装して判定はこちらでするみたいな感じ
+    なおcheck_funcsは引数がxとyだけというのが条件
+    """
+    res = []
+
+    for mx, my in moves:
+        nx, ny = x + mx, y + my
+
+        if not coordinate_check(nx, ny, H, W):
+            continue
+
+        for f in check_funcs:
+            if not f(nx, ny):
+                break
+        else:
+            res.append((nx, ny))
+
+    return res
+
+
+# ac_libraryのメモ
 """
 segtree
 
@@ -204,9 +316,12 @@ eは初期化する値
 
 vは配列の長さまたは、初期化する内容
 """
-
-
+# グラフ構造
 # 無向グラフ
+from collections import deque
+from typing import List
+
+
 class Graph:
     def __init__(self, N: int, dire: bool = False) -> None:
         self.N = N
@@ -225,7 +340,7 @@ class Graph:
 
     def side_input(self):
         # 新しい辺をinput
-        a, b = il(-1)
+        a, b = map(lambda x: int(x) - 1, input().split())
         self.new_side(a, b)
 
     def input(self, M: int):
@@ -288,8 +403,8 @@ class GraphW:
 
     def side_input(self):
         # 新しい辺をinput
-        a, b, w = il(-1)
-        self.new_side(a, b, w)
+        a, b, w = map(lambda x: int(x) - 1, input().split())
+        self.new_side(a, b, w + 1)
 
     def input(self, M: int):
         # 複数行の辺のinput
@@ -432,27 +547,56 @@ INF = 1 << 63
 lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
-# テストを実行する
-if sys.argv == ["code/main.py"]:
-    unittest.main()
-
 # コード
-S = ii()
-MOD = 10**9 + 7
-dp = create_array2(701, S + 1, 0)
-dp[0][0] = 1
+K = ii()
 
-for i in range(700):
-    acc = list(accumulate(dp[i]))
+S = s()[:-1]
+T = s()[:-1]
 
-    for k in range(3, len(dp[0])):
-        dp[i + 1][k] += acc[k - 3]
-        dp[i + 1][k] %= MOD
+
+def sc(n):
+    d = [0] * 11
+    result = 0
+
+    for i in n:
+        d[int(i)] += 1
+
+    for i in range(1, 10):
+        result += i * (10 ** d[i])
+
+    return result
+
+
+df = [K] * 11
+
+for s in S:
+    df[int(s)] -= 1
+
+for t in T:
+    df[int(t)] -= 1
 
 ans = 0
+n = K * 9 - 8
 
-for i in range(len(dp)):
-    ans += dp[i][S]
-    ans %= MOD
+for a in range(1, 10):
+    for b in range(1, 10):
+        if a == b:
+            if df[a] < 2:
+                continue
 
-print(ans)
+            sa = sc(S + str(a))
+            sb = sc(T + str(a))
+
+            if sa > sb:
+                ans += df[a] * (df[a] - 1)
+        else:
+            if df[b] < 1:
+                continue
+
+            sa = sc(S + str(a))
+            sb = sc(T + str(b))
+
+            if sa > sb:
+                ans += df[a] * df[b]
+
+print(ans / n / (n - 1))
