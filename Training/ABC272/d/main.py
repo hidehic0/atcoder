@@ -549,32 +549,3 @@ upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
 N, M = il()
-MOVES = set()
-
-for i in range(-400, 401):
-    for k in range(-400, 401):
-        if i**2 + k**2 == M:
-            MOVES.add((i, k))
-
-MOVES = list(MOVES)
-
-used = create_array2(N, N, INF)
-used[0][0] = 0
-Q = deque()
-Q.append((0, 0))
-
-
-def c(x, y):
-    return used[x][y]
-
-
-while Q:
-    x, y = Q.popleft()
-
-    for nx, ny in grid_moves(x, y, N, N, MOVES, c):
-        if used[nx][ny] > used[x][y] + 1:
-            used[nx][ny] = used[x][y] + 1
-            Q.append((nx, ny))
-
-for line in used:
-    print(*[i if i != INF else -1 for i in line])
