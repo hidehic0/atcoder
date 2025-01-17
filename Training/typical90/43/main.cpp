@@ -45,6 +45,9 @@ const ll INF = pow(10, 18);
 const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
 
+ll H,W;
+
+
 int main()
 {
 }
