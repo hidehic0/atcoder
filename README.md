@@ -1,4 +1,4 @@
-# 参考にどうぞ
+# My competition programming submissions
 
-performansとtrainingにおいてあるgenerate.pyでディレクトリが作成される仕組みです<br>
-テンプレはperformansとtrainingの.template/codeにあります
+80%ぐらい、手をつけてないです</br>
+ライブラリは[こちら](https://github.com/hidehic0/library)
