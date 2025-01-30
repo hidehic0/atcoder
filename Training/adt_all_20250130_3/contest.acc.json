@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250130_3",
+    "title": "AtCoder Daily Training ALL 2025/01/30 20:30start",
+    "url": "https://atcoder.jp/contests/adt_all_20250130_3"
+  },
+  "tasks": [
+    {
+      "id": "abc256_a",
+      "label": "A",
+      "title": "2^N",
+      "url": "https://atcoder.jp/contests/adt_all_20250130_3/tasks/abc256_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc304_a",
+      "label": "B",
+      "title": "First Player",
+      "url": "https://atcoder.jp/contests/adt_all_20250130_3/tasks/abc304_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc235_b",
+      "label": "C",
+      "title": "Climbing Takahashi",
+      "url": "https://atcoder.jp/contests/adt_all_20250130_3/tasks/abc235_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc244_b",
+      "label": "D",
+      "title": "Go Straight and Turn Right",
+      "url": "https://atcoder.jp/contests/adt_all_20250130_3/tasks/abc244_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc373_c",
+      "label": "E",
+      "title": "Max Ai+Bj",
+      "url": "https://atcoder.jp/contests/adt_all_20250130_3/tasks/abc373_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc313_c",
+      "label": "F",
+      "title": "Approximate Equalization 2",
+      "url": "https://atcoder.jp/contests/adt_all_20250130_3/tasks/abc313_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc269_d",
+      "label": "G",
+      "title": "Do use hexagon grid",
+      "url": "https://atcoder.jp/contests/adt_all_20250130_3/tasks/abc269_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc310_e",
+      "label": "H",
+      "title": "NAND repeatedly",
+      "url": "https://atcoder.jp/contests/adt_all_20250130_3/tasks/abc310_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc238_f",
+      "label": "I",
+      "title": "Two Exams",
+      "url": "https://atcoder.jp/contests/adt_all_20250130_3/tasks/abc238_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
