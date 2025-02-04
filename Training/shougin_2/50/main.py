@@ -24,7 +24,7 @@ from itertools import permutations
 from math import gcd, lcm, pi
 from typing import Any, List
 
-from atcoder.segtree import SegTree
+# from atcoder.segtree import SegTree
 # from atcoder.lazysegtree import LazySegTree
 # from atcoder.dsu import DSU
 
@@ -727,15 +727,3 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
-N, Q = il()
-A = il()
-segtree = SegTree(lambda a, b: a ^ b, 0, A)
-
-for _ in [0] * Q:
-    T, X, Y = il()
-    X -= 1
-
-    if T == 1:
-        segtree.set(X, segtree.get(X) ^ Y)
-    else:
-        print(segtree.prod(X, Y))
