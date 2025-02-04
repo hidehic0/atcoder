@@ -727,3 +727,30 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N = ii()
+primes = eratosthenes(400)
+
+A = []
+
+for a in il():
+    ans = 0
+
+    for p in primes:
+        while a % p == 0:
+            ans += 1
+            a //= p
+
+    if a > 1:
+        ans += 1
+
+    A.append(ans)
+
+cur = 0
+
+for a in A:
+    cur ^= a
+
+if cur != 0:
+    print("Anna")
+else:
+    print("Bruno")
