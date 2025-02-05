@@ -727,3 +727,42 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N = ii()
+D = defaultdict(list)
+
+for i in range(N - 1):
+    A, B = il(-1)
+    D[A].append((B, i))
+    D[B].append((A, i))
+
+ans = [-1] * (N - 1)
+used = [False] * N
+cnt = 1
+
+
+def dfs(cur, prev):
+    global cnt
+    lis = set()
+    lis.add(prev)
+    t = 1
+
+    for nxt, ind in D[cur]:
+        if used[nxt]:
+            continue
+
+        while t in lis:
+            t += 1
+
+        ans[ind] = t
+        used[nxt] = True
+        lis.add(t)
+
+        dfs(nxt, t)
+
+    cnt = max(t, cnt)
+
+
+used[0] = True
+dfs(0, -1)
+print(max(ans))
+print(*ans, sep="\n")
