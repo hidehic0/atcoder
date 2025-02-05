@@ -563,6 +563,7 @@ class UnionFind:
     def __init__(self, n: int) -> None:
         self.size = n
         self.data = [-1] * n
+        self.t = [[i] for i in range(n)]
         self.hist = []
 
     def root(self, vtx: int) -> int:
@@ -575,14 +576,7 @@ class UnionFind:
         return self.root(a) == self.root(b)
 
     def unite(self, a: int, b: int) -> bool:
-        """
-        rootが同じでも、履歴には追加する
-        """
         ra, rb = self.root(a), self.root(b)
-
-        # 履歴を作成する
-        new_hist = [ra, rb, self.data[ra], self.data[rb]]
-        self.hist.append(new_hist)
 
         if ra == rb:
             return False
@@ -591,21 +585,11 @@ class UnionFind:
             ra, rb = rb, ra
 
         self.data[ra] += self.data[rb]
+        self.t[ra] += self.t[rb]
+        self.t[ra].sort(reverse=True)
+        self.t[ra] = self.t[ra][:15]
         self.data[rb] = ra
 
-        return True
-
-    def rollback(self):
-        """
-        undoします
-        redoはありません
-        """
-        if not self.hist:
-            return False
-
-        ra, rb, da, db = self.hist.pop()
-        self.data[ra] = da
-        self.data[rb] = db
         return True
 
 
@@ -727,3 +711,17 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N, Q = il()
+UF = UnionFind(N)
+
+for _ in [0] * Q:
+    t, u, v = il(-1)
+
+    if t == 0:
+        UF.unite(u, v)
+    else:
+        rt = UF.root(u)
+        if len(UF.t[rt]) - 1 <= v:
+            print(-1)
+        else:
+            print(UF.t[rt][v] + 1)
