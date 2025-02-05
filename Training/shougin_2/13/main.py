@@ -727,3 +727,18 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N, M = il()
+A = il()
+
+dp = create_array2(N + 1, M + 1, -INF)
+dp[0][0] = 0
+
+for i in range(N):
+    for k in range(M + 1):
+        dp[i + 1][k] = max(dp[i + 1][k], dp[i][k])
+        if k == M:
+            continue
+
+        dp[i + 1][k + 1] = max(dp[i + 1][k + 1], dp[i][k] + ((k + 1) * A[i]))
+
+print(dp[-1][-1])
