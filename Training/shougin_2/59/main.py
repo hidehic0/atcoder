@@ -29,7 +29,7 @@ from typing import Any, List
 # from atcoder.dsu import DSU
 
 # cortedcontainersは使うときだけ wandbox非対応なので
-# from sortedcontainers import SortedDict, SortedSet, SortedList
+from sortedcontainers import SortedDict, SortedSet, SortedList
 
 # import pypyjit
 # pypyjit.set_param("max_unroll_recursion=-1")
@@ -727,3 +727,31 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N, M = il()
+A = il()
+
+L = SortedList(list(range(N + 1000)))
+
+Q = deque()
+D = defaultdict(int)
+
+for i in range(M):
+    Q.append(A[i])
+    D[A[i]] += 1
+    L.discard(A[i])
+
+ans = L[0]
+
+for i in range(M, N):
+    t = Q.popleft()
+    D[t] -= 1
+    if D[t] == 0:
+        L.add(t)
+
+    Q.append(A[i])
+    D[A[i]] += 1
+    L.discard(A[i])
+
+    ans = min(ans, L[0])
+
+print(ans)
