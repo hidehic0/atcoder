@@ -201,7 +201,7 @@ def binary_search(fn: Callable[[int], bool], right: int = 0, left: int = -1) -> 
         else:
             right = mid
 
-    return left
+    return right
 
 
 def mod_add(a: int, b: int, mod: int):
@@ -727,3 +727,25 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N = ii()
+
+ans = 1 << 100
+
+
+def f(a, b):
+    return a * a * a + a * a * b + a * b * b + b * b * b
+
+
+for a in range((10**6) + 100):
+
+    def c(mid):
+        if f(a, mid) >= N:
+            return False
+        else:
+            return True
+
+    t = binary_search(c, (10**6) + 100, -1)
+    c = f(a, t)
+    ans = min(ans, c)
+
+print(ans)
