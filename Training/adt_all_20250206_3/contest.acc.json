@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250206_3",
+    "title": "AtCoder Daily Training ALL 2025/02/06 20:30start",
+    "url": "https://atcoder.jp/contests/adt_all_20250206_3"
+  },
+  "tasks": [
+    {
+      "id": "abc219_a",
+      "label": "A",
+      "title": "AtCoder Quiz 2",
+      "url": "https://atcoder.jp/contests/adt_all_20250206_3/tasks/abc219_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc350_a",
+      "label": "B",
+      "title": "Past ABCs",
+      "url": "https://atcoder.jp/contests/adt_all_20250206_3/tasks/abc350_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc259_b",
+      "label": "C",
+      "title": "Counterclockwise Rotation",
+      "url": "https://atcoder.jp/contests/adt_all_20250206_3/tasks/abc259_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc382_b",
+      "label": "D",
+      "title": "Daily Cookie 2",
+      "url": "https://atcoder.jp/contests/adt_all_20250206_3/tasks/abc382_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc239_c",
+      "label": "E",
+      "title": "Knight Fork",
+      "url": "https://atcoder.jp/contests/adt_all_20250206_3/tasks/abc239_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc375_c",
+      "label": "F",
+      "title": "Spiral Rotation",
+      "url": "https://atcoder.jp/contests/adt_all_20250206_3/tasks/abc375_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc233_d",
+      "label": "G",
+      "title": "Count Interval",
+      "url": "https://atcoder.jp/contests/adt_all_20250206_3/tasks/abc233_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc301_e",
+      "label": "H",
+      "title": "Pac-Takahashi ",
+      "url": "https://atcoder.jp/contests/adt_all_20250206_3/tasks/abc301_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc307_f",
+      "label": "I",
+      "title": "Virus 2",
+      "url": "https://atcoder.jp/contests/adt_all_20250206_3/tasks/abc307_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
