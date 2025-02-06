@@ -727,3 +727,20 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N, M = il()
+G = Graph(N, dire=True)
+
+for _ in [0] * M:
+    X, Y = il(-1)
+    G.new_side(X, Y)
+
+TP = G.topological(unique=True)
+
+NE(TP == [-1])
+
+ans = [0] * N
+
+for i in range(N):
+    ans[TP[i]] = i + 1
+
+print(*ans)
