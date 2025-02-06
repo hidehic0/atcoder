@@ -727,3 +727,23 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N, K, P = il()
+dp = [INF] * (int(str(P) * K) + 1)
+dp[0] = 0
+
+for _ in [0] * N:
+    L = il()
+
+    for i in reversed(range(len(dp))):
+        t = list("0" * (K - len(str(i))) + str(i))
+        nxt = ""
+
+        for k in range(K):
+            nxt += str(min(P, int(t[k]) + L[k + 1]))
+
+        nxt = int(nxt)
+        dp[nxt] = min(dp[nxt], dp[i] + L[0])
+
+ans = dp[-1]
+
+print(-1 if ans == INF else ans)
