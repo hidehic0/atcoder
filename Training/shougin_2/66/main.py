@@ -327,7 +327,7 @@ def il(add_num: int = 0):
     """
     一行に複数のint
     """
-    return list(map(lambda i: int(i) + add_num, sl()))
+    return list(map(lambda u: int(u) + add_num, sl()))
 
 
 def li(n: int, func, *args):
@@ -727,3 +727,35 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N = ii()
+A = il()
+S = li(N, s)
+
+D = create_array2(N, N, INF)
+ans = create_array2(N, N, 0)
+
+for u in range(N):
+    for v in range(N):
+        if S[u][v] == "Y":
+            D[u][v] = 1
+            ans[u][v] = A[v]
+
+for k in range(N):
+    for u in range(N):
+        for v in range(N):
+            new = D[u][k] + D[k][v]
+
+            if new < D[u][v]:
+                D[u][v] = new
+                ans[u][v] = ans[u][k] + ans[k][v]
+            elif new == D[u][v]:
+                ans[u][v] = max(ans[u][v], ans[u][k] + ans[k][v])
+
+for _ in [0] * ii():
+    u, v = il(-1)
+
+    if D[u][v] == INF:
+        print("Impossible")
+        continue
+
+    print(D[u][v], ans[u][v] + A[u])
