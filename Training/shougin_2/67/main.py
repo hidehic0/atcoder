@@ -727,3 +727,22 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N = ii()
+F = li(N, il)
+P = li(N, il)
+ans = 0
+
+for bit in range(1, 1 << 10):
+    cur = 0
+
+    for k in range(N):
+        cnt = 0
+        for i in range(10):
+            if bit & (1 << i) and F[k][i]:
+                cnt += 1
+
+        cur += P[k][cnt]
+
+    ans = max(cur, ans)
+
+print(ans)
