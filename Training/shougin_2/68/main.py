@@ -727,3 +727,36 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N, M, X, Y = il()
+X -= 1
+Y -= 1
+G = defaultdict(list)
+
+for _ in [0] * M:
+    A, B, T, K = il()
+    A -= 1
+    B -= 1
+    G[A].append((B, T, K))
+    G[B].append((A, T, K))
+
+PQ = []
+heapq.heappush(PQ, (0, X))
+used = [INF] * N
+
+while PQ:
+    cos, cur = heapq.heappop(PQ)
+
+    if used[cur] <= cos:
+        continue
+
+    used[cur] = cos
+
+    for nxt, t, k in G[cur]:
+        nc = ((cos - 1) // k + 1) * k + t
+
+        if used[nxt] <= nc:
+            continue
+
+        heapq.heappush(PQ, (nc, nxt))
+ans = used[Y]
+print(-1 if ans == INF else ans)
