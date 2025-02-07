@@ -727,3 +727,23 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N, M = il()
+L = []
+
+for _ in [0] * M:
+    x, y, c = sl()
+    x = int(x)
+    y = int(y)
+
+    L.append((x, y, c))
+
+L.sort()
+cur = INF
+
+for x, y, c in L:
+    if c == "B":
+        NE(cur <= y)
+    else:
+        cur = min(cur, y)
+
+print("Yes")
