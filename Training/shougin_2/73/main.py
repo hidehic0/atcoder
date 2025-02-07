@@ -727,3 +727,21 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N, K = il()
+A = sorted(il())
+L = set()
+
+PQ = [0]
+
+
+while len(L) <= K:
+    cur = heapq.heappop(PQ)
+    if cur in L:
+        continue
+
+    L.add(cur)
+
+    for a in A:
+        heapq.heappush(PQ, cur + a)
+
+print(list(L)[K - 1])
