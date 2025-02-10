@@ -881,3 +881,33 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N, M, K = il()
+G = GraphW(N)
+G.input(M)
+
+S = set(il(-1))
+
+used = create_array2(N, 2, INF)
+used[0][1] = 0
+Q = deque()
+Q.append((0, 1))
+
+while Q:
+    cur, mode = Q.popleft()
+
+    if cur in S and used[cur][mode ^ 1] > used[cur][mode]:
+        used[cur][mode ^ 1] = used[cur][mode]
+        Q.appendleft((cur, mode ^ 1))
+
+    for nxt, nm in G.get(cur):
+        if nm != mode:
+            continue
+
+        if used[nxt][mode] <= used[cur][mode] + 1:  # 添字一つで未来は変わるぞ <= と <で
+            continue
+
+        used[nxt][mode] = used[cur][mode] + 1
+        Q.append((nxt, mode))
+
+ans = min(used[N - 1])
+print(-1 if ans == INF else ans)
