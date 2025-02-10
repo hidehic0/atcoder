@@ -881,3 +881,26 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N = ii()
+if N == 0:
+    print("0")
+    exit()
+
+cur = 1
+ans = []
+
+while N:
+    if N % abs(2 * cur) != 0:
+        N -= cur
+        ans.append("1")
+    else:
+        ans.append("0")
+
+    cur *= -2
+
+ans.reverse()
+
+while ans[0] == "0":
+    ans.pop(0)
+
+print("".join(ans))
