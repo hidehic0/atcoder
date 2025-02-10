@@ -881,3 +881,34 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N, M = il()
+G = Graph(N)
+G.input(M)
+
+Q = ii()
+
+for _ in [0] * Q:
+    x, k = il()
+    x -= 1
+
+    ans = x + 1
+    Q = deque()
+    Q.append((x, 0))
+    V = set()
+    V.add(x)
+
+    while Q:
+        cur, cnt = Q.popleft()
+
+        if cnt == k:
+            continue
+
+        for nxt in G.get(cur):
+            if nxt in V:
+                continue
+
+            V.add(nxt)
+            ans += nxt + 1
+            Q.append((nxt, cnt + 1))
+
+    print(ans)
