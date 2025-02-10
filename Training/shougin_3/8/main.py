@@ -881,3 +881,36 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N = ii()
+L = li(N, il)
+
+
+def check(mid):
+    t = []
+    for i in range(N):
+        used = [False] * N
+        Q = deque()
+        Q.append(i)
+
+        used[i] = True
+
+        while Q:
+            cur = Q.popleft()
+
+            for nxt in range(N):
+                if used[nxt]:
+                    continue
+
+                if L[cur][2] * mid >= manhattan_dis(
+                    L[cur][0], L[cur][1], L[nxt][0], L[nxt][1]
+                ):
+                    used[nxt] = True
+                    Q.append(nxt)
+
+        if all(used):
+            return False
+
+    return True
+
+
+print(binary_search(check, 10**10, 0))
