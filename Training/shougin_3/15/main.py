@@ -881,3 +881,20 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N, M = il()
+G = Graph(N)
+G.input(M)
+
+dp = create_array2(1 << N, N, 0)
+dp[1][0] = 1
+
+for i in range(N):
+    for bit in range(len(dp)):
+        for nxt in G.get(i):
+            if bit & (1 << nxt):
+                continue
+
+            nb = bit | (1 << nxt)
+            dp[nb][nxt] += dp[bit][i]
+
+print(sum(dp[-1]))
