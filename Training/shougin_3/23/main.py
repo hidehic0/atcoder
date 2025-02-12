@@ -881,3 +881,22 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+H, W = il()
+S = li(H, s)
+MOD = (10**9) + 7
+dp = create_array3(H + 1, W + 1, 4, 0)
+dp[0][0][0] = dp[1][0][1] = dp[0][1][2] = dp[1][1][3] = 1
+
+for x in range(H):
+    for y in range(W):
+        if S[x][y] == "#":
+            dp[x][y] = [0, 0, 0, 0]
+            continue
+
+        dp[x][y][0] += (sum(dp[x][y][1:])) % MOD
+        dp[x + 1][y][1] = (dp[x][y][0] + dp[x][y][1]) % MOD
+        dp[x][y + 1][2] = (dp[x][y][0] + dp[x][y][2]) % MOD
+        dp[x + 1][y + 1][3] = (dp[x][y][0] + dp[x][y][3]) % MOD
+
+
+print(dp[H - 1][W - 1][0] % MOD)
