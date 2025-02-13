@@ -1,0 +1,97 @@
+{
+  "contest": {
+    "id": "pakencamp-2019-day3",
+    "title": "パ研合宿2019　第3日「パ研杯2019」",
+    "url": "https://atcoder.jp/contests/pakencamp-2019-day3"
+  },
+  "tasks": [
+    {
+      "id": "pakencamp_2019_day3_a",
+      "label": "A",
+      "title": "パ研合宿2103",
+      "url": "https://atcoder.jp/contests/pakencamp-2019-day3/tasks/pakencamp_2019_day3_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2019_day3_b",
+      "label": "B",
+      "title": "多数決",
+      "url": "https://atcoder.jp/contests/pakencamp-2019-day3/tasks/pakencamp_2019_day3_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2019_day3_c",
+      "label": "C",
+      "title": "カラオケ",
+      "url": "https://atcoder.jp/contests/pakencamp-2019-day3/tasks/pakencamp_2019_day3_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2019_day3_d",
+      "label": "D",
+      "title": "パ研軍旗",
+      "url": "https://atcoder.jp/contests/pakencamp-2019-day3/tasks/pakencamp_2019_day3_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2019_day3_e",
+      "label": "E",
+      "title": "大きなクリスマスプレゼント",
+      "url": "https://atcoder.jp/contests/pakencamp-2019-day3/tasks/pakencamp_2019_day3_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2019_day3_f",
+      "label": "F",
+      "title": "クリスマス飾り2",
+      "url": "https://atcoder.jp/contests/pakencamp-2019-day3/tasks/pakencamp_2019_day3_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2019_day3_g",
+      "label": "G",
+      "title": "プレゼント配り2",
+      "url": "https://atcoder.jp/contests/pakencamp-2019-day3/tasks/pakencamp_2019_day3_g",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2019_day3_h",
+      "label": "H",
+      "title": "パ研王国を守れ！",
+      "url": "https://atcoder.jp/contests/pakencamp-2019-day3/tasks/pakencamp_2019_day3_h",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
