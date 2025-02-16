@@ -915,3 +915,22 @@ upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
 N, Q = il()
+A = il()
+
+D = defaultdict(list)
+
+for i in range(Q):
+    r, x = il()
+    r -= 1
+    D[r].append((i, x))
+
+dp = [INF] * N
+ans = [-1] * Q
+
+for i in range(N):
+    dp[bisect.bisect_left(dp, A[i])] = A[i]
+
+    for ind, x in D[i]:
+        ans[ind] = bisect.bisect_right(dp, x)
+
+print(*ans, sep="\n")
