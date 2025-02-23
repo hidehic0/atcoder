@@ -1,7 +1,56 @@
 language = 'Python'
 name = 'PyPy'
 
+license = [
+  { name = 'MIT', url = 'https://github.com/pypy/pypy/blob/main/LICENSE' },
+]
 version = 'v3.10-v7.3.17'
+
+library.numpy = { license = [
+  { name = "BSD-3-Clause", url = "https://github.com/numpy/numpy/blob/main/LICENSE.txt" },
+], version = "v2.2.3" }
+library.scipy = { license = [
+  { name = "BSD-3-Clause", url = "https://github.com/scipy/scipy/blob/main/LICENSE.txt" },
+], version = "v1.15.2" }
+library.networkx = { license = [
+  { name = "BSD-3-Clause", url = "https://github.com/networkx/networkx/blob/main/LICENSE.txt" },
+], version = "v3.4.2" }
+library.sympy = { license = [
+  { name = "BSD-3-Clause", url = "https://github.com/sympy/sympy/blob/master/LICENSE" },
+], version = "v1.13.3" }
+library.sortedcontainers = { license = [
+  { name = "Apache-2.0", url = "https://github.com/grantjenks/python-sortedcontainers/blob/master/LICENSE" },
+], version = "v2.4.0" }
+library.more-itertools = { license = [
+  { name = "MIT", url = "https://github.com/more-itertools/more-itertools/blob/master/LICENSE" },
+], version = "v10.6.0" }
+library.shapely = { license = [
+  { name = "BSD-3-Clause", url = "https://github.com/shapely/shapely/blob/main/LICENSE.txt" },
+], version = "v2.0.7" }
+library.bitarray = { license = [
+  { name = "PSF-2.0", url = "https://github.com/ilanschnell/bitarray/blob/master/LICENSE" },
+], version = "v3.1.0" }
+library.PuLP = { license = [
+  { name = "MIT", url = "https://github.com/coin-or/pulp/blob/master/LICENSE" },
+], version = "v3.0.2" }
+library.mpmath = { license = [
+  { name = "BSD-3-Clause", url = "https://github.com/mpmath/mpmath/blob/master/LICENSE" },
+], version = "v1.3.0" }
+library.pandas = { license = [
+  { name = "BSD-3-Clause", url = "https://github.com/pandas-dev/pandas/blob/main/LICENSE" },
+], version = "v2.2.3" }
+library.z3-solver = { license = [
+  { name = 'MIT', url = 'https://github.com/Z3Prover/z3/blob/master/LICENSE.txt' },
+], version = 'v4.14.0.0' }
+library.scikit-learn = { license = [
+  { name = 'BSD-3-Clause', url = 'https://github.com/scikit-learn/scikit-learn/blob/main/COPYING' },
+], version = 'v1.6.1' }
+library.ac-library-python = { license = [
+  { name = 'CC0-1.0', url = 'https://github.com/not522/ac-library-python/blob/master/LICENSE' },
+] }
+library.cppyy = { license = [
+  { name = 'BSD-3-Clause-LBNL', url = 'https://github.com/wlav/cppyy/blob/master/LICENSE.txt' },
+], version = 'v3.5.0' }
 
 install = '''
 cd /tmp
@@ -46,3 +95,12 @@ pip3 install --break-system-packages \
     cppyy==3.5.0 \
     git+https://github.com/not522/ac-library-python
 '''
+
+compile = '''
+pypy3 -m py_compile Main.py
+pypy3 Main.py ONLINE_JUDGE 2> /dev/null
+'''
+
+object = './__pycache__/Main.pypy310.pyc'
+
+execution = ['pypy3', 'Main.py']
