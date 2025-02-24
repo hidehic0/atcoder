@@ -4,7 +4,7 @@ name = 'PyPy'
 license = [
   { name = 'MIT', url = 'https://github.com/pypy/pypy/blob/main/LICENSE' },
 ]
-version = 'v3.10-v7.3.17'
+version = 'v3.10-v7.3.18'
 
 library.numpy = { license = [
   { name = "BSD-3-Clause", url = "https://github.com/numpy/numpy/blob/main/LICENSE.txt" },
@@ -61,24 +61,20 @@ sudo apt-get update
 sudo apt-get install -y git wget bzip2
 
 # ライブラリの依存関係
-sudo apt-get install -y gcc g++ gfortran libopenblas-dev liblapack-dev pkg-config libgeos-dev
+sudo apt-get install -y build-essential gfortran libopenblas-dev liblapack-dev pkg-config libgeos-dev
 
 # ビルド済みバイナリをインストール
-wget https://downloads.python.org/pypy/pypy3.10-v7.3.17-linux64.tar.bz2
-tar jxvf pypy3.10-v7.3.17-linux64.tar.bz2
+wget https://downloads.python.org/pypy/pypy3.10-v7.3.18-linux64.tar.bz2
+tar jxvf pypy3.10-v7.3.18-linux64.tar.bz2
 
-cd pypy3.10-v7.3.17-linux64
+cd pypy3.10-v7.3.18-linux64
 
 # pipを有効化
 ./bin/pypy3 -m ensurepip
 
-# パスが通る所へ移動
-cp -r ./bin/* /usr/local/bin
-cp -r ./include/* /usr/local/include
-cp -r ./lib/* /usr/local/lib
 
 # ライブラリをインストール
-pip3 install --break-system-packages \
+./bin/pip3 install --break-system-packages \
     numpy==2.2.3 \
     scipy==1.15.2 \
     networkx==3.4.2 \
@@ -94,6 +90,12 @@ pip3 install --break-system-packages \
     scikit-learn==1.6.1 \
     cppyy==3.5.0 \
     git+https://github.com/not522/ac-library-python
+
+
+# パスが通る所へ移動
+sudo cp -r ./bin/* /usr/local/bin
+sudo cp -r ./include/* /usr/local/include
+sudo cp -r ./lib/* /usr/local/lib
 '''
 
 compile = '''
