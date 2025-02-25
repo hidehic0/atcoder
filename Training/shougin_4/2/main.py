@@ -982,3 +982,25 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N = ii()
+A = il()
+
+ans = INF
+
+for bit in range(1, 1 << N):
+    res = 0
+    cur = 0
+
+    for i in range(N):
+        cur |= A[i]
+
+        if bit & (1 << i):
+            res ^= cur
+            cur = 0
+
+    if cur != 0:
+        res ^= cur
+
+    ans = min(ans, res)
+
+print(ans)
