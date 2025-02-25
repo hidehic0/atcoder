@@ -982,3 +982,34 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N = ii()
+G = GraphW(N)
+G.input(N - 1)
+
+Q, K = il()
+
+K -= 1
+used = [INF] * N
+used[K] = 0
+
+PQ = [(0, K)]
+
+while PQ:
+    cos, cur = heapq.heappop(PQ)
+
+    if used[cur] < cos:
+        continue
+
+    for nxt, w in G.get(cur):
+        nc = w + cos
+
+        if used[nxt] < nc:
+            continue
+
+        used[nxt] = nc
+        heapq.heappush(PQ, (nc, nxt))
+
+for _ in [0] * Q:
+    x, y = il(-1)
+
+    print(used[x] + used[y])
