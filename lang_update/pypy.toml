@@ -32,7 +32,7 @@ library.bitarray = { license = [
 ], version = "v3.1.0" }
 library.PuLP = { license = [
   { name = "MIT", url = "https://github.com/coin-or/pulp/blob/master/LICENSE" },
-], version = "v3.0.2" }
+], version = "v2.9.0" }
 library.mpmath = { license = [
   { name = "BSD-3-Clause", url = "https://github.com/mpmath/mpmath/blob/master/LICENSE" },
 ], version = "v1.3.0" }
@@ -51,6 +51,9 @@ library.ac-library-python = { license = [
 library.cppyy = { license = [
   { name = 'BSD-3-Clause-LBNL', url = 'https://github.com/wlav/cppyy/blob/master/LICENSE.txt' },
 ], version = 'v3.5.0' }
+library.acl-cpp-python = { license = [
+  { name = "CC0-1.0", url = "https://github.com/tatyam-prime/acl-cpp-python/blob/main/LICENSE" },
+], version = "v0.6.1" }
 
 install = '''
 cd /tmp
@@ -83,12 +86,13 @@ cd pypy3.10-v7.3.18-linux64
     more-itertools==10.6.0 \
     shapely==2.0.7 \
     bitarray==3.1.0 \
-    PuLP==3.0.2 \
+    PuLP==2.9.0 \
     mpmath==1.3.0 \
     pandas==2.2.3 \
     z3-solver==4.14.0.0 \
     scikit-learn==1.6.1 \
     cppyy==3.5.0 \
+    acl-cpp-python==0.6.1 \
     git+https://github.com/not522/ac-library-python
 
 
