@@ -749,6 +749,7 @@ class UnionFind:
     def __init__(self, n: int) -> None:
         self.size = n
         self.data = [-1] * n
+        self.lis = [[i] for i in range(n)]
         self.hist = []
 
     def root(self, vtx: int) -> int:
@@ -784,6 +785,11 @@ class UnionFind:
             ra, rb = rb, ra
 
         self.data[ra] += self.data[rb]
+        self.lis[ra] += self.lis[rb]
+        self.lis[ra].sort(reverse=True)
+        self.lis[ra] = self.lis[ra][:15]
+
+        self.lis[rb].clear()
         self.data[rb] = ra
 
         return True
@@ -982,3 +988,16 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N, Q = il()
+UF = UnionFind(N)
+
+for _ in [0] * Q:
+    l = il(-1)
+
+    if l[0] == 0:
+        UF.unite(*l[1:])
+    else:
+        if len(UF.lis[UF.root(l[1])]) <= l[2]:
+            print(-1)
+        else:
+            print(UF.lis[UF.root(l[1])][l[2]] + 1)
