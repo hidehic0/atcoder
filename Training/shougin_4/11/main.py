@@ -982,3 +982,23 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+T = s()
+N = ii()
+
+dp = [INF] * (len(T) + 1)
+dp[0] = 0
+
+for _ in [0] * N:
+    L = sl()
+    A = int(L[0])
+    L = L[1:]
+
+    for i in reversed(range(len(dp))):
+        for t in L:
+            if i + len(t) > len(T):
+                continue
+
+            if t == T[i : i + len(t)]:
+                dp[i + len(t)] = min(dp[i + len(t)], dp[i] + 1)
+
+print(dp[-1] if dp[-1] != INF else -1)
