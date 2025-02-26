@@ -982,3 +982,28 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N, H = il()
+ma = 0
+L = []
+
+for _ in [0] * N:
+    a, b = il()
+    ma = max(ma, a)
+    L.append(b)
+
+ans = 0
+
+L.sort(reverse=True)
+
+for i in range(N):
+    if ma > L[i]:
+        break
+
+    H -= L[i]
+    ans += 1
+
+    if H <= 0:
+        print(ans)
+        exit()
+
+print(ans + ((H + ma - 1) // ma))
