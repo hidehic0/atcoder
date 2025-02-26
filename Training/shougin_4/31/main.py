@@ -982,3 +982,34 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N, M = il()
+G = Graph(N, dire=True)
+P = il(-1)
+
+for i in range(N - 1):
+    G.new_side(P[i], i + 1)
+
+
+ans = [False] * N
+
+L = [-INF] * N
+
+for _ in [0] * M:
+    x, y = il()
+    x -= 1
+    L[x] = max(y, L[x])
+    ans[x] = True
+
+Q = deque()
+Q.append((0, L[0]))
+
+while Q:
+    cur, nokori = Q.popleft()
+
+    if nokori >= 0:
+        ans[cur] = True
+
+    for nxt in G.get(cur):
+        Q.append((nxt, max(nokori - 1, L[nxt])))
+
+print(ans.count(True))
