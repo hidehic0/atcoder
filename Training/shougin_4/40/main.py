@@ -982,3 +982,42 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N = ii()
+A = il()
+
+next = {0: A[0], A[-1]: INF}
+back = {A[0]: 0, INF: A[-1]}
+
+for i in range(N - 1):
+    next[A[i]] = A[i + 1]
+
+for i in range(1, N):
+    back[A[i]] = A[i - 1]
+
+Q = ii()
+
+for _ in [0] * Q:
+    l = il()
+
+    if l[0] == 1:
+        x, y = l[1:]
+        next[y] = next[x]
+        back[y] = x
+        back[next[x]] = y
+        next[x] = y
+    else:
+        x = l[1]
+        next[back[x]] = next[x]
+        back[next[x]] = back[x]
+
+        del next[x]
+        del back[x]
+
+cur = 0
+ans = []
+
+while cur in next:
+    ans.append(next[cur])
+    cur = next[cur]
+
+print(*ans[:-1])
