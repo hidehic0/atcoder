@@ -982,3 +982,30 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N = ii()
+C = il()
+G = Graph(N)
+G.input(N - 1)
+
+D = defaultdict(int)
+mark = [False] * N
+
+
+def dfs(cur: int, pa: int):
+    if D[C[cur]] == 0:
+        mark[cur] = True
+
+    D[C[cur]] += 1
+
+    for nxt in G.get(cur):
+        if nxt != pa:
+            dfs(nxt, cur)
+
+    D[C[cur]] -= 1
+
+
+dfs(0, -1)
+
+for i in range(N):
+    if mark[i]:
+        print(i + 1)
