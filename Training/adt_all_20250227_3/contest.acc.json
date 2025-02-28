@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250227_3",
+    "title": "AtCoder Daily Training ALL 2025/02/27 20:30start",
+    "url": "https://atcoder.jp/contests/adt_all_20250227_3"
+  },
+  "tasks": [
+    {
+      "id": "abc225_a",
+      "label": "A",
+      "title": "Distinct Strings",
+      "url": "https://atcoder.jp/contests/adt_all_20250227_3/tasks/abc225_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc274_a",
+      "label": "B",
+      "title": "Batting Average",
+      "url": "https://atcoder.jp/contests/adt_all_20250227_3/tasks/abc274_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc308_b",
+      "label": "C",
+      "title": "Default Price",
+      "url": "https://atcoder.jp/contests/adt_all_20250227_3/tasks/abc308_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc339_b",
+      "label": "D",
+      "title": "Langton's Takahashi",
+      "url": "https://atcoder.jp/contests/adt_all_20250227_3/tasks/abc339_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc257_c",
+      "label": "E",
+      "title": "Robot Takahashi ",
+      "url": "https://atcoder.jp/contests/adt_all_20250227_3/tasks/abc257_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc240_c",
+      "label": "F",
+      "title": "Jumping Takahashi",
+      "url": "https://atcoder.jp/contests/adt_all_20250227_3/tasks/abc240_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc310_d",
+      "label": "G",
+      "title": "Peaceful Teams",
+      "url": "https://atcoder.jp/contests/adt_all_20250227_3/tasks/abc310_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc268_e",
+      "label": "H",
+      "title": "Chinese Restaurant (Three-Star Version)",
+      "url": "https://atcoder.jp/contests/adt_all_20250227_3/tasks/abc268_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc267_f",
+      "label": "I",
+      "title": "Exactly K Steps",
+      "url": "https://atcoder.jp/contests/adt_all_20250227_3/tasks/abc267_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
