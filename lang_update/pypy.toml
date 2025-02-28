@@ -1,10 +1,10 @@
 language = 'Python'
 name = 'PyPy'
+version = 'v3.11-v7.3.19'
 
 license = [
   { name = 'MIT', url = 'https://github.com/pypy/pypy/blob/main/LICENSE' },
 ]
-version = 'v3.11-v7.3.19'
 
 library.numpy = { license = [
   { name = "BSD-3-Clause", url = "https://github.com/numpy/numpy/blob/main/LICENSE.txt" },
@@ -108,5 +108,7 @@ pypy3 Main.py ONLINE_JUDGE 2> /dev/null
 '''
 
 object = './__pycache__/Main.pypy311.pyc'
+
+filename = 'Main.py'
 
 execution = ['pypy3', 'Main.py']
