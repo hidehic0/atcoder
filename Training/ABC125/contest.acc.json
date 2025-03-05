@@ -1,0 +1,33 @@
+{
+  "contest": {
+    "id": "ABC125",
+    "title": "AtCoder Beginner Contest 125",
+    "url": "https://atcoder.jp/contests/ABC125"
+  },
+  "tasks": [
+    {
+      "id": "abc125_a",
+      "label": "A",
+      "title": "Biscuit Generator",
+      "url": "https://atcoder.jp/contests/ABC125/tasks/abc125_a"
+    },
+    {
+      "id": "abc125_b",
+      "label": "B",
+      "title": "Resale",
+      "url": "https://atcoder.jp/contests/ABC125/tasks/abc125_b"
+    },
+    {
+      "id": "abc125_c",
+      "label": "C",
+      "title": "GCD on Blackboard",
+      "url": "https://atcoder.jp/contests/ABC125/tasks/abc125_c"
+    },
+    {
+      "id": "abc125_d",
+      "label": "D",
+      "title": "Flipping Signs",
+      "url": "https://atcoder.jp/contests/ABC125/tasks/abc125_d"
+    }
+  ]
+}
