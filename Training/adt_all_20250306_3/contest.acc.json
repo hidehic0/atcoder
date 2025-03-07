@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250306_3",
+    "title": "AtCoder Daily Training ALL 2025/03/06 20:30start",
+    "url": "https://atcoder.jp/contests/adt_all_20250306_3"
+  },
+  "tasks": [
+    {
+      "id": "abc255_a",
+      "label": "A",
+      "title": "You should output ARC, though this is ABC.",
+      "url": "https://atcoder.jp/contests/adt_all_20250306_3/tasks/abc255_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc310_a",
+      "label": "B",
+      "title": "Order Something Else",
+      "url": "https://atcoder.jp/contests/adt_all_20250306_3/tasks/abc310_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc333_b",
+      "label": "C",
+      "title": "Pentagon",
+      "url": "https://atcoder.jp/contests/adt_all_20250306_3/tasks/abc333_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc295_b",
+      "label": "D",
+      "title": "Bombs",
+      "url": "https://atcoder.jp/contests/adt_all_20250306_3/tasks/abc295_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc273_c",
+      "label": "E",
+      "title": "(K+1)-th Largest Number",
+      "url": "https://atcoder.jp/contests/adt_all_20250306_3/tasks/abc273_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc313_c",
+      "label": "F",
+      "title": "Approximate Equalization 2",
+      "url": "https://atcoder.jp/contests/adt_all_20250306_3/tasks/abc313_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc309_d",
+      "label": "G",
+      "title": "Add One Edge",
+      "url": "https://atcoder.jp/contests/adt_all_20250306_3/tasks/abc309_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc365_e",
+      "label": "H",
+      "title": "Xor Sigma Problem",
+      "url": "https://atcoder.jp/contests/adt_all_20250306_3/tasks/abc365_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc319_f",
+      "label": "I",
+      "title": "Fighter Takahashi",
+      "url": "https://atcoder.jp/contests/adt_all_20250306_3/tasks/abc319_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
