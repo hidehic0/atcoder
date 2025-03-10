@@ -1,14 +1,24 @@
 import random
+from types import NoneType
 
-N = int(input("いくつ選びますか: "))
 
-L = set()
+def select(n: int | NoneType = None):
+    if n is None:
+        n = int(input("いくつ選びますか: "))
 
-for _ in [0] * N:
-    rn = random.randrange(128, 370)
+    L = set()
 
-    while rn in L:
+    for _ in [0] * n:
         rn = random.randrange(128, 370)
 
-    print(f"ABC{rn}")
-    L.add(rn)
+        while rn in L:
+            rn = random.randrange(128, 370)
+
+        L.add(rn)
+
+    return [f"ABC{ind}" for ind in L]
+
+
+if __name__ == "__main__":
+    for contest_name in select(int(input("いくつ選びますか: "))):
+        print(contest_name)
