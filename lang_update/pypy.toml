@@ -1,6 +1,6 @@
 language = 'Python'
 name = 'PyPy'
-version = 'v3.11-v7.3.19'
+version = 'v3.10-v7.3.19'
 
 license = [
   { name = 'MIT', url = 'https://github.com/pypy/pypy/blob/main/LICENSE' },
@@ -67,10 +67,10 @@ sudo apt-get install -y git wget bzip2
 sudo apt-get install -y build-essential gfortran libopenblas-dev liblapack-dev pkg-config libgeos-dev
 
 # ビルド済みバイナリをインストール
-wget https://downloads.python.org/pypy/pypy3.11-v7.3.19-linux64.tar.bz2
-tar jxvf pypy3.11-v7.3.19-linux64.tar.bz2
+wget https://downloads.python.org/pypy/pypy3.10-v7.3.19-linux64.tar.bz2
+tar jxvf pypy3.10-v7.3.19-linux64.tar.bz2
 
-cd pypy3.11-v7.3.19-linux64
+cd pypy3.10-v7.3.19-linux64
 
 # pipを有効化
 ./bin/pypy3 -m ensurepip
