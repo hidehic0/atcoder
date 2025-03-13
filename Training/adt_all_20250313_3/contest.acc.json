@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250313_3",
+    "title": "AtCoder Daily Training ALL 2025/03/13 20:30start",
+    "url": "https://atcoder.jp/contests/adt_all_20250313_3"
+  },
+  "tasks": [
+    {
+      "id": "abc323_a",
+      "label": "A",
+      "title": "Weak Beats",
+      "url": "https://atcoder.jp/contests/adt_all_20250313_3/tasks/abc323_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc347_a",
+      "label": "B",
+      "title": "Divisible",
+      "url": "https://atcoder.jp/contests/adt_all_20250313_3/tasks/abc347_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc366_b",
+      "label": "C",
+      "title": "Vertical Writing",
+      "url": "https://atcoder.jp/contests/adt_all_20250313_3/tasks/abc366_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc376_b",
+      "label": "D",
+      "title": "Hands on Ring (Easy)",
+      "url": "https://atcoder.jp/contests/adt_all_20250313_3/tasks/abc376_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc213_c",
+      "label": "E",
+      "title": "Reorder Cards",
+      "url": "https://atcoder.jp/contests/adt_all_20250313_3/tasks/abc213_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc299_c",
+      "label": "F",
+      "title": "Dango",
+      "url": "https://atcoder.jp/contests/adt_all_20250313_3/tasks/abc299_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc359_d",
+      "label": "G",
+      "title": "Avoid K Palindrome",
+      "url": "https://atcoder.jp/contests/adt_all_20250313_3/tasks/abc359_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc378_e",
+      "label": "H",
+      "title": "Mod Sigma Problem",
+      "url": "https://atcoder.jp/contests/adt_all_20250313_3/tasks/abc378_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc245_f",
+      "label": "I",
+      "title": "Endless Walk",
+      "url": "https://atcoder.jp/contests/adt_all_20250313_3/tasks/abc245_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
