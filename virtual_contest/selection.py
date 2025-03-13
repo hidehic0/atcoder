@@ -11,7 +11,7 @@ def select(n: int | NoneType = None):
     for _ in [0] * n:
         rn = random.randrange(200, 370)
 
-        while rn in L:
+        while rn in L or rn == 316:
             rn = random.randrange(200, 370)
 
         L.add(rn)
