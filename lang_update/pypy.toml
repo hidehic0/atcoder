@@ -74,6 +74,7 @@ cd pypy3.10-v7.3.19-linux64
 
 # pipを有効化
 ./bin/pypy3 -m ensurepip
+./bin/pip3 install --upgrade pip
 
 
 # ライブラリをインストール
