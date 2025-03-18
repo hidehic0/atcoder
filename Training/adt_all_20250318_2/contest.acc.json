@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250318_2",
+    "title": "AtCoder Daily Training ALL 2025/03/18 17:30start",
+    "url": "https://atcoder.jp/contests/adt_all_20250318_2"
+  },
+  "tasks": [
+    {
+      "id": "abc246_a",
+      "label": "A",
+      "title": "Four Points",
+      "url": "https://atcoder.jp/contests/adt_all_20250318_2/tasks/abc246_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc377_a",
+      "label": "B",
+      "title": "Rearranging ABC",
+      "url": "https://atcoder.jp/contests/adt_all_20250318_2/tasks/abc377_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc289_b",
+      "label": "C",
+      "title": "V",
+      "url": "https://atcoder.jp/contests/adt_all_20250318_2/tasks/abc289_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc358_b",
+      "label": "D",
+      "title": "Ticket Counter",
+      "url": "https://atcoder.jp/contests/adt_all_20250318_2/tasks/abc358_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc271_c",
+      "label": "E",
+      "title": "Manga",
+      "url": "https://atcoder.jp/contests/adt_all_20250318_2/tasks/abc271_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc372_c",
+      "label": "F",
+      "title": "Count ABC Again",
+      "url": "https://atcoder.jp/contests/adt_all_20250318_2/tasks/abc372_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc314_d",
+      "label": "G",
+      "title": "LOWER",
+      "url": "https://atcoder.jp/contests/adt_all_20250318_2/tasks/abc314_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc288_e",
+      "label": "H",
+      "title": "Wish List",
+      "url": "https://atcoder.jp/contests/adt_all_20250318_2/tasks/abc288_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc290_f",
+      "label": "I",
+      "title": "Maximum Diameter",
+      "url": "https://atcoder.jp/contests/adt_all_20250318_2/tasks/abc290_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
