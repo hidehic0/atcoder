@@ -1,0 +1,63 @@
+{
+  "contest": {
+    "id": "adt_all_20250320_3",
+    "title": "AtCoder Daily Training ALL 2025/03/20 20:30start",
+    "url": "https://atcoder.jp/contests/adt_all_20250320_3"
+  },
+  "tasks": [
+    {
+      "id": "abc226_a",
+      "label": "A",
+      "title": "Round decimals",
+      "url": "https://atcoder.jp/contests/adt_all_20250320_3/tasks/abc226_a"
+    },
+    {
+      "id": "abc325_a",
+      "label": "B",
+      "title": "Takahashi san",
+      "url": "https://atcoder.jp/contests/adt_all_20250320_3/tasks/abc325_a"
+    },
+    {
+      "id": "abc298_b",
+      "label": "C",
+      "title": "Coloring Matrix",
+      "url": "https://atcoder.jp/contests/adt_all_20250320_3/tasks/abc298_b"
+    },
+    {
+      "id": "abc252_b",
+      "label": "D",
+      "title": "Takahashi's Failure",
+      "url": "https://atcoder.jp/contests/adt_all_20250320_3/tasks/abc252_b"
+    },
+    {
+      "id": "abc272_c",
+      "label": "E",
+      "title": "Max Even",
+      "url": "https://atcoder.jp/contests/adt_all_20250320_3/tasks/abc272_c"
+    },
+    {
+      "id": "abc261_c",
+      "label": "F",
+      "title": "NewFolder(1)",
+      "url": "https://atcoder.jp/contests/adt_all_20250320_3/tasks/abc261_c"
+    },
+    {
+      "id": "abc285_d",
+      "label": "G",
+      "title": "Change Usernames",
+      "url": "https://atcoder.jp/contests/adt_all_20250320_3/tasks/abc285_d"
+    },
+    {
+      "id": "abc237_e",
+      "label": "H",
+      "title": "Skiing",
+      "url": "https://atcoder.jp/contests/adt_all_20250320_3/tasks/abc237_e"
+    },
+    {
+      "id": "abc257_f",
+      "label": "I",
+      "title": "Teleporter Setting ",
+      "url": "https://atcoder.jp/contests/adt_all_20250320_3/tasks/abc257_f"
+    }
+  ]
+}
