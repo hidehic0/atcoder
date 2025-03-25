@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250325_2",
+    "title": "AtCoder Daily Training ALL 2025/03/25 17:30start",
+    "url": "https://atcoder.jp/contests/adt_all_20250325_2"
+  },
+  "tasks": [
+    {
+      "id": "abc308_a",
+      "label": "A",
+      "title": "New Scheme",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_2/tasks/abc308_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc264_a",
+      "label": "B",
+      "title": "\"atcoder\".substr()",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_2/tasks/abc264_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc356_b",
+      "label": "C",
+      "title": "Nutrients",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_2/tasks/abc356_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc303_b",
+      "label": "D",
+      "title": "Discord",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_2/tasks/abc303_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc274_c",
+      "label": "E",
+      "title": "Ameba",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_2/tasks/abc274_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc332_c",
+      "label": "F",
+      "title": "T-shirts",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_2/tasks/abc332_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc378_d",
+      "label": "G",
+      "title": "Count Simple Paths",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_2/tasks/abc378_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc344_e",
+      "label": "H",
+      "title": "Insert or Erase",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_2/tasks/abc344_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc386_f",
+      "label": "I",
+      "title": "Operate K",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_2/tasks/abc386_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250325_1",
+    "title": "AtCoder Daily Training ALL 2025/03/25 15:30start",
+    "url": "https://atcoder.jp/contests/adt_all_20250325_1"
+  },
+  "tasks": [
+    {
+      "id": "abc328_a",
+      "label": "A",
+      "title": "Not Too Hard",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_1/tasks/abc328_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc321_a",
+      "label": "B",
+      "title": "321-like Checker",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_1/tasks/abc321_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc379_b",
+      "label": "C",
+      "title": "Strawberries",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_1/tasks/abc379_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc266_b",
+      "label": "D",
+      "title": "Modulo Number",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_1/tasks/abc266_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc269_c",
+      "label": "E",
+      "title": "Submask",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_1/tasks/abc269_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc294_c",
+      "label": "F",
+      "title": "Merge Sequences",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_1/tasks/abc294_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc235_d",
+      "label": "G",
+      "title": "Multiply and Rotate",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_1/tasks/abc235_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc270_e",
+      "label": "H",
+      "title": "Apple Baskets on Circle",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_1/tasks/abc270_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc306_f",
+      "label": "I",
+      "title": "Merge Sets",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_1/tasks/abc306_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
