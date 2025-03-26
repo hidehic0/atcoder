@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250326_3",
+    "title": "AtCoder Daily Training ALL 2025/03/26 20:00start",
+    "url": "https://atcoder.jp/contests/adt_all_20250326_3"
+  },
+  "tasks": [
+    {
+      "id": "abc382_a",
+      "label": "A",
+      "title": "Daily Cookie",
+      "url": "https://atcoder.jp/contests/adt_all_20250326_3/tasks/abc382_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc242_a",
+      "label": "B",
+      "title": "T-shirt",
+      "url": "https://atcoder.jp/contests/adt_all_20250326_3/tasks/abc242_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc278_b",
+      "label": "C",
+      "title": "Misjudge the Time",
+      "url": "https://atcoder.jp/contests/adt_all_20250326_3/tasks/abc278_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc226_b",
+      "label": "D",
+      "title": "Counting Arrays",
+      "url": "https://atcoder.jp/contests/adt_all_20250326_3/tasks/abc226_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc347_c",
+      "label": "E",
+      "title": "Ideal Holidays",
+      "url": "https://atcoder.jp/contests/adt_all_20250326_3/tasks/abc347_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc321_c",
+      "label": "F",
+      "title": "321-like Searcher",
+      "url": "https://atcoder.jp/contests/adt_all_20250326_3/tasks/abc321_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc367_d",
+      "label": "G",
+      "title": "Pedometer",
+      "url": "https://atcoder.jp/contests/adt_all_20250326_3/tasks/abc367_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc297_e",
+      "label": "H",
+      "title": "Kth Takoyaki Set",
+      "url": "https://atcoder.jp/contests/adt_all_20250326_3/tasks/abc297_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc374_f",
+      "label": "I",
+      "title": "Shipping",
+      "url": "https://atcoder.jp/contests/adt_all_20250326_3/tasks/abc374_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}

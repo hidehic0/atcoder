@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250326_2",
+    "title": "AtCoder Daily Training ALL 2025/03/26 18:00start",
+    "url": "https://atcoder.jp/contests/adt_all_20250326_2"
+  },
+  "tasks": [
+    {
+      "id": "abc218_a",
+      "label": "A",
+      "title": "Weather Forecast",
+      "url": "https://atcoder.jp/contests/adt_all_20250326_2/tasks/abc218_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc393_a",
+      "label": "B",
+      "title": "Poisonous Oyster ",
+      "url": "https://atcoder.jp/contests/adt_all_20250326_2/tasks/abc393_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc375_b",
+      "label": "C",
+      "title": "Traveling Takahashi Problem",
+      "url": "https://atcoder.jp/contests/adt_all_20250326_2/tasks/abc375_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc353_b",
+      "label": "D",
+      "title": "AtCoder Amusement Park",
+      "url": "https://atcoder.jp/contests/adt_all_20250326_2/tasks/abc353_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc359_c",
+      "label": "E",
+      "title": "Tile Distance 2",
+      "url": "https://atcoder.jp/contests/adt_all_20250326_2/tasks/abc359_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc220_c",
+      "label": "F",
+      "title": "Long Sequence",
+      "url": "https://atcoder.jp/contests/adt_all_20250326_2/tasks/abc220_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc277_d",
+      "label": "G",
+      "title": "Takahashi's Solitaire",
+      "url": "https://atcoder.jp/contests/adt_all_20250326_2/tasks/abc277_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc284_e",
+      "label": "H",
+      "title": "Count Simple Paths",
+      "url": "https://atcoder.jp/contests/adt_all_20250326_2/tasks/abc284_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc219_f",
+      "label": "I",
+      "title": "Cleaning Robot",
+      "url": "https://atcoder.jp/contests/adt_all_20250326_2/tasks/abc219_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}

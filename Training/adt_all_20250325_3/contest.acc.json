@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250325_3",
+    "title": "AtCoder Daily Training ALL 2025/03/25 19:30start",
+    "url": "https://atcoder.jp/contests/adt_all_20250325_3"
+  },
+  "tasks": [
+    {
+      "id": "abc346_a",
+      "label": "A",
+      "title": "Adjacent Product",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_3/tasks/abc346_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc389_a",
+      "label": "B",
+      "title": "9x9",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_3/tasks/abc389_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc383_b",
+      "label": "C",
+      "title": "Humidifier 2",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_3/tasks/abc383_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc312_b",
+      "label": "D",
+      "title": "TaK Code",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_3/tasks/abc312_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc250_c",
+      "label": "E",
+      "title": "Adjacent Swaps",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_3/tasks/abc250_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc334_c",
+      "label": "F",
+      "title": "Socks 2",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_3/tasks/abc334_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc393_d",
+      "label": "G",
+      "title": "Swap to Gather",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_3/tasks/abc393_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc373_e",
+      "label": "H",
+      "title": "How to Win the Election",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_3/tasks/abc373_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc286_f",
+      "label": "I",
+      "title": "Guess The Number 2",
+      "url": "https://atcoder.jp/contests/adt_all_20250325_3/tasks/abc286_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
