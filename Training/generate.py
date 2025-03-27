@@ -43,7 +43,7 @@ path = f"./{contest_name}"
 os.mkdir(path)
 
 # 問題名用リスト
-problem_name_list = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+problem_name_list = list("abcdefghijklmnopqrstuvwxyz")
 
 # ./templateの中身を一つずつコピー
 if problem_n > 26:
