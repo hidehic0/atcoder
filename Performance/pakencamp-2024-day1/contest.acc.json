@@ -1,0 +1,207 @@
+{
+  "contest": {
+    "id": "pakencamp-2024-day1",
+    "title": "パ研合宿2024　第1日「SpeedRun」",
+    "url": "https://atcoder.jp/contests/pakencamp-2024-day1"
+  },
+  "tasks": [
+    {
+      "id": "pakencamp_2024_day1_a",
+      "label": "A",
+      "title": "Ikaho",
+      "url": "https://atcoder.jp/contests/pakencamp-2024-day1/tasks/pakencamp_2024_day1_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2024_day1_b",
+      "label": "B",
+      "title": "Pakencamp",
+      "url": "https://atcoder.jp/contests/pakencamp-2024-day1/tasks/pakencamp_2024_day1_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2024_day1_c",
+      "label": "C",
+      "title": "One Half",
+      "url": "https://atcoder.jp/contests/pakencamp-2024-day1/tasks/pakencamp_2024_day1_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2024_day1_d",
+      "label": "D",
+      "title": "Coprime Shortest Path",
+      "url": "https://atcoder.jp/contests/pakencamp-2024-day1/tasks/pakencamp_2024_day1_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2024_day1_e",
+      "label": "E",
+      "title": "Goats",
+      "url": "https://atcoder.jp/contests/pakencamp-2024-day1/tasks/pakencamp_2024_day1_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2024_day1_f",
+      "label": "F",
+      "title": "Degree",
+      "url": "https://atcoder.jp/contests/pakencamp-2024-day1/tasks/pakencamp_2024_day1_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2024_day1_g",
+      "label": "G",
+      "title": "Sequence",
+      "url": "https://atcoder.jp/contests/pakencamp-2024-day1/tasks/pakencamp_2024_day1_g",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2024_day1_h",
+      "label": "H",
+      "title": "Buttons",
+      "url": "https://atcoder.jp/contests/pakencamp-2024-day1/tasks/pakencamp_2024_day1_h",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2024_day1_i",
+      "label": "I",
+      "title": "×2±1",
+      "url": "https://atcoder.jp/contests/pakencamp-2024-day1/tasks/pakencamp_2024_day1_i",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2024_day1_j",
+      "label": "J",
+      "title": "Stamp",
+      "url": "https://atcoder.jp/contests/pakencamp-2024-day1/tasks/pakencamp_2024_day1_j",
+      "directory": {
+        "path": "j",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2024_day1_k",
+      "label": "K",
+      "title": "Cube Construction",
+      "url": "https://atcoder.jp/contests/pakencamp-2024-day1/tasks/pakencamp_2024_day1_k",
+      "directory": {
+        "path": "k",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2024_day1_l",
+      "label": "L",
+      "title": "Taxi of Paken Kingdom",
+      "url": "https://atcoder.jp/contests/pakencamp-2024-day1/tasks/pakencamp_2024_day1_l",
+      "directory": {
+        "path": "l",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2024_day1_m",
+      "label": "M",
+      "title": "Strong String",
+      "url": "https://atcoder.jp/contests/pakencamp-2024-day1/tasks/pakencamp_2024_day1_m",
+      "directory": {
+        "path": "m",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2024_day1_n",
+      "label": "N",
+      "title": "Go to School",
+      "url": "https://atcoder.jp/contests/pakencamp-2024-day1/tasks/pakencamp_2024_day1_n",
+      "directory": {
+        "path": "n",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2024_day1_o",
+      "label": "O",
+      "title": "Triangle",
+      "url": "https://atcoder.jp/contests/pakencamp-2024-day1/tasks/pakencamp_2024_day1_o",
+      "directory": {
+        "path": "o",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2024_day1_p",
+      "label": "P",
+      "title": "Bombard",
+      "url": "https://atcoder.jp/contests/pakencamp-2024-day1/tasks/pakencamp_2024_day1_p",
+      "directory": {
+        "path": "p",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2024_day1_q",
+      "label": "Q",
+      "title": "Large Heap 2",
+      "url": "https://atcoder.jp/contests/pakencamp-2024-day1/tasks/pakencamp_2024_day1_q",
+      "directory": {
+        "path": "q",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "pakencamp_2024_day1_r",
+      "label": "R",
+      "title": "Maximum Water Flow",
+      "url": "https://atcoder.jp/contests/pakencamp-2024-day1/tasks/pakencamp_2024_day1_r",
+      "directory": {
+        "path": "r",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
