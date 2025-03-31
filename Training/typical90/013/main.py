@@ -1207,3 +1207,12 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N, M = il()
+G = GraphW(N)
+G.input(M)
+
+A = dijkstra(G.all(), 0)
+B = dijkstra(G.all(), N - 1)
+
+for i in range(N):
+    print(A[i] + B[i])
