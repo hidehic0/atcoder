@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250403_3",
+    "title": "AtCoder Daily Training ALL 2025/04/03 20:30start",
+    "url": "https://atcoder.jp/contests/adt_all_20250403_3"
+  },
+  "tasks": [
+    {
+      "id": "abc279_a",
+      "label": "A",
+      "title": "wwwvvvvvv",
+      "url": "https://atcoder.jp/contests/adt_all_20250403_3/tasks/abc279_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc213_a",
+      "label": "B",
+      "title": "Bitwise Exclusive Or",
+      "url": "https://atcoder.jp/contests/adt_all_20250403_3/tasks/abc213_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc299_b",
+      "label": "C",
+      "title": "Trick Taking",
+      "url": "https://atcoder.jp/contests/adt_all_20250403_3/tasks/abc299_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc219_b",
+      "label": "D",
+      "title": "Maritozzo",
+      "url": "https://atcoder.jp/contests/adt_all_20250403_3/tasks/abc219_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc291_c",
+      "label": "E",
+      "title": "LRUD Instructions 2",
+      "url": "https://atcoder.jp/contests/adt_all_20250403_3/tasks/abc291_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc335_c",
+      "label": "F",
+      "title": "Loong Tracking",
+      "url": "https://atcoder.jp/contests/adt_all_20250403_3/tasks/abc335_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc220_d",
+      "label": "G",
+      "title": "FG operation",
+      "url": "https://atcoder.jp/contests/adt_all_20250403_3/tasks/abc220_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc314_e",
+      "label": "H",
+      "title": "Roulettes",
+      "url": "https://atcoder.jp/contests/adt_all_20250403_3/tasks/abc314_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc249_f",
+      "label": "I",
+      "title": "Ignore Operations",
+      "url": "https://atcoder.jp/contests/adt_all_20250403_3/tasks/abc249_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
