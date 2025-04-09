@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250409_3",
+    "title": "AtCoder Daily Training ALL 2025/04/09 20:00start",
+    "url": "https://atcoder.jp/contests/adt_all_20250409_3"
+  },
+  "tasks": [
+    {
+      "id": "abc303_a",
+      "label": "A",
+      "title": "Similar String",
+      "url": "https://atcoder.jp/contests/adt_all_20250409_3/tasks/abc303_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc338_a",
+      "label": "B",
+      "title": "Capitalized?",
+      "url": "https://atcoder.jp/contests/adt_all_20250409_3/tasks/abc338_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc292_b",
+      "label": "C",
+      "title": "Yellow and Red Card",
+      "url": "https://atcoder.jp/contests/adt_all_20250409_3/tasks/abc292_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc323_b",
+      "label": "D",
+      "title": "Round-Robin Tournament",
+      "url": "https://atcoder.jp/contests/adt_all_20250409_3/tasks/abc323_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc258_c",
+      "label": "E",
+      "title": "Rotation",
+      "url": "https://atcoder.jp/contests/adt_all_20250409_3/tasks/abc258_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc216_c",
+      "label": "F",
+      "title": "Many Balls",
+      "url": "https://atcoder.jp/contests/adt_all_20250409_3/tasks/abc216_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc340_d",
+      "label": "G",
+      "title": "Super Takahashi Bros.",
+      "url": "https://atcoder.jp/contests/adt_all_20250409_3/tasks/abc340_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc393_e",
+      "label": "H",
+      "title": "GCD of Subset",
+      "url": "https://atcoder.jp/contests/adt_all_20250409_3/tasks/abc393_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc247_f",
+      "label": "I",
+      "title": "Cards",
+      "url": "https://atcoder.jp/contests/adt_all_20250409_3/tasks/abc247_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
