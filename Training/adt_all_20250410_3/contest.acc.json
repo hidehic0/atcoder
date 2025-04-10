@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250410_3",
+    "title": "AtCoder Daily Training ALL 2025/04/10 20:30start",
+    "url": "https://atcoder.jp/contests/adt_all_20250410_3"
+  },
+  "tasks": [
+    {
+      "id": "abc267_a",
+      "label": "A",
+      "title": "Saturday",
+      "url": "https://atcoder.jp/contests/adt_all_20250410_3/tasks/abc267_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc332_a",
+      "label": "B",
+      "title": "Online Shopping",
+      "url": "https://atcoder.jp/contests/adt_all_20250410_3/tasks/abc332_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc385_b",
+      "label": "C",
+      "title": "Santa Claus 1",
+      "url": "https://atcoder.jp/contests/adt_all_20250410_3/tasks/abc385_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc373_b",
+      "label": "D",
+      "title": "1D Keyboard",
+      "url": "https://atcoder.jp/contests/adt_all_20250410_3/tasks/abc373_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc369_c",
+      "label": "E",
+      "title": "Count Arithmetic Subarrays",
+      "url": "https://atcoder.jp/contests/adt_all_20250410_3/tasks/abc369_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc337_c",
+      "label": "F",
+      "title": "Lining Up 2",
+      "url": "https://atcoder.jp/contests/adt_all_20250410_3/tasks/abc337_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc266_d",
+      "label": "G",
+      "title": "Snuke Panic (1D)",
+      "url": "https://atcoder.jp/contests/adt_all_20250410_3/tasks/abc266_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc255_e",
+      "label": "H",
+      "title": "Lucky Numbers",
+      "url": "https://atcoder.jp/contests/adt_all_20250410_3/tasks/abc255_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc391_f",
+      "label": "I",
+      "title": "K-th Largest Triplet ",
+      "url": "https://atcoder.jp/contests/adt_all_20250410_3/tasks/abc391_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
