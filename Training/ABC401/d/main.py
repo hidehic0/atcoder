@@ -1208,48 +1208,49 @@ upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
 N, K = il()
-S = s()
-L = set()
-RT = set()
-
-for i in range(N):
-    if S[i] == "?":
-        fl = True
-        if i + 1 < N and S[i + 1] == "o":
-            fl = False
-
-        if i - 1 >= 0 and S[i - 1] == "o":
-            fl = False
-
-        if fl:
-            L.add(i)
-        else:
-            RT.add(i)
-
+S = list(s())
 
 cnt = S.count("o")
-ans = ""
+if cnt == K:
+    print("".join(S).replace("?", "."))
+    exit()
 
-for i in range(N):
-    if cnt == K:
-        match S[i]:
-            case "o":
-                ans += "o"
-            case ".":
-                ans += "."
-            case "?":
-                ans += "?" if i in L and len(L) >= 2 else "."
-    elif S[i] != "?":
-        ans += S[i]
-    elif i in RT:
-        ans += "."
-    elif cnt > K:
-        if cnt - K < len(L):
-            ans += "?"
-        else:
-            ans += "."
-    else:
-        ans += "o" if cnt + len(L) - 1 < K else "?"
+i = 0
+L = []
 
+while i < N:
+    if S[i] != "?":
+        i += 1
+        continue
 
-print(ans)
+    k = i
+
+    while k < N and S[k] == "?":
+        k += 1
+
+    L.append((i, k - 1))
+    i = k
+
+NL = []
+
+for a, b in L:
+    if a - 1 >= 0 and S[a - 1] == "o":
+        S[a] = "."
+        a += 1
+    if b + 1 < N and S[b + 1] == "o":
+        S[b] = "."
+        b -= 1
+
+    cnt += (b - a + 2) // 2
+    NL.append((a, b))
+
+if cnt == K:
+    for a, b in NL:
+        if (b - a) % 2 == 0:
+            for i in range(a, b + 1):
+                if (i - a) % 2 == 0:
+                    S[i] = "o"
+                else:
+                    S[i] = "."
+
+print("".join(S))
