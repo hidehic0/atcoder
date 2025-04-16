@@ -8,7 +8,7 @@ license = [
 
 library.numpy = { license = [
   { name = "BSD-3-Clause", url = "https://github.com/numpy/numpy/blob/main/LICENSE.txt" },
-], version = "v2.2.3" }
+], version = "v2.2.4" }
 library.scipy = { license = [
   { name = "BSD-3-Clause", url = "https://github.com/scipy/scipy/blob/main/LICENSE.txt" },
 ], version = "v1.15.2" }
@@ -26,10 +26,10 @@ library.more-itertools = { license = [
 ], version = "v10.6.0" }
 library.shapely = { license = [
   { name = "BSD-3-Clause", url = "https://github.com/shapely/shapely/blob/main/LICENSE.txt" },
-], version = "v2.0.7" }
+], version = "v2.1.0" }
 library.bitarray = { license = [
   { name = "PSF-2.0", url = "https://github.com/ilanschnell/bitarray/blob/master/LICENSE" },
-], version = "v3.1.1" }
+], version = "v3.3.1" }
 library.PuLP = { license = [
   { name = "MIT", url = "https://github.com/coin-or/pulp/blob/master/LICENSE" },
 ], version = "v2.9.0" }
@@ -41,7 +41,7 @@ library.pandas = { license = [
 ], version = "v2.2.3" }
 library.z3-solver = { license = [
   { name = 'MIT', url = 'https://github.com/Z3Prover/z3/blob/master/LICENSE.txt' },
-], version = 'v4.14.0.0' }
+], version = 'v4.14.1.0' }
 library.scikit-learn = { license = [
   { name = 'BSD-3-Clause', url = 'https://github.com/scikit-learn/scikit-learn/blob/main/COPYING' },
 ], version = 'v1.6.1' }
@@ -79,18 +79,18 @@ cd pypy3.10-v7.3.19-linux64
 
 # ライブラリをインストール
 ./bin/pip3 install --break-system-packages \
-    numpy==2.2.3 \
+    numpy==2.2.4 \
     scipy==1.15.2 \
     networkx==3.4.2 \
     sympy==1.13.3 \
     sortedcontainers==2.4.0 \
     more-itertools==10.6.0 \
-    shapely==2.0.7 \
-    bitarray==3.1.1 \
+    shapely==2.1.0 \
+    bitarray==3.3.1 \
     PuLP==2.9.0 \
     mpmath==1.3.0 \
     pandas==2.2.3 \
-    z3-solver==4.14.0.0 \
+    z3-solver==4.14.1.0 \
     scikit-learn==1.6.1 \
     cppyy==3.5.0 \
     acl-cpp-python==0.6.1 \
