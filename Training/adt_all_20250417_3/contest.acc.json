@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250417_3",
+    "title": "AtCoder Daily Training ALL 2025/04/17 20:30start",
+    "url": "https://atcoder.jp/contests/adt_all_20250417_3"
+  },
+  "tasks": [
+    {
+      "id": "abc361_a",
+      "label": "A",
+      "title": "Insert",
+      "url": "https://atcoder.jp/contests/adt_all_20250417_3/tasks/abc361_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc319_a",
+      "label": "B",
+      "title": "Legendary Players",
+      "url": "https://atcoder.jp/contests/adt_all_20250417_3/tasks/abc319_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc279_b",
+      "label": "C",
+      "title": "LOOKUP",
+      "url": "https://atcoder.jp/contests/adt_all_20250417_3/tasks/abc279_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc288_b",
+      "label": "D",
+      "title": "Qualification Contest",
+      "url": "https://atcoder.jp/contests/adt_all_20250417_3/tasks/abc288_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc391_c",
+      "label": "E",
+      "title": "Pigeonhole Query",
+      "url": "https://atcoder.jp/contests/adt_all_20250417_3/tasks/abc391_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc275_c",
+      "label": "F",
+      "title": "Counting Squares",
+      "url": "https://atcoder.jp/contests/adt_all_20250417_3/tasks/abc275_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc306_d",
+      "label": "G",
+      "title": "Poisonous Full-Course",
+      "url": "https://atcoder.jp/contests/adt_all_20250417_3/tasks/abc306_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc378_e",
+      "label": "H",
+      "title": "Mod Sigma Problem",
+      "url": "https://atcoder.jp/contests/adt_all_20250417_3/tasks/abc378_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc243_f",
+      "label": "I",
+      "title": "Lottery",
+      "url": "https://atcoder.jp/contests/adt_all_20250417_3/tasks/abc243_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
