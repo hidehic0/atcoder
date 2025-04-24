@@ -3,11 +3,14 @@ name = "my_atcoder_code"
 version = "0.1.0"
 requires-python = ">=3.10"
 dependencies = [
-    "ac-library-python",
-    "online-judge-tools>=11.5.1",
-    "requests>=2.32.3",
-    "sortedcontainers>=2.4.0",
+  "ac-library-python",
+  "online-judge-tools>=11.5.1",
+  "requests>=2.32.3",
+  "sortedcontainers>=2.4.0",
 ]
+
+[tool.uv.sources]
+ac-library-python = { git = "https://github.com/not522/ac-library-python" }
 
 
 [tool.ruff]
@@ -16,6 +19,3 @@ select = ["C9", "E", "F", "W", "I"]
 
 [tool.ruff.lint]
 ignore = ["F401", "E402", "F811", "E741", "E702"]
-
-[tool.uv.sources]
-ac-library-python = { git = "https://github.com/not522/ac-library-python" }

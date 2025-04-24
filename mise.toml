@@ -1,2 +1,8 @@
 [tools]
 python = "pypy3.10-7.3.17"
+
+[settings]
+python.uv_venv_auto = true
+
+[env]
+_.python.venv = { path = ".venv" }
