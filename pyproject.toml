@@ -4,8 +4,8 @@ version = "0.1.0"
 requires-python = ">=3.10"
 dependencies = [
   "ac-library-python",
+  "debugpy>=1.8.14",
   "online-judge-tools>=11.5.1",
-  "requests>=2.32.3",
   "sortedcontainers>=2.4.0",
 ]
 
