@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250429_3",
+    "title": "AtCoder Daily Training ALL 2025/04/29 19:30start",
+    "url": "https://atcoder.jp/contests/adt_all_20250429_3"
+  },
+  "tasks": [
+    {
+      "id": "abc345_a",
+      "label": "A",
+      "title": "Leftrightarrow",
+      "url": "https://atcoder.jp/contests/adt_all_20250429_3/tasks/abc345_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc231_a",
+      "label": "B",
+      "title": "Water Pressure",
+      "url": "https://atcoder.jp/contests/adt_all_20250429_3/tasks/abc231_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc317_b",
+      "label": "C",
+      "title": "MissingNo.",
+      "url": "https://atcoder.jp/contests/adt_all_20250429_3/tasks/abc317_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc348_b",
+      "label": "D",
+      "title": "Farthest Point",
+      "url": "https://atcoder.jp/contests/adt_all_20250429_3/tasks/abc348_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc357_c",
+      "label": "E",
+      "title": "Sierpinski carpet",
+      "url": "https://atcoder.jp/contests/adt_all_20250429_3/tasks/abc357_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc359_c",
+      "label": "F",
+      "title": "Tile Distance 2",
+      "url": "https://atcoder.jp/contests/adt_all_20250429_3/tasks/abc359_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc344_d",
+      "label": "G",
+      "title": "String Bags",
+      "url": "https://atcoder.jp/contests/adt_all_20250429_3/tasks/abc344_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc382_e",
+      "label": "H",
+      "title": "Expansion Packs",
+      "url": "https://atcoder.jp/contests/adt_all_20250429_3/tasks/abc382_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc272_f",
+      "label": "I",
+      "title": "Two Strings",
+      "url": "https://atcoder.jp/contests/adt_all_20250429_3/tasks/abc272_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
