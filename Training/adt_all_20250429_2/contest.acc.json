@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250429_2",
+    "title": "AtCoder Daily Training ALL 2025/04/29 17:30start",
+    "url": "https://atcoder.jp/contests/adt_all_20250429_2"
+  },
+  "tasks": [
+    {
+      "id": "abc304_a",
+      "label": "A",
+      "title": "First Player",
+      "url": "https://atcoder.jp/contests/adt_all_20250429_2/tasks/abc304_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc273_a",
+      "label": "B",
+      "title": "A Recursive Function",
+      "url": "https://atcoder.jp/contests/adt_all_20250429_2/tasks/abc273_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc342_b",
+      "label": "C",
+      "title": "Which is ahead?",
+      "url": "https://atcoder.jp/contests/adt_all_20250429_2/tasks/abc342_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc223_b",
+      "label": "D",
+      "title": "String Shifting",
+      "url": "https://atcoder.jp/contests/adt_all_20250429_2/tasks/abc223_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc330_c",
+      "label": "E",
+      "title": "Minimize Abs 2",
+      "url": "https://atcoder.jp/contests/adt_all_20250429_2/tasks/abc330_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc285_c",
+      "label": "F",
+      "title": "abc285_brutmhyhiizp",
+      "url": "https://atcoder.jp/contests/adt_all_20250429_2/tasks/abc285_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc243_d",
+      "label": "G",
+      "title": "Moves on Binary Tree",
+      "url": "https://atcoder.jp/contests/adt_all_20250429_2/tasks/abc243_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc355_e",
+      "label": "H",
+      "title": "Guess the Sum",
+      "url": "https://atcoder.jp/contests/adt_all_20250429_2/tasks/abc355_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc299_f",
+      "label": "I",
+      "title": "Square Subsequence",
+      "url": "https://atcoder.jp/contests/adt_all_20250429_2/tasks/abc299_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
