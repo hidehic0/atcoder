@@ -1,0 +1,5 @@
+include = ["**/*.toml"]
+exclude = [".taplo.toml"]
+
+[schema]
+path = "./schema_20250108_01.json"

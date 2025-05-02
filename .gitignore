@@ -6,3 +6,4 @@ Heuristic
 lang_update/.taplo.toml
 lang_update/schema_20250108_01.json
 **/a.out
+lang_update/taplo.toml
