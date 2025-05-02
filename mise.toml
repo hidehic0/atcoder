@@ -6,5 +6,5 @@ rust = "1.86.0"
 [settings]
 python.uv_venv_auto = true
 
-[env]
-_.python.venv = { path = ".venv" }
+# [env]
+# _.python.venv = { path = ".venv" }
