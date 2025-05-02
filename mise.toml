@@ -3,8 +3,5 @@ python = "pypy3.10-7.3.17"
 rust = "1.86.0"
 "cargo:pahcer" = "latest"
 
-[settings]
-python.uv_venv_auto = true
-
-# [env]
-# _.python.venv = { path = ".venv" }
+[env]
+_.python.venv = { path = ".venv" }

@@ -270,4 +270,4 @@ object = './__pycache__/Main.pypy310.pyc'
 # 例:   [ './a.out' ]
 #       [ './target/release/main' ]
 #       [ 'java', '-Xss{memory:mb}M', 'Main' ]
-execution = ['pypy3', 'Main.py']
+execution = ['pypy3', '-X', 'int_max_str_digits=0', 'Main.py']
