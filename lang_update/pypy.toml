@@ -213,7 +213,7 @@ cd pypy3.10-v7.3.19-linux64
     scikit-learn==1.6.1 \
     cppyy==3.5.0 \
     acl-cpp-python==0.6.1 \
-    git+https://github.com/not522/ac-library-python
+    git+https://github.com/not522/ac-library-python@27fdbb71cd0d566bdeb12746db59c9d908c6b5d5
 
 
 # パスが通る所へ移動
