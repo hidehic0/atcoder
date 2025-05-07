@@ -1160,19 +1160,58 @@ INF = 1 << 63
 lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
+
 # コード
+class RollingHash:
+    def __init__(self, s, base=127):
+        self.mod = 2**61 - 1  # モジュラス: 2^61 - 1
+        self.base = base
+        self.s = s
+        self.n = len(s)
+
+        # ハッシュ値の前計算
+        self.hash = [0] * (self.n + 1)
+        self.pow_base = [1] * (self.n + 1)  # base^i % mod のキャッシュ
+
+        # ハッシュ値と基数のべき乗を計算
+        for i in range(self.n):
+            # hash[i+1] = (hash[i] * base + s[i]) % mod
+            self.hash[i + 1] = (
+                self.mul(self.hash[i], self.base) + ord(s[i])
+            ) % self.mod
+            # pow_base[i+1] = pow_base[i] * base % mod
+            self.pow_base[i + 1] = self.mul(self.pow_base[i], self.base)
+
+    def mul(self, a, b):
+        # 2^61 - 1 での乗算をオーバーフローなく行う
+        # a * b = a * (b0 + b1 * 2^32) = a * b0 + a * b1 * 2^32
+        mask = (1 << 32) - 1
+        b0, b1 = b & mask, b >> 32
+        res = (
+            a * b0 % self.mod + (a * b1 % self.mod) * (1 << 32) % self.mod
+        ) % self.mod
+        return res
+
+    def get(self, l, r):
+        # 部分文字列 s[l:r] のハッシュ値を取得
+        # hash[r] - hash[l] * base^(r-l) % mod
+        res = (self.hash[r] - self.mul(self.hash[l], self.pow_base[r - l])) % self.mod
+        return res if res >= 0 else res + self.mod
+
+
 S = s()
+RS = S[::-1]
+
+if len(S) == 1:
+    print(S)
+    exit()
+
+HS = RollingHash(S)
+HRS = RollingHash(RS)
+
 N = len(S)
 
-NS = S + "#" + S[::-1]
-
-for i in range(N):
-
-    def c(mid):
-        ns = NS[:i+1 ] + NS[mid+1:]
-
-        for t in range(len(ns)//2):
-            if ns[t] != ns[t*2]:
-                return True
-
-        return False
+for i in range(N + 1):
+    if HS.get(i, N) == HRS.get(0, N - i):
+        print(S + S[:i][::-1])
+        exit()
