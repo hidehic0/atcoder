@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250508_3",
+    "title": "AtCoder Daily Training ALL 2025/05/08 20:30start",
+    "url": "https://atcoder.jp/contests/adt_all_20250508_3"
+  },
+  "tasks": [
+    {
+      "id": "abc337_a",
+      "label": "A",
+      "title": "Scoreboard",
+      "url": "https://atcoder.jp/contests/adt_all_20250508_3/tasks/abc337_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc330_a",
+      "label": "B",
+      "title": "Counting Passes",
+      "url": "https://atcoder.jp/contests/adt_all_20250508_3/tasks/abc330_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc243_b",
+      "label": "C",
+      "title": "Hit and Blow",
+      "url": "https://atcoder.jp/contests/adt_all_20250508_3/tasks/abc243_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc280_b",
+      "label": "D",
+      "title": "Inverse Prefix Sum",
+      "url": "https://atcoder.jp/contests/adt_all_20250508_3/tasks/abc280_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc380_c",
+      "label": "E",
+      "title": "Move Segment",
+      "url": "https://atcoder.jp/contests/adt_all_20250508_3/tasks/abc380_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc302_c",
+      "label": "F",
+      "title": "Almost Equal",
+      "url": "https://atcoder.jp/contests/adt_all_20250508_3/tasks/abc302_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc366_d",
+      "label": "G",
+      "title": "Cuboid Sum Query",
+      "url": "https://atcoder.jp/contests/adt_all_20250508_3/tasks/abc366_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc260_e",
+      "label": "H",
+      "title": "At Least One",
+      "url": "https://atcoder.jp/contests/adt_all_20250508_3/tasks/abc260_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc398_f",
+      "label": "I",
+      "title": "ABCBA",
+      "url": "https://atcoder.jp/contests/adt_all_20250508_3/tasks/abc398_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
