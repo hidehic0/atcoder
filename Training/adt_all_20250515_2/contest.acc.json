@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250515_2",
+    "title": "AtCoder Daily Training ALL 2025/05/15 18:30start",
+    "url": "https://atcoder.jp/contests/adt_all_20250515_2"
+  },
+  "tasks": [
+    {
+      "id": "abc362_a",
+      "label": "A",
+      "title": "Buy a Pen",
+      "url": "https://atcoder.jp/contests/adt_all_20250515_2/tasks/abc362_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc382_a",
+      "label": "B",
+      "title": "Daily Cookie",
+      "url": "https://atcoder.jp/contests/adt_all_20250515_2/tasks/abc382_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc225_b",
+      "label": "C",
+      "title": "Star or Not",
+      "url": "https://atcoder.jp/contests/adt_all_20250515_2/tasks/abc225_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc341_b",
+      "label": "D",
+      "title": "Foreign Exchange",
+      "url": "https://atcoder.jp/contests/adt_all_20250515_2/tasks/abc341_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc269_c",
+      "label": "E",
+      "title": "Submask",
+      "url": "https://atcoder.jp/contests/adt_all_20250515_2/tasks/abc269_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc219_c",
+      "label": "F",
+      "title": "Neo-lexicographic Ordering",
+      "url": "https://atcoder.jp/contests/adt_all_20250515_2/tasks/abc219_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc244_d",
+      "label": "G",
+      "title": "Swap Hats",
+      "url": "https://atcoder.jp/contests/adt_all_20250515_2/tasks/abc244_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc231_e",
+      "label": "H",
+      "title": "Minimal payments",
+      "url": "https://atcoder.jp/contests/adt_all_20250515_2/tasks/abc231_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc302_f",
+      "label": "I",
+      "title": "Merge Set",
+      "url": "https://atcoder.jp/contests/adt_all_20250515_2/tasks/abc302_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
