@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250515_3",
+    "title": "AtCoder Daily Training ALL 2025/05/15 20:30start",
+    "url": "https://atcoder.jp/contests/adt_all_20250515_3"
+  },
+  "tasks": [
+    {
+      "id": "abc258_a",
+      "label": "A",
+      "title": "When?",
+      "url": "https://atcoder.jp/contests/adt_all_20250515_3/tasks/abc258_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc339_a",
+      "label": "B",
+      "title": "TLD",
+      "url": "https://atcoder.jp/contests/adt_all_20250515_3/tasks/abc339_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc269_b",
+      "label": "C",
+      "title": "Rectangle Detection",
+      "url": "https://atcoder.jp/contests/adt_all_20250515_3/tasks/abc269_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc303_b",
+      "label": "D",
+      "title": "Discord",
+      "url": "https://atcoder.jp/contests/adt_all_20250515_3/tasks/abc303_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc350_c",
+      "label": "E",
+      "title": "Sort",
+      "url": "https://atcoder.jp/contests/adt_all_20250515_3/tasks/abc350_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc358_c",
+      "label": "F",
+      "title": "Popcorn",
+      "url": "https://atcoder.jp/contests/adt_all_20250515_3/tasks/abc358_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc387_d",
+      "label": "G",
+      "title": "Snaky Walk",
+      "url": "https://atcoder.jp/contests/adt_all_20250515_3/tasks/abc387_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc257_e",
+      "label": "H",
+      "title": "Addition and Multiplication 2",
+      "url": "https://atcoder.jp/contests/adt_all_20250515_3/tasks/abc257_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc397_f",
+      "label": "I",
+      "title": "Variety Split Hard",
+      "url": "https://atcoder.jp/contests/adt_all_20250515_3/tasks/abc397_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
