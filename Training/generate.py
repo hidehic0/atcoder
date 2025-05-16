@@ -51,10 +51,14 @@ if problem_n >= 7:
         problem_path = f"{path}/{i + 1}"
         os.mkdir(problem_path)
 
-        copy_directory_contents("/home/hidehic0/Docments/library/code", problem_path)
+        copy_directory_contents(
+            "/home/hidehic0/src/github.com/hidehic0/library/code", problem_path
+        )
 else:
     for i in range(problem_n):
         problem_path = f"{path}/{problem_name_list[i]}"
         os.mkdir(problem_path)
 
-        copy_directory_contents("/home/hidehic0/Docments/library/code", problem_path)
+        copy_directory_contents(
+            "/home/hidehic0/src/github.com/hidehic0/library/code", problem_path
+        )
