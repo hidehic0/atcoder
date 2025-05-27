@@ -27,7 +27,7 @@ from operator import itemgetter
 from typing import Any, List, Tuple
 
 # from atcoder.segtree import SegTree
-# from atcoder.lazysegtree import LazySegTree
+from atcoder.lazysegtree import LazySegTree
 # from atcoder.dsu import DSU
 
 # cortedcontainersは使うときだけ wandbox非対応なので
@@ -37,6 +37,55 @@ from typing import Any, List, Tuple
 # pypyjit.set_param("max_unroll_recursion=-1")
 
 sys.setrecursionlimit(5 * 10**5)
+import io
+import os
+import sys
+from typing import Any, List
+
+# インタラクティブ問題の時はIS_INTERACTIVEをTrueにしましょう
+# IS_INTERACTIVE = False
+
+# 標準入力関数
+# if sys.argv[0] == "Main.py":
+#     if not IS_INTERACTIVE:
+#         input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline().decode().rstrip
+
+
+def s() -> str:
+    """
+    一行に一つのstringをinput
+    """
+    return input()
+
+
+def sl() -> List[str]:
+    """
+    一行に複数のstringをinput
+    """
+    return s().split()
+
+
+def ii() -> int:
+    """
+    一つのint
+    """
+    return int(s())
+
+
+def il(add_num: int = 0) -> List[int]:
+    """
+    一行に複数のint
+    """
+    return list(map(lambda i: int(i) + add_num, sl()))
+
+
+def li(n: int, func, *args) -> List[List[Any]]:
+    """
+    複数行の入力をサポート
+    """
+    return [func(*args) for _ in [0] * n]
+
+
 from typing import List
 
 
@@ -223,7 +272,7 @@ def comb(n: int, r: int, mod: int | None = None) -> int:
 
 
 # 多次元配列作成
-from typing import Any, List
+from typing import List, Any
 
 
 def create_array1(n: int, default: Any = 0) -> List[Any]:
@@ -372,46 +421,6 @@ class ModInt:
         return self.rhs(rhs) != self.x
 
 
-# 標準入力関数
-import sys
-from typing import Any, List
-
-
-def s() -> str:
-    """
-    一行に一つのstringをinput
-    """
-    return sys.stdin.readline().rstrip()
-
-
-def sl() -> List[str]:
-    """
-    一行に複数のstringをinput
-    """
-    return s().split()
-
-
-def ii() -> int:
-    """
-    一つのint
-    """
-    return int(s())
-
-
-def il(add_num: int = 0) -> List[int]:
-    """
-    一行に複数のint
-    """
-    return list(map(lambda i: int(i) + add_num, sl()))
-
-
-def li(n: int, func, *args) -> List[List[Any]]:
-    """
-    複数行の入力をサポート
-    """
-    return [func(*args) for _ in [0] * n]
-
-
 # YesNo関数
 def YesNoTemplate(state: bool, upper: bool = False) -> str:
     """
@@ -506,6 +515,95 @@ def grid_moves(
     return res
 
 
+from typing import List, Tuple
+
+
+def coordinates_to_id(H: int, W: int) -> Tuple[List[List[int]], List[Tuple[int]]]:
+    """
+    座標にID変換します
+
+    返り値は、
+    最初のが、座標からid
+    二つめのが、idから座標
+    です
+    """
+    ItC = [[-1] * W for _ in [0] * H]
+    CtI = [(-1, -1) for _ in [0] * (H * W)]
+
+    i = 0
+
+    for x in range(H):
+        for y in range(W):
+            ItC[x][y] = i
+            CtI[i] = (x, y)
+            i += 1
+
+    return CtI, ItC
+
+
+import heapq
+from typing import List, Tuple
+
+
+def dijkstra(
+    graph: List[List[Tuple[int]]], startpoint: int = 0, output_prev: bool = False
+) -> List[int] | Tuple[List[int], List[int]]:
+    """
+    ダイクストラ法です
+    GraphW構造体を使う場合は、allメソッドで、そんまま入れてください
+    定数倍速いのかは分かりません(いつも使っているフォーマット)
+    経路復元したい場合は、output_prevをTrueにすればprevも返ってくるので、それを使用して復元してください
+    0-indexedが前提です
+    """
+    used = [1 << 63] * len(graph)
+    prev = [-1] * len(graph)
+    if not 0 <= startpoint < len(graph):
+        raise IndexError("あのー0-indexedですか?")
+    used[startpoint] = 0
+    PQ = [(0, startpoint)]
+
+    while PQ:
+        cos, cur = heapq.heappop(PQ)
+
+        if used[cur] < cos:
+            continue
+
+        for nxt, w in graph[cur]:
+            new_cos = cos + w
+
+            if new_cos >= used[nxt]:
+                continue
+
+            used[nxt] = new_cos
+            prev[nxt] = cur
+
+            heapq.heappush(PQ, (new_cos, nxt))
+
+    if not output_prev:
+        return used
+    else:
+        return used, prev
+
+
+from typing import List
+
+
+def getpath(prev_lis: List[int], goal_point: int) -> List[int]:
+    """
+    経路復元をします
+    dijkstra関数を使う場合、output_prevをTrueにして返ってきた、prevを引数として用います
+    他の場合は、移動の時、usedを付けるついでに、prevに現在の頂点を付けてあげるといいです
+    """
+    res = []
+    cur = goal_point
+
+    while cur != -1:
+        res.append(cur)
+        cur = prev_lis[cur]
+
+    return res[::-1]
+
+
 # DPのテンプレート
 from typing import List
 
@@ -535,27 +633,25 @@ def partial_sum_dp(lis: List[int], X: int) -> List[bool]:
     return dp
 
 
-def knapsack_dp(lis: List[List[int]], W: int) -> List[int]:
+def knapsack_dp(lis: list[list[int]], W: int) -> int:
     """
-    ナップサックdpのテンプレート
-    lisは品物のリスト
-    原則品物は、w,vの形で与えられ、wが重さ、vが価値、となる
-    価値と重さを逆転させたい場合は自分でやってください
-    dp配列は、定数倍高速化のため、一次元配列として扱う
-    dp配列の長さは、Wとします
+    ナップサック問題を一次元DPで解く
+    lis: 品物のリスト [[重さ, 価値], ...]
+    W: ナップサックの容量
+    戻り値: 最大価値
     """
+    if W < 0 or not lis:
+        return 0
 
-    dp = [-(1 << 63)] * (W + 1)
-    dp[0] = 0
+    dp = [0] * (W + 1)
 
     for w, v in lis:
-        for k in reversed(range(len(dp))):
-            if w + k >= len(dp):
-                continue
+        if w < 0 or v < 0:
+            raise ValueError("Weight and value must be non-negative")
+        for k in reversed(range(W - w + 1)):
+            dp[k + w] = max(dp[k + w], dp[k] + v)
 
-            dp[w + k] = max(dp[w + k], dp[k] + v)
-
-    return dp
+    return dp[W]
 
 
 def article_breakdown(lis: List[List[int]]) -> List[List[int]]:
@@ -577,20 +673,40 @@ def article_breakdown(lis: List[List[int]]) -> List[List[int]]:
 from typing import List, Tuple
 
 
-def coordinate_compression(lis: List[int] | Tuple[int]) -> List[int]:
+def compress_1d(points: List[int] | Tuple[int]) -> List[int]:
     """
-    座標圧縮します
+    一次元座標圧縮します
     計算量は、O(N log N)です
 
     lとrは、まとめて入れる事で、座圧できます
     """
     res = []
-    d = {num: ind for ind, num in enumerate(sorted(set(lis)))}
+    d = {num: ind for ind, num in enumerate(sorted(set(points)))}
 
-    for a in lis:
+    for a in points:
         res.append(d[a])
 
     return res
+
+
+def compress_2d(points):
+    """
+    2次元座標圧縮を行う関数
+    入力: points - [(x1, y1), (x2, y2), ...] の形式の座標リスト
+    出力: 圧縮後の座標リストと、元の座標から圧縮後の座標へのマッピング
+    """
+    # x座標とy座標を分離
+    x_coords = sorted(set(x for x, y in points))  # 重複を削除してソート
+    y_coords = sorted(set(y for x, y in points))
+
+    # 座標から圧縮後の値へのマッピング辞書を作成
+    x_map = {val: idx for idx, val in enumerate(x_coords)}
+    y_map = {val: idx for idx, val in enumerate(y_coords)}
+
+    # 圧縮後の座標リストを作成
+    compressed = [(x_map[x], y_map[y]) for x, y in points]
+
+    return compressed
 
 
 # ac_libraryのメモ
@@ -610,6 +726,70 @@ eは初期化する値
 
 vは配列の長さまたは、初期化する内容
 """
+from collections import defaultdict
+import math
+
+
+class WeightedTreeLCA:
+    def __init__(self, n):
+        """初期化: ノード数nの木を構築（0-indexed）"""
+        self.n = n
+        self.log = math.ceil(math.log2(n)) + 1
+        self.adj = defaultdict(list)  # 隣接リスト: {ノード: [(隣接ノード, 重み), ...]}
+        self.depth = [0] * n  # 各ノードの深さ
+        self.dist = [0] * n  # 根からの重み合計
+        self.ancestor = [[-1] * self.log for _ in range(n)]  # ダブリングテーブル
+
+    def add_edge(self, u, v, w):
+        """辺を追加: uとvを重みwで接続"""
+        self.adj[u].append((v, w))
+        self.adj[v].append((u, w))
+
+    def dfs(self, u, parent, d, w):
+        """DFSで深さ、距離、親を計算"""
+        self.depth[u] = d
+        self.dist[u] = w
+        for v, weight in self.adj[u]:
+            if v != parent:
+                self.ancestor[v][0] = u
+                self.dfs(v, u, d + 1, w + weight)
+
+    def build(self, root=0):
+        """ダブリングテーブルの構築"""
+        # DFSで初期情報収集
+        self.dfs(root, -1, 0, 0)
+        # ダブリングテーブルを埋める
+        for k in range(1, self.log):
+            for u in range(self.n):
+                if self.ancestor[u][k - 1] != -1:
+                    self.ancestor[u][k] = self.ancestor[self.ancestor[u][k - 1]][k - 1]
+
+    def lca(self, u, v):
+        """ノードuとvのLCAを求める"""
+        # 深さを揃える
+        if self.depth[u] < self.depth[v]:
+            u, v = v, u
+        for k in range(self.log - 1, -1, -1):
+            if (
+                self.ancestor[u][k] != -1
+                and self.depth[self.ancestor[u][k]] >= self.depth[v]
+            ):
+                u = self.ancestor[u][k]
+        if u == v:
+            return u
+        # 同時にジャンプ
+        for k in range(self.log - 1, -1, -1):
+            if self.ancestor[u][k] != self.ancestor[v][k]:
+                u = self.ancestor[u][k]
+                v = self.ancestor[v][k]
+        return self.ancestor[u][0]
+
+    def get_distance(self, u, v):
+        """ノードuとvの間の距離（重みの合計）を求める"""
+        lca_node = self.lca(u, v)
+        return self.dist[u] + self.dist[v] - 2 * self.dist[lca_node]
+
+
 # グラフ構造
 # 無向グラフ
 from collections import deque
@@ -836,6 +1016,168 @@ class UnionFind:
         return res
 
 
+from typing import List
+
+
+class PotentialUnionFind:
+    def __init__(self, n: int) -> None:
+        """
+        重み付きunionfind
+        俗に言う、牛ゲー
+
+        uniteは、差を指定して、uniteします
+        """
+        self.data: List[int] = [-1] * n
+        self.pot: List[int] = [0] * n
+
+    def root(self, vtx: int) -> int:
+        """
+        頂点vtxの親を出力します
+        ポテンシャルは出力しません
+        """
+        if self.data[vtx] < 0:
+            return vtx
+
+        rt = self.root(self.data[vtx])
+        self.pot[vtx] += self.pot[self.data[vtx]]
+        self.data[vtx] = rt
+
+        return rt
+
+    def potential(self, vtx: int) -> int:
+        """
+        頂点vtxのポテンシャルを出力します
+        """
+        self.root(vtx)
+
+        return self.pot[vtx]
+
+    def same(self, a: int, b: int) -> bool:
+        """
+        頂点aと頂点bが同じ連結成分かを判定します
+        """
+        return self.root(a) == self.root(b)
+
+    def unite(self, a: int, b: int, p: int) -> bool:
+        """
+        頂点aから頂点bを、pの距離でmergeします
+        計算量はlog nです
+        """
+        p += self.potential(b) - self.potential(a)
+        a, b = self.root(a), self.root(b)
+
+        if a == b:
+            return False
+
+        if self.data[a] < self.data[b]:
+            a, b = b, a
+            p *= -1  # ポテンシャルもswapします
+
+        self.data[b] += self.data[a]
+        self.data[a] = b
+        self.pot[a] = p
+
+        return True
+
+    def diff(self, a: int, b: int) -> int:
+        """
+        頂点aから頂点bの距離を、出力します
+        """
+
+        return self.potential(a) - self.potential(b)
+
+
+from typing import Any, Callable, List, Tuple
+
+
+def _keys_for_heapq(x: Any):
+    """
+    先頭の値を取得する
+    """
+
+    cur = x
+
+    while True:
+        try:
+            cur = cur[0]
+        except TypeError:
+            break
+
+    return cur
+
+
+class HeapBase:
+    def __init__(
+        self, arr: List[Any] = [], key: Callable[Any, Any] = _keys_for_heapq
+    ) -> None:
+        """
+        arrはソート済みが前提です
+        """
+        self.key: Callable[Any, Any] = key
+        self.lis: List[Tuple[Any, Any]] = [(self.key(x), x) for x in arr]
+
+    def _op(self, a: int, b: int) -> bool:
+        # aが親 bが子って感じだよ
+        assert 0 <= a < b < len(self.lis)
+        return True
+
+    def push(self, x: Any) -> None:
+        self.lis.append((self.key(x), x))
+        i = len(self.lis) - 1
+        while i != 0:
+            p = (i - 1) // 2
+            if self._op(p, i):
+                self.lis[i], self.lis[p] = self.lis[p], self.lis[i]
+                i = p
+            else:
+                break
+
+    def pop(self) -> Any:
+        assert len(self.lis) > 0
+        res = self.lis[0][1]  # Return the original value (not the key)
+        self.lis[0] = self.lis[-1]  # Move the last element to the root
+        self.lis.pop()  # Remove the last element
+
+        if not self.lis:  # If the heap is empty, return early
+            return res
+
+        # Restore heap property by sifting down
+        i = 0
+        while i * 2 + 1 < len(self.lis):  # While there is at least one child
+            c1 = i * 2 + 1  # Left child
+            c2 = i * 2 + 2  # Right child
+
+            # Pick the smaller of the two children (if right child exists)
+            smallest = c1
+            if c2 < len(self.lis) and self._op(c1, c2):
+                smallest = c2
+
+            # If the parent is larger than the smallest child, swap
+            if self._op(i, smallest):
+                self.lis[i], self.lis[smallest] = self.lis[smallest], self.lis[i]
+                i = smallest
+            else:
+                break
+
+        return res
+
+    def __len__(self) -> int:
+        return len(self.lis)
+
+    def __getitem__(self, i: int):
+        return self.lis[i][1]
+
+
+class HeapMin(HeapBase):
+    def _op(self, a: int, b: int) -> bool:
+        return self.lis[a][0] > self.lis[b][0]
+
+
+class HeapMax(HeapBase):
+    def _op(self, a: int, b: int) -> bool:
+        return self.lis[a][0] < self.lis[b][0]
+
+
 # Trie木
 class Trie:
     class Data:
@@ -1001,5 +1343,25 @@ def chebyshev_dis(x1: int, y1: int, x2: int, y2: int) -> int:
 INF = 1 << 63
 lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+MOVES1 = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+MOVES2 = MOVES1 + [(1, 1), (1, -1), (-1, 1), (-1, -1)]
 
 # コード
+S = s()
+N = len(S)
+
+ans = N
+cnt = 0
+
+for i in reversed(range(N)):
+    A = int(S[i])
+    CA = cnt % 10
+
+    if CA <= A:
+        cnt += A - CA
+        ans += A - CA
+    else:
+        cnt += 10 - CA + A
+        ans += 10 - CA + A
+
+print(ans)
