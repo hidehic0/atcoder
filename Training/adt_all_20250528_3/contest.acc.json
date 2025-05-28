@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250528_3",
+    "title": "AtCoder Daily Training ALL 2025/05/28 20:00start",
+    "url": "https://atcoder.jp/contests/adt_all_20250528_3"
+  },
+  "tasks": [
+    {
+      "id": "abc259_a",
+      "label": "A",
+      "title": "Growth Record",
+      "url": "https://atcoder.jp/contests/adt_all_20250528_3/tasks/abc259_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc342_a",
+      "label": "B",
+      "title": "Yay!",
+      "url": "https://atcoder.jp/contests/adt_all_20250528_3/tasks/abc342_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc331_b",
+      "label": "C",
+      "title": "Buy One Carton of Milk",
+      "url": "https://atcoder.jp/contests/adt_all_20250528_3/tasks/abc331_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc377_b",
+      "label": "D",
+      "title": "Avoid Rook Attack",
+      "url": "https://atcoder.jp/contests/adt_all_20250528_3/tasks/abc377_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc388_c",
+      "label": "E",
+      "title": "Various Kagamimochi",
+      "url": "https://atcoder.jp/contests/adt_all_20250528_3/tasks/abc388_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc396_c",
+      "label": "F",
+      "title": "Buy Balls",
+      "url": "https://atcoder.jp/contests/adt_all_20250528_3/tasks/abc396_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc339_d",
+      "label": "G",
+      "title": "Synchronized Players ",
+      "url": "https://atcoder.jp/contests/adt_all_20250528_3/tasks/abc339_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc252_e",
+      "label": "H",
+      "title": "Road Reduction",
+      "url": "https://atcoder.jp/contests/adt_all_20250528_3/tasks/abc252_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc311_f",
+      "label": "I",
+      "title": "Yet Another Grid Task",
+      "url": "https://atcoder.jp/contests/adt_all_20250528_3/tasks/abc311_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
