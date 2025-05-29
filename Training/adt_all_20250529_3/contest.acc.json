@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250529_3",
+    "title": "AtCoder Daily Training ALL 2025/05/29 20:30start",
+    "url": "https://atcoder.jp/contests/adt_all_20250529_3"
+  },
+  "tasks": [
+    {
+      "id": "abc223_a",
+      "label": "A",
+      "title": "Exact Price",
+      "url": "https://atcoder.jp/contests/adt_all_20250529_3/tasks/abc223_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc383_a",
+      "label": "B",
+      "title": "Humidifier 1",
+      "url": "https://atcoder.jp/contests/adt_all_20250529_3/tasks/abc383_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc295_b",
+      "label": "C",
+      "title": "Bombs",
+      "url": "https://atcoder.jp/contests/adt_all_20250529_3/tasks/abc295_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc299_b",
+      "label": "D",
+      "title": "Trick Taking",
+      "url": "https://atcoder.jp/contests/adt_all_20250529_3/tasks/abc299_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc381_c",
+      "label": "E",
+      "title": "11/22 Substring",
+      "url": "https://atcoder.jp/contests/adt_all_20250529_3/tasks/abc381_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc266_c",
+      "label": "F",
+      "title": "Convex Quadrilateral",
+      "url": "https://atcoder.jp/contests/adt_all_20250529_3/tasks/abc266_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc318_d",
+      "label": "G",
+      "title": "General Weighted Max Matching",
+      "url": "https://atcoder.jp/contests/adt_all_20250529_3/tasks/abc318_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc400_e",
+      "label": "H",
+      "title": "Ringo's Favorite Numbers 3",
+      "url": "https://atcoder.jp/contests/adt_all_20250529_3/tasks/abc400_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc382_f",
+      "label": "I",
+      "title": "Falling Bars",
+      "url": "https://atcoder.jp/contests/adt_all_20250529_3/tasks/abc382_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
