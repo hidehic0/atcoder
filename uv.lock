@@ -8,6 +8,18 @@ version = "0.0.1"
 source = { git = "https://github.com/not522/ac-library-python#27fdbb71cd0d566bdeb12746db59c9d908c6b5d5" }
 
 [[package]]
+name = "aclogin"
+version = "0.2.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "appdirs" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/20/20/3e80f39b968123c5fb8839f4e698844b7492ee0299203dcaf5db8d7bc2e3/aclogin-0.2.1.tar.gz", hash = "sha256:cd46e44a7c039aed4fcfffd9b3fbf301898d8453f34cbefc3de5d5f4225f7554", size = 6491, upload-time = "2025-04-03T12:16:31.359Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b5/a2/f7b71a643750c0044cdc7a6226ea54073b0263f8abb4e4277b79ba0fc53d/aclogin-0.2.1-py3-none-any.whl", hash = "sha256:8c3afe45d8e62a3ef925c6aadae6317d0f5e29a44d254f2f8111dce9f6a837c9", size = 6969, upload-time = "2025-04-03T12:16:29.826Z" },
+]
+
+[[package]]
 name = "appdirs"
 version = "1.4.4"
 source = { registry = "https://pypi.org/simple" }
@@ -278,6 +290,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "ac-library-python" },
+    { name = "aclogin" },
     { name = "debugpy" },
     { name = "numpy" },
     { name = "online-judge-tools" },
@@ -288,6 +301,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "ac-library-python", git = "https://github.com/not522/ac-library-python" },
+    { name = "aclogin", specifier = ">=0.2.1" },
     { name = "debugpy", specifier = ">=1.8.14" },
     { name = "numpy", specifier = ">=2.2.6" },
     { name = "online-judge-tools", specifier = ">=11.5.1" },
