@@ -46,7 +46,7 @@ os.mkdir(path)
 problem_name_list = list("abcdefghijklmnopqrstuvwxyz")
 
 # ./templateの中身を一つずつコピー
-if problem_n >= 7:
+if problem_n >= 15:
     for i in range(problem_n):
         problem_path = f"{path}/{i + 1}"
         os.mkdir(problem_path)
