@@ -790,6 +790,63 @@ class WeightedTreeLCA:
         return self.dist[u] + self.dist[v] - 2 * self.dist[lca_node]
 
 
+from typing import List
+
+
+class RollingHash:
+    string: str
+    mod: int
+    base: int
+    n: int
+
+    def __init__(self, string: str, mod: int = (1 << 61) - 1) -> None:
+        """
+        RollingHash構造体
+        衝突する可能性があるのでmodが違う二つで比較するのが有効
+
+        string: 文字列
+        mod: mod デフォルト値は2^61 - 1
+        """
+        self.string = string
+        self.mod = mod
+        self.base = len(set(string))
+
+        self.n = n = len(string)
+        self.pow = [1] * (n + 1)
+        self.hash = [0] * (n + 1)
+
+        for i in range(n):
+            self.hash[i + 1] = (self.hash[i] * self.base + ord(string[i])) % mod
+
+        for i in range(n):
+            self.pow[i + 1] = self.pow[i] * self.base % mod
+
+    def get(self, l: int, r: int) -> int:
+        """
+        lからrまでのハッシュ値を取得する
+        0-indexed
+        """
+        return (self.hash[r] - self.hash[l] * self.pow[r - l]) % self.mod
+
+    def lcp(self, b: int, bn: int) -> int:
+        """
+        2つのRollingHashの最長共通接頭辞を返す
+        bがhashでbnがそのhashの長さです
+        """
+
+        left, right = 0, min(self.n, bn)
+
+        while right - left > 1:
+            mid = (left + right) // 2
+
+            if self.get(0, mid) == b:
+                left = mid
+            else:
+                right = mid
+
+        return left
+
+
 # グラフ構造
 # 無向グラフ
 from collections import deque
@@ -1247,6 +1304,126 @@ class Trie:
         return result
 
 
+import math
+from typing import Any, Callable, List
+
+
+def mo_algorithm(
+    N: int,
+    queries: List[Any],
+    add: Callable[[int], Any],
+    delete: Callable[[int], Any],
+    getvalue: Callable[[], Any],
+) -> List[Any]:
+    """
+    Mo's algorithmの関数
+    queriesは、(左端, 右端)で1-indexed
+    addはあるindexが追加される時の値を現在の値にする
+    deleteはあるindexが削除される時の値を現在の値にする
+    getvalueは現在の値を返す
+    """
+    Q = len(queries)
+    res = [None] * Q
+    M = int(max(1, 1.0 * N / max(1, math.sqrt(Q * 2.0 / 3.0))))
+
+    queries = [(l, r, i) for i, (l, r) in enumerate(queries)]
+    queries.sort(key=lambda x: (x[0] // M, x[1] if (x[0] // M) % 2 == 0 else -x[1]))
+
+    cl, cr = 0, -1
+
+    for l, r, ind in queries:
+        l -= 1
+        r -= 1
+        while cl > l:
+            cl -= 1
+            add(cl)
+
+        while cr < r:
+            cr += 1
+            add(cr)
+
+        while cl < l:
+            delete(cl)
+            cl += 1
+
+        while cr > r:
+            delete(cr)
+            cr -= 1
+
+        res[ind] = getvalue()
+
+    return res
+
+
+import math
+from typing import Any, Callable, List
+
+
+class SquareDivision:
+    def __init__(self, lis: List[Any], op: Callable[[Any, Any], Any]) -> None:
+        self.n = len(lis)
+        self.op = op
+        self.block_size = math.isqrt(self.n)
+        self.blocks = []
+        self.lis = lis[:]
+
+        for i in range(0, self.n, self.block_size):
+            block_val = lis[i]
+            for k in range(i + 1, min(i + self.block_size, self.n)):
+                block_val = self.op(block_val, lis[k])
+            self.blocks.append(block_val)
+
+        self.m = len(self.blocks)
+
+    def get_block_index_left(self, i: int) -> int:
+        return i // self.block_size
+
+    def get_block_index_right(self, i: int) -> int:
+        return (i + self.block_size - 1) // self.block_size
+
+    def prod(self, l: int, r: int) -> Any:
+        """
+        rは0-indexedなのに注意してください
+        """
+        assert 0 <= l <= r < self.n
+
+        l_block_left = self.get_block_index_left(l)
+        r_block_left = self.get_block_index_left(r)
+
+        if l_block_left == r_block_left:
+            res = self.lis[l]
+            for k in range(l + 1, r + 1):
+                res = self.op(res, self.lis[k])
+            return res
+
+        res = self.lis[l]
+        for i in range(l + 1, min((l_block_left + 1) * self.block_size, self.n)):
+            res = self.op(res, self.lis[i])
+
+        for block_ind in range(l_block_left + 1, r_block_left):
+            res = self.op(res, self.blocks[block_ind])
+
+        for i in range(r_block_left * self.block_size, r + 1):
+            res = self.op(res, self.lis[i])
+
+        return res
+
+    def update(self, i: int, x: Any) -> None:
+        assert 0 <= i < self.n
+        self.lis[i] = x
+        block_ind = self.get_block_index_left(i)
+        start = block_ind * self.block_size
+        end = min(start + self.block_size, self.n)
+        if start < self.n:
+            self.blocks[block_ind] = self.lis[start]
+            for j in range(start + 1, end):
+                self.blocks[block_ind] = self.op(self.blocks[block_ind], self.lis[j])
+
+    def get(self, i: int) -> Any:
+        assert 0 <= i < self.n
+        return self.lis[i]
+
+
 from typing import List
 
 
@@ -1347,7 +1524,15 @@ MOVES1 = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 MOVES2 = MOVES1 + [(1, 1), (1, -1), (-1, 1), (-1, -1)]
 
 # コード
-N, D = il()
-S = s()
+N = ii()
+D = il()
 
-print(N - S.count("@") + D)
+AC = list(accumulate(D, initial=0))
+
+
+for i in range(N - 1):
+    res = []
+    for k in range(i + 1, N):
+        res.append(AC[k] - AC[i])
+
+    print(*res)

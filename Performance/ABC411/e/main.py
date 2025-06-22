@@ -37,6 +37,55 @@ from typing import Any, List, Tuple
 # pypyjit.set_param("max_unroll_recursion=-1")
 
 sys.setrecursionlimit(5 * 10**5)
+import io
+import os
+import sys
+from typing import Any, List
+
+# インタラクティブ問題の時はIS_INTERACTIVEをTrueにしましょう
+# IS_INTERACTIVE = False
+
+# 標準入力関数
+# if sys.argv[0] == "Main.py":
+#     if not IS_INTERACTIVE:
+#         input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline().decode().rstrip
+
+
+def s() -> str:
+    """
+    一行に一つのstringをinput
+    """
+    return input()
+
+
+def sl() -> List[str]:
+    """
+    一行に複数のstringをinput
+    """
+    return s().split()
+
+
+def ii() -> int:
+    """
+    一つのint
+    """
+    return int(s())
+
+
+def il(add_num: int = 0) -> List[int]:
+    """
+    一行に複数のint
+    """
+    return list(map(lambda i: int(i) + add_num, sl()))
+
+
+def li(n: int, func, *args) -> List[List[Any]]:
+    """
+    複数行の入力をサポート
+    """
+    return [func(*args) for _ in [0] * n]
+
+
 from typing import List
 
 
@@ -223,7 +272,7 @@ def comb(n: int, r: int, mod: int | None = None) -> int:
 
 
 # 多次元配列作成
-from typing import Any, List
+from typing import List, Any
 
 
 def create_array1(n: int, default: Any = 0) -> List[Any]:
@@ -370,46 +419,6 @@ class ModInt:
 
     def __ne__(self, rhs) -> bool:
         return self.rhs(rhs) != self.x
-
-
-# 標準入力関数
-import sys
-from typing import Any, List
-
-
-def s() -> str:
-    """
-    一行に一つのstringをinput
-    """
-    return sys.stdin.readline().rstrip()
-
-
-def sl() -> List[str]:
-    """
-    一行に複数のstringをinput
-    """
-    return s().split()
-
-
-def ii() -> int:
-    """
-    一つのint
-    """
-    return int(s())
-
-
-def il(add_num: int = 0) -> List[int]:
-    """
-    一行に複数のint
-    """
-    return list(map(lambda i: int(i) + add_num, sl()))
-
-
-def li(n: int, func, *args) -> List[List[Any]]:
-    """
-    複数行の入力をサポート
-    """
-    return [func(*args) for _ in [0] * n]
 
 
 # YesNo関数
@@ -717,6 +726,127 @@ eは初期化する値
 
 vは配列の長さまたは、初期化する内容
 """
+from collections import defaultdict
+import math
+
+
+class WeightedTreeLCA:
+    def __init__(self, n):
+        """初期化: ノード数nの木を構築（0-indexed）"""
+        self.n = n
+        self.log = math.ceil(math.log2(n)) + 1
+        self.adj = defaultdict(list)  # 隣接リスト: {ノード: [(隣接ノード, 重み), ...]}
+        self.depth = [0] * n  # 各ノードの深さ
+        self.dist = [0] * n  # 根からの重み合計
+        self.ancestor = [[-1] * self.log for _ in range(n)]  # ダブリングテーブル
+
+    def add_edge(self, u, v, w):
+        """辺を追加: uとvを重みwで接続"""
+        self.adj[u].append((v, w))
+        self.adj[v].append((u, w))
+
+    def dfs(self, u, parent, d, w):
+        """DFSで深さ、距離、親を計算"""
+        self.depth[u] = d
+        self.dist[u] = w
+        for v, weight in self.adj[u]:
+            if v != parent:
+                self.ancestor[v][0] = u
+                self.dfs(v, u, d + 1, w + weight)
+
+    def build(self, root=0):
+        """ダブリングテーブルの構築"""
+        # DFSで初期情報収集
+        self.dfs(root, -1, 0, 0)
+        # ダブリングテーブルを埋める
+        for k in range(1, self.log):
+            for u in range(self.n):
+                if self.ancestor[u][k - 1] != -1:
+                    self.ancestor[u][k] = self.ancestor[self.ancestor[u][k - 1]][k - 1]
+
+    def lca(self, u, v):
+        """ノードuとvのLCAを求める"""
+        # 深さを揃える
+        if self.depth[u] < self.depth[v]:
+            u, v = v, u
+        for k in range(self.log - 1, -1, -1):
+            if (
+                self.ancestor[u][k] != -1
+                and self.depth[self.ancestor[u][k]] >= self.depth[v]
+            ):
+                u = self.ancestor[u][k]
+        if u == v:
+            return u
+        # 同時にジャンプ
+        for k in range(self.log - 1, -1, -1):
+            if self.ancestor[u][k] != self.ancestor[v][k]:
+                u = self.ancestor[u][k]
+                v = self.ancestor[v][k]
+        return self.ancestor[u][0]
+
+    def get_distance(self, u, v):
+        """ノードuとvの間の距離（重みの合計）を求める"""
+        lca_node = self.lca(u, v)
+        return self.dist[u] + self.dist[v] - 2 * self.dist[lca_node]
+
+
+from typing import List
+
+
+class RollingHash:
+    string: str
+    mod: int
+    base: int
+    n: int
+
+    def __init__(self, string: str, mod: int = (1 << 61) - 1) -> None:
+        """
+        RollingHash構造体
+        衝突する可能性があるのでmodが違う二つで比較するのが有効
+
+        string: 文字列
+        mod: mod デフォルト値は2^61 - 1
+        """
+        self.string = string
+        self.mod = mod
+        self.base = len(set(string))
+
+        self.n = n = len(string)
+        self.pow = [1] * (n + 1)
+        self.hash = [0] * (n + 1)
+
+        for i in range(n):
+            self.hash[i + 1] = (self.hash[i] * self.base + ord(string[i])) % mod
+
+        for i in range(n):
+            self.pow[i + 1] = self.pow[i] * self.base % mod
+
+    def get(self, l: int, r: int) -> int:
+        """
+        lからrまでのハッシュ値を取得する
+        0-indexed
+        """
+        return (self.hash[r] - self.hash[l] * self.pow[r - l]) % self.mod
+
+    def lcp(self, b: int, bn: int) -> int:
+        """
+        2つのRollingHashの最長共通接頭辞を返す
+        bがhashでbnがそのhashの長さです
+        """
+
+        left, right = 0, min(self.n, bn)
+
+        while right - left > 1:
+            mid = (left + right) // 2
+
+            if self.get(0, mid) == b:
+                left = mid
+            else:
+                right = mid
+
+        return left
+
+
 # グラフ構造
 # 無向グラフ
 from collections import deque
@@ -1014,6 +1144,97 @@ class PotentialUnionFind:
         return self.potential(a) - self.potential(b)
 
 
+from typing import Any, Callable, List, Tuple
+
+
+def _keys_for_heapq(x: Any):
+    """
+    先頭の値を取得する
+    """
+
+    cur = x
+
+    while True:
+        try:
+            cur = cur[0]
+        except TypeError:
+            break
+
+    return cur
+
+
+class HeapBase:
+    def __init__(
+        self, arr: List[Any] = [], key: Callable[Any, Any] = _keys_for_heapq
+    ) -> None:
+        """
+        arrはソート済みが前提です
+        """
+        self.key: Callable[Any, Any] = key
+        self.lis: List[Tuple[Any, Any]] = [(self.key(x), x) for x in arr]
+
+    def _op(self, a: int, b: int) -> bool:
+        # aが親 bが子って感じだよ
+        assert 0 <= a < b < len(self.lis)
+        return True
+
+    def push(self, x: Any) -> None:
+        self.lis.append((self.key(x), x))
+        i = len(self.lis) - 1
+        while i != 0:
+            p = (i - 1) // 2
+            if self._op(p, i):
+                self.lis[i], self.lis[p] = self.lis[p], self.lis[i]
+                i = p
+            else:
+                break
+
+    def pop(self) -> Any:
+        assert len(self.lis) > 0
+        res = self.lis[0][1]  # Return the original value (not the key)
+        self.lis[0] = self.lis[-1]  # Move the last element to the root
+        self.lis.pop()  # Remove the last element
+
+        if not self.lis:  # If the heap is empty, return early
+            return res
+
+        # Restore heap property by sifting down
+        i = 0
+        while i * 2 + 1 < len(self.lis):  # While there is at least one child
+            c1 = i * 2 + 1  # Left child
+            c2 = i * 2 + 2  # Right child
+
+            # Pick the smaller of the two children (if right child exists)
+            smallest = c1
+            if c2 < len(self.lis) and self._op(c1, c2):
+                smallest = c2
+
+            # If the parent is larger than the smallest child, swap
+            if self._op(i, smallest):
+                self.lis[i], self.lis[smallest] = self.lis[smallest], self.lis[i]
+                i = smallest
+            else:
+                break
+
+        return res
+
+    def __len__(self) -> int:
+        return len(self.lis)
+
+    def __getitem__(self, i: int):
+        return self.lis[i][1]
+
+
+class HeapMin(HeapBase):
+    def _op(self, a: int, b: int) -> bool:
+        return self.lis[a][0] > self.lis[b][0]
+
+
+class HeapMax(HeapBase):
+    def _op(self, a: int, b: int) -> bool:
+        return self.lis[a][0] < self.lis[b][0]
+
+
 # Trie木
 class Trie:
     class Data:
@@ -1081,6 +1302,126 @@ class Trie:
             result += self.data[childs[t]].count - 1
 
         return result
+
+
+import math
+from typing import Any, Callable, List
+
+
+def mo_algorithm(
+    N: int,
+    queries: List[Any],
+    add: Callable[[int], Any],
+    delete: Callable[[int], Any],
+    getvalue: Callable[[], Any],
+) -> List[Any]:
+    """
+    Mo's algorithmの関数
+    queriesは、(左端, 右端)で1-indexed
+    addはあるindexが追加される時の値を現在の値にする
+    deleteはあるindexが削除される時の値を現在の値にする
+    getvalueは現在の値を返す
+    """
+    Q = len(queries)
+    res = [None] * Q
+    M = int(max(1, 1.0 * N / max(1, math.sqrt(Q * 2.0 / 3.0))))
+
+    queries = [(l, r, i) for i, (l, r) in enumerate(queries)]
+    queries.sort(key=lambda x: (x[0] // M, x[1] if (x[0] // M) % 2 == 0 else -x[1]))
+
+    cl, cr = 0, -1
+
+    for l, r, ind in queries:
+        l -= 1
+        r -= 1
+        while cl > l:
+            cl -= 1
+            add(cl)
+
+        while cr < r:
+            cr += 1
+            add(cr)
+
+        while cl < l:
+            delete(cl)
+            cl += 1
+
+        while cr > r:
+            delete(cr)
+            cr -= 1
+
+        res[ind] = getvalue()
+
+    return res
+
+
+import math
+from typing import Any, Callable, List
+
+
+class SquareDivision:
+    def __init__(self, lis: List[Any], op: Callable[[Any, Any], Any]) -> None:
+        self.n = len(lis)
+        self.op = op
+        self.block_size = math.isqrt(self.n)
+        self.blocks = []
+        self.lis = lis[:]
+
+        for i in range(0, self.n, self.block_size):
+            block_val = lis[i]
+            for k in range(i + 1, min(i + self.block_size, self.n)):
+                block_val = self.op(block_val, lis[k])
+            self.blocks.append(block_val)
+
+        self.m = len(self.blocks)
+
+    def get_block_index_left(self, i: int) -> int:
+        return i // self.block_size
+
+    def get_block_index_right(self, i: int) -> int:
+        return (i + self.block_size - 1) // self.block_size
+
+    def prod(self, l: int, r: int) -> Any:
+        """
+        rは0-indexedなのに注意してください
+        """
+        assert 0 <= l <= r < self.n
+
+        l_block_left = self.get_block_index_left(l)
+        r_block_left = self.get_block_index_left(r)
+
+        if l_block_left == r_block_left:
+            res = self.lis[l]
+            for k in range(l + 1, r + 1):
+                res = self.op(res, self.lis[k])
+            return res
+
+        res = self.lis[l]
+        for i in range(l + 1, min((l_block_left + 1) * self.block_size, self.n)):
+            res = self.op(res, self.lis[i])
+
+        for block_ind in range(l_block_left + 1, r_block_left):
+            res = self.op(res, self.blocks[block_ind])
+
+        for i in range(r_block_left * self.block_size, r + 1):
+            res = self.op(res, self.lis[i])
+
+        return res
+
+    def update(self, i: int, x: Any) -> None:
+        assert 0 <= i < self.n
+        self.lis[i] = x
+        block_ind = self.get_block_index_left(i)
+        start = block_ind * self.block_size
+        end = min(start + self.block_size, self.n)
+        if start < self.n:
+            self.blocks[block_ind] = self.lis[start]
+            for j in range(start + 1, end):
+                self.blocks[block_ind] = self.op(self.blocks[block_ind], self.lis[j])
+
+    def get(self, i: int) -> Any:
+        assert 0 <= i < self.n
+        return self.lis[i]
 
 
 from typing import List
@@ -1175,41 +1516,12 @@ def chebyshev_dis(x1: int, y1: int, x2: int, y2: int) -> int:
     return max(abs(x1 - x2), abs(y1 - y2))
 
 
-# alias
-from typing import Any, Iterator, List, Set
-
-
-def reverserange(*args) -> Iterator:
-    """
-    rangeをreversedした結果を出力
-    返り値はIteratorなので注意して
-    """
-    return reversed(range(*args))
-
-
-def listmap(*args) -> List[Any]:
-    """
-    mapの結果をlist化して出力
-    """
-    return list(map(*args))
-
-
-def setmap(*args) -> Set[Any]:
-    """
-    mapの結果をset化して出力
-    """
-    return set(map(*args))
-
-
 # 便利変数
 INF = 1 << 63
 lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+MOVES1 = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+MOVES2 = MOVES1 + [(1, 1), (1, -1), (-1, 1), (-1, -1)]
 
 # コード
-A = ii()
-
-if 400 % A == 0:
-    print(400 // A)
-else:
-    print(-1)
+N = ii()
