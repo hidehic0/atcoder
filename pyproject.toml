@@ -8,6 +8,7 @@ dependencies = [
   "debugpy>=1.8.14",
   "numpy>=2.2.6",
   "online-judge-tools>=11.5.1",
+  "online-judge-verify-helper>=5.6.0",
   "pulp>=3.2.1",
   "sortedcontainers>=2.4.0",
 ]

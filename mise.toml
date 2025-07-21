@@ -5,3 +5,9 @@ python = "pypy3.10-7.3.17"
 
 [env]
 _.python.venv = { path = ".venv" }
+
+[tasks.cppy]
+run = "cat main.py | wl-copy"
+
+[tasks.cpcpp]
+run = "oj-bundle main.cpp -I /home/hidehic0/src/github.com/hidehic0/library_cpp | wl-copy"
