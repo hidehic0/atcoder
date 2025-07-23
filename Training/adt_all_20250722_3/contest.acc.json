@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250722_3",
+    "title": "AtCoder Daily Training ALL 2025/07/22 19:30start",
+    "url": "https://atcoder.jp/contests/adt_all_20250722_3"
+  },
+  "tasks": [
+    {
+      "id": "abc334_a",
+      "label": "A",
+      "title": "Christmas Present",
+      "url": "https://atcoder.jp/contests/adt_all_20250722_3/tasks/abc334_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc306_a",
+      "label": "B",
+      "title": "Echo",
+      "url": "https://atcoder.jp/contests/adt_all_20250722_3/tasks/abc306_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc290_b",
+      "label": "C",
+      "title": "Qual B",
+      "url": "https://atcoder.jp/contests/adt_all_20250722_3/tasks/abc290_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc269_b",
+      "label": "D",
+      "title": "Rectangle Detection",
+      "url": "https://atcoder.jp/contests/adt_all_20250722_3/tasks/abc269_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc352_c",
+      "label": "E",
+      "title": "Standing On The Shoulders",
+      "url": "https://atcoder.jp/contests/adt_all_20250722_3/tasks/abc352_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc277_c",
+      "label": "F",
+      "title": "Ladder Takahashi",
+      "url": "https://atcoder.jp/contests/adt_all_20250722_3/tasks/abc277_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc323_d",
+      "label": "G",
+      "title": "Merge Slimes",
+      "url": "https://atcoder.jp/contests/adt_all_20250722_3/tasks/abc323_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc295_e",
+      "label": "H",
+      "title": "Kth Number",
+      "url": "https://atcoder.jp/contests/adt_all_20250722_3/tasks/abc295_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc309_f",
+      "label": "I",
+      "title": "Box in Box",
+      "url": "https://atcoder.jp/contests/adt_all_20250722_3/tasks/abc309_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
