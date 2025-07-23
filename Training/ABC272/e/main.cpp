@@ -1,50 +1,28 @@
+#include <atcoder/all>
 #include <bits/stdc++.h>
 using namespace std;
+using namespace atcoder;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "data-structure/range_set.hpp"
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+int main() {
+  ll N, M;
+  cin >> N >> M;
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+  vector<RangeSet> D(M + 1, RangeSet());
+  rep(i, N) {
+    ll a;
+    cin >> a;
 
-void printbase() { cout << '\n'; }
+    ll l = (a < 0 ? (-a + i) / (i + 1) : 1);
+    ll r = min(M + 1, (N - a + i) / (i + 1));
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
-
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
+    for (int k = l; k < r; k++) {
+      D[k].insert(a + (i + 1) * k);
     }
-    cout << '\n';
-}
+  }
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
-
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
-    }
-
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
-
-int main()
-{
+  rep(i, M) { cout << D[i + 1].mex() << endl; }
 }
