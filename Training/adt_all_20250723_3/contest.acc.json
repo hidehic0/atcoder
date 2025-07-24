@@ -1,0 +1,108 @@
+{
+  "contest": {
+    "id": "adt_all_20250723_3",
+    "title": "AtCoder Daily Training ALL 2025/07/23 20:00start",
+    "url": "https://atcoder.jp/contests/adt_all_20250723_3"
+  },
+  "tasks": [
+    {
+      "id": "abc374_a",
+      "label": "A",
+      "title": "Takahashi san 2",
+      "url": "https://atcoder.jp/contests/adt_all_20250723_3/tasks/abc374_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc398_a",
+      "label": "B",
+      "title": "Doors in the Center",
+      "url": "https://atcoder.jp/contests/adt_all_20250723_3/tasks/abc398_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc368_b",
+      "label": "C",
+      "title": "Decrease 2 max elements",
+      "url": "https://atcoder.jp/contests/adt_all_20250723_3/tasks/abc368_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc409_b",
+      "label": "D",
+      "title": "Citation",
+      "url": "https://atcoder.jp/contests/adt_all_20250723_3/tasks/abc409_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc322_c",
+      "label": "E",
+      "title": "Festival",
+      "url": "https://atcoder.jp/contests/adt_all_20250723_3/tasks/abc322_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc306_c",
+      "label": "F",
+      "title": "Centers",
+      "url": "https://atcoder.jp/contests/adt_all_20250723_3/tasks/abc306_c",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc216_d",
+      "label": "G",
+      "title": "Pair of Balls",
+      "url": "https://atcoder.jp/contests/adt_all_20250723_3/tasks/abc216_d",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc224_e",
+      "label": "H",
+      "title": "Integers on Grid",
+      "url": "https://atcoder.jp/contests/adt_all_20250723_3/tasks/abc224_e",
+      "directory": {
+        "path": "h",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc260_f",
+      "label": "I",
+      "title": "Find 4-cycle",
+      "url": "https://atcoder.jp/contests/adt_all_20250723_3/tasks/abc260_f",
+      "directory": {
+        "path": "i",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
