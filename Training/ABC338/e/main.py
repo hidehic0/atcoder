@@ -37,6 +37,55 @@ from typing import Any, List, Tuple
 # pypyjit.set_param("max_unroll_recursion=-1")
 
 sys.setrecursionlimit(5 * 10**5)
+import io
+import os
+import sys
+from typing import Any, List
+
+# インタラクティブ問題の時はIS_INTERACTIVEをTrueにしましょう
+# IS_INTERACTIVE = False
+
+# 標準入力関数
+# if sys.argv[0] == "Main.py":
+#     if not IS_INTERACTIVE:
+#         input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline().decode().rstrip
+
+
+def s() -> str:
+    """
+    一行に一つのstringをinput
+    """
+    return input()
+
+
+def sl() -> List[str]:
+    """
+    一行に複数のstringをinput
+    """
+    return s().split()
+
+
+def ii() -> int:
+    """
+    一つのint
+    """
+    return int(s())
+
+
+def il(add_num: int = 0) -> List[int]:
+    """
+    一行に複数のint
+    """
+    return list(map(lambda i: int(i) + add_num, sl()))
+
+
+def li(n: int, func, *args) -> List[List[Any]]:
+    """
+    複数行の入力をサポート
+    """
+    return [func(*args) for _ in [0] * n]
+
+
 from typing import List
 
 
@@ -372,46 +421,6 @@ class ModInt:
         return self.rhs(rhs) != self.x
 
 
-# 標準入力関数
-import sys
-from typing import Any, List
-
-
-def s() -> str:
-    """
-    一行に一つのstringをinput
-    """
-    return input()
-
-
-def sl() -> List[str]:
-    """
-    一行に複数のstringをinput
-    """
-    return s().split()
-
-
-def ii() -> int:
-    """
-    一つのint
-    """
-    return int(s())
-
-
-def il(add_num: int = 0) -> List[int]:
-    """
-    一行に複数のint
-    """
-    return list(map(lambda i: int(i) + add_num, sl()))
-
-
-def li(n: int, func, *args) -> List[List[Any]]:
-    """
-    複数行の入力をサポート
-    """
-    return [func(*args) for _ in [0] * n]
-
-
 # YesNo関数
 def YesNoTemplate(state: bool, upper: bool = False) -> str:
     """
@@ -717,6 +726,63 @@ eは初期化する値
 
 vは配列の長さまたは、初期化する内容
 """
+from typing import Any, Callable, List
+from collections import defaultdict
+
+
+def rerooting(
+    G: List[List[int]],
+    merge: Callable[[Any, Any], Any],
+    add_root: Callable[Any, Any],
+    e,
+) -> List[Any]:
+    _n = len(G)
+    dp: List[List[Any]] = [[]] * _n
+    ans: List[Any] = [e] * _n
+
+    def _dfs(u: int, p: int = -1):
+        nonlocal dp, merge, add_root, e
+
+        res: Any = e
+        dp[u] = [e] * (len(G[u]))
+
+        for i, v in enumerate(G[u]):
+            if v == p:
+                continue
+
+            dp[u][i] = _dfs(v, u)
+            res = merge(res, dp[u][i])
+
+        return add_root(res)
+
+    def _bfs(u: int, cur: Any, p: int = -1):
+        nonlocal dp, merge, add_root, e, ans
+        deg = len(G[u])
+
+        for i in range(deg):
+            if G[u][i] == p:
+                dp[u][i] = cur
+
+        dp_l, dp_r = [e] * (deg + 1), [e] * (deg + 1)
+
+        for i in range(deg):
+            dp_l[i + 1] = merge(dp_l[i], dp[u][i])
+
+        for i in reversed(range(deg)):
+            dp_r[i] = merge(dp_r[i + 1], dp[u][i])
+
+        ans[u] = add_root(dp_l[deg])
+
+        for i in range(deg):
+            if G[u][i] != p:
+                _bfs(G[u][i], add_root(merge(dp_l[i], dp_r[i + 1])), u)
+
+    _dfs(0)
+    _bfs(0, e)
+
+    return ans
+
+
 from collections import defaultdict
 import math
 
@@ -779,6 +845,62 @@ class WeightedTreeLCA:
         """ノードuとvの間の距離（重みの合計）を求める"""
         lca_node = self.lca(u, v)
         return self.dist[u] + self.dist[v] - 2 * self.dist[lca_node]
+
+
+from typing import List
+
+
+class RollingHash:
+    string: str
+    mod: int
+    base: int
+    n: int
+
+    def __init__(self, string: str, mod: int = (1 << 61) - 1) -> None:
+        """
+        RollingHash構造体
+        衝突する可能性があるのでmodが違う二つで比較するのが有効
+
+        string: 文字列
+        mod: mod デフォルト値は2^61 - 1
+        """
+        self.string = string
+        self.mod = mod
+        self.base = len(set(string))
+
+        self.n = n = len(string)
+        self.pow = [1] * (n + 1)
+        self.hash = [0] * (n + 1)
+
+        for i in range(n):
+            self.hash[i + 1] = (self.hash[i] * self.base + ord(string[i])) % mod
+
+        for i in range(n):
+            self.pow[i + 1] = self.pow[i] * self.base % mod
+
+    def get(self, l: int, r: int) -> int:
+        """
+        区間[l,r)のハッシュ値を取得する
+        """
+        return (self.hash[r] - self.hash[l] * self.pow[r - l]) % self.mod
+
+    def lcp(self, b: int, bn: int) -> int:
+        """
+        2つのRollingHashの最長共通接頭辞を返す
+        bがhashでbnがそのhashの長さです
+        """
+
+        left, right = 0, min(self.n, bn)
+
+        while right - left > 1:
+            mid = (left + right) // 2
+
+            if self.get(0, mid) == b:
+                left = mid
+            else:
+                right = mid
+
+        return left
 
 
 # グラフ構造
@@ -1078,6 +1200,97 @@ class PotentialUnionFind:
         return self.potential(a) - self.potential(b)
 
 
+from typing import Any, Callable, List, Tuple
+
+
+def _keys_for_heapq(x: Any):
+    """
+    先頭の値を取得する
+    """
+
+    cur = x
+
+    while True:
+        try:
+            cur = cur[0]
+        except TypeError:
+            break
+
+    return cur
+
+
+class HeapBase:
+    def __init__(
+        self, arr: List[Any] = [], key: Callable[Any, Any] = _keys_for_heapq
+    ) -> None:
+        """
+        arrはソート済みが前提です
+        """
+        self.key: Callable[Any, Any] = key
+        self.lis: List[Tuple[Any, Any]] = [(self.key(x), x) for x in arr]
+
+    def _op(self, a: int, b: int) -> bool:
+        # aが親 bが子って感じだよ
+        assert 0 <= a < b < len(self.lis)
+        return True
+
+    def push(self, x: Any) -> None:
+        self.lis.append((self.key(x), x))
+        i = len(self.lis) - 1
+        while i != 0:
+            p = (i - 1) // 2
+            if self._op(p, i):
+                self.lis[i], self.lis[p] = self.lis[p], self.lis[i]
+                i = p
+            else:
+                break
+
+    def pop(self) -> Any:
+        assert len(self.lis) > 0
+        res = self.lis[0][1]  # Return the original value (not the key)
+        self.lis[0] = self.lis[-1]  # Move the last element to the root
+        self.lis.pop()  # Remove the last element
+
+        if not self.lis:  # If the heap is empty, return early
+            return res
+
+        # Restore heap property by sifting down
+        i = 0
+        while i * 2 + 1 < len(self.lis):  # While there is at least one child
+            c1 = i * 2 + 1  # Left child
+            c2 = i * 2 + 2  # Right child
+
+            # Pick the smaller of the two children (if right child exists)
+            smallest = c1
+            if c2 < len(self.lis) and self._op(c1, c2):
+                smallest = c2
+
+            # If the parent is larger than the smallest child, swap
+            if self._op(i, smallest):
+                self.lis[i], self.lis[smallest] = self.lis[smallest], self.lis[i]
+                i = smallest
+            else:
+                break
+
+        return res
+
+    def __len__(self) -> int:
+        return len(self.lis)
+
+    def __getitem__(self, i: int):
+        return self.lis[i][1]
+
+
+class HeapMin(HeapBase):
+    def _op(self, a: int, b: int) -> bool:
+        return self.lis[a][0] > self.lis[b][0]
+
+
+class HeapMax(HeapBase):
+    def _op(self, a: int, b: int) -> bool:
+        return self.lis[a][0] < self.lis[b][0]
+
+
 # Trie木
 class Trie:
     class Data:
@@ -1147,6 +1360,145 @@ class Trie:
         return result
 
 
+import math
+from typing import Any, Callable, List
+
+
+def mo_algorithm(
+    N: int,
+    queries: List[Any],
+    add: Callable[[int], Any],
+    delete: Callable[[int], Any],
+    getvalue: Callable[[], Any],
+) -> List[Any]:
+    """
+    Mo's algorithmの関数
+    queriesは、(左端, 右端)で1-indexed
+    addはあるindexが追加される時の値を現在の値にする
+    deleteはあるindexが削除される時の値を現在の値にする
+    getvalueは現在の値を返す
+    """
+    Q = len(queries)
+    res = [None] * Q
+    M = int(max(1, 1.0 * N / max(1, math.sqrt(Q * 2.0 / 3.0))))
+
+    queries = [(l, r, i) for i, (l, r) in enumerate(queries)]
+    queries.sort(key=lambda x: (x[0] // M, x[1] if (x[0] // M) % 2 == 0 else -x[1]))
+
+    cl, cr = 0, -1
+
+    for l, r, ind in queries:
+        l -= 1
+        r -= 1
+        while cl > l:
+            cl -= 1
+            add(cl)
+
+        while cr < r:
+            cr += 1
+            add(cr)
+
+        while cl < l:
+            delete(cl)
+            cl += 1
+
+        while cr > r:
+            delete(cr)
+            cr -= 1
+
+        res[ind] = getvalue()
+
+    return res
+
+
+import math
+from typing import Any, Callable, List
+
+
+class SquareDivision:
+    def __init__(self, lis: List[Any], op: Callable[[Any, Any], Any]) -> None:
+        self.n = len(lis)
+        self.op = op
+        self.block_size = math.isqrt(self.n)
+        self.blocks = []
+        self.lis = lis[:]
+
+        for i in range(0, self.n, self.block_size):
+            block_val = lis[i]
+            for k in range(i + 1, min(i + self.block_size, self.n)):
+                block_val = self.op(block_val, lis[k])
+            self.blocks.append(block_val)
+
+        self.m = len(self.blocks)
+
+    def get_block_index_left(self, i: int) -> int:
+        return i // self.block_size
+
+    def get_block_index_right(self, i: int) -> int:
+        return (i + self.block_size - 1) // self.block_size
+
+    def prod(self, l: int, r: int) -> Any:
+        """
+        rは0-indexedなのに注意してください
+        """
+        assert 0 <= l <= r < self.n
+
+        l_block_left = self.get_block_index_left(l)
+        r_block_left = self.get_block_index_left(r)
+
+        if l_block_left == r_block_left:
+            res = self.lis[l]
+            for k in range(l + 1, r + 1):
+                res = self.op(res, self.lis[k])
+            return res
+
+        res = self.lis[l]
+        for i in range(l + 1, min((l_block_left + 1) * self.block_size, self.n)):
+            res = self.op(res, self.lis[i])
+
+        for block_ind in range(l_block_left + 1, r_block_left):
+            res = self.op(res, self.blocks[block_ind])
+
+        for i in range(r_block_left * self.block_size, r + 1):
+            res = self.op(res, self.lis[i])
+
+        return res
+
+    def update(self, i: int, x: Any) -> None:
+        assert 0 <= i < self.n
+        self.lis[i] = x
+        block_ind = self.get_block_index_left(i)
+        start = block_ind * self.block_size
+        end = min(start + self.block_size, self.n)
+        if start < self.n:
+            self.blocks[block_ind] = self.lis[start]
+            for j in range(start + 1, end):
+                self.blocks[block_ind] = self.op(self.blocks[block_ind], self.lis[j])
+
+    def get(self, i: int) -> Any:
+        assert 0 <= i < self.n
+        return self.lis[i]
+
+
+class SquareDivisionSpeedy(SquareDivision):
+    def __init__(
+        self,
+        lis: List[Any],
+        op: Callable[[Any, Any], Any],
+        delete: Callable[[Any, Any], Any],
+    ) -> None:
+        self.delete = delete
+        super().__init__(lis, op)
+
+    def update(self, i: int, x: Any) -> None:
+        assert 0 <= i < self.n
+
+        block_ind = self.get_block_index_left(i)
+        self.blocks[block_ind] = self.delete(self.blocks[block_ind], self.lis[i])
+        self.lis[i] = x
+        self.blocks[block_ind] = self.op(self.blocks[block_ind], self.lis[i])
+
+
 from typing import List
 
 
@@ -1194,6 +1546,58 @@ class BIT:
         while i <= self.n:
             self.bit[i] += x
             i += -i & i
+
+
+from typing import Any, Callable
+
+
+class DualSegmentTree:
+    def __init__(self, op: Callable[[Any, Any], Any], e: Any, n: int) -> None:
+        """
+        区間作用/一点取得のセグメント木
+        opは区間作用用の関数
+        eは初期値
+        vは長さ
+        """
+        self._op: Callable[[Any, Any], Any] = op
+        self._e: Any = e
+        self._n: int = n
+        self.n: int = 1 << (n - 1).bit_length()
+        self.data = [e] * (self.n * 2)
+
+    def apply(self, l, r, x) -> None:
+        """
+        区間[l,r)にxを適用
+        """
+        assert 0 <= l <= r <= self.n
+        l += self.n
+        r += self.n
+
+        while l < r:
+            if l & 1:
+                self.data[l] = self._op(self.data[l], x)
+                l += 1
+
+            if r & 1:
+                self.data[r - 1] = self._op(self.data[r - 1], x)
+
+            l >>= 1
+            r >>= 1
+
+    def get(self, p: int) -> Any:
+        """
+        pの値を取得する
+        """
+        assert 0 <= p < self.n
+
+        res = self._e
+        p += self.n
+
+        while p:
+            res = self._op(res, self.data[p])
+            p >>= 1
+
+        return res
 
 
 from typing import Tuple
@@ -1247,30 +1651,31 @@ MOVES1 = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 MOVES2 = MOVES1 + [(1, 1), (1, -1), (-1, 1), (-1, -1)]
 
 # コード
-N = ii()
-A = defaultdict(list)
-B = defaultdict(list)
+N, M = il()
+X = il(-1)
+seg = DualSegmentTree(lambda a, b: a + b, 0, N)
 
-for _ in [0] * N:
-    a, b = il(-1)
-    if b < a:
+pre_ans = 0
+
+for i in range(M - 1):
+    a, b = X[i], X[i + 1]
+
+    if a > b:
         a, b = b, a
 
-    A[a].append(b)
-    B[b].append(a)
+    sa, sb = b - a, a + (N - b)
 
-bit = BIT(2 * N)
+    if sa < sb:
+        seg.apply(a, b, sb - sa)
+    else:
+        seg.apply(0, a, sa - sb)
+        seg.apply(b, N, sa - sb)
 
-for i in range(2 * N):
-    T = []
+    pre_ans += min(sa, sb)
 
-    for a in B[i]:
-        T.append(a)
-        bit.add(a + 1, -1)
+ans = INF
 
-    for a in T:
-        YE(bit.interval_sum(a, i + 1) > 0)
+for i in range(N):
+    ans = min(ans, pre_ans + seg.get(i))
 
-    bit.add(i + 1, len(A[i]))
-
-NE(True)
+print(ans)
