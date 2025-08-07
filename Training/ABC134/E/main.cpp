@@ -1,50 +1,50 @@
+#include <atcoder/all>
 #include <bits/stdc++.h>
 using namespace std;
+using namespace atcoder;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+ll op(ll a, ll b) { return max(a, b); }
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+ll e() { return 0; }
 
-void printbase() { cout << '\n'; }
+int main() {
+  ll N;
+  cin >> N;
+  vi A(N);
+  rep(i, N) cin >> A[i];
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+  segtree<ll, op, e> seg(A);
+  si S;
+  rep(i, N) S.emplace(i);
+  ll ans = 0;
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
+  while (!S.empty()) {
+    ans++;
+    ll cur = *S.begin();
+    S.erase(cur);
+    seg.set(cur, -1);
+
+    while (seg.prod(cur + 1, N) > A[cur]) {
+      ll left = cur + 1, right = N;
+
+      while (right - left > 1) {
+        ll mid = (left + right) / 2;
+
+        if (seg.prod(cur + 1, mid) <= A[cur]) {
+          left = mid;
+        } else {
+          right = mid;
+        }
+      }
+
+      S.erase(left);
+      seg.set(left, -1);
+      cur = left;
     }
-    cout << '\n';
-}
+  }
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
-
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
-    }
-
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
-
-int main()
-{
+  cout << ans << endl;
 }
