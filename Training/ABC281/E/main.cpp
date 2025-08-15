@@ -1,50 +1,70 @@
+#include <atcoder/all>
 #include <bits/stdc++.h>
 using namespace std;
+using namespace atcoder;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+int main() {
+  ll N, M, K;
+  cin >> N >> M >> K;
+  vector<ll> A(N);
+  rep(i, N) cin >> A[i];
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+  ll cur = 0;
+  multiset<ll> L, R;
 
-void printbase() { cout << '\n'; }
-
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
-
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
+  rep(i, M) {
+    if (i < K) {
+      L.insert(A[i]);
+    } else {
+      auto it = prev(L.end());
+      if (*it > A[i]) {
+        R.insert(*it);
+        L.erase(it);
+        L.insert(A[i]);
+      } else {
+        R.insert(A[i]);
+      }
     }
-    cout << '\n';
-}
+  }
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
+  auto it = L.begin();
+  rep(_, K) {
+    cur += *it;
+    it++;
+  }
 
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
+  rep(i, N - M) {
+    cout << cur << " ";
+    if (L.find(A[i]) == L.end()) {
+      R.erase(R.find(A[i]));
+    } else {
+      cur -= *L.find(A[i]);
+      L.erase(L.find(A[i]));
+
+      if (R.size() == 0) {
+        L.insert(A[i + M]);
+        cur += A[i + M];
+        continue;
+      }
+
+      L.insert(*R.begin());
+      cur += *R.begin();
+      R.erase(R.begin());
     }
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
+    if (*prev(L.end()) > A[i + M]) {
+      cur -= *prev(L.end());
+      R.insert(*prev(L.end()));
+      L.erase(prev(L.end()));
+      L.insert(A[i + M]);
+      cur += A[i + M];
+    } else {
+      R.insert(A[i + M]);
+    }
+  }
 
-int main()
-{
+  cout << cur << "\n";
 }
