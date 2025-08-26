@@ -1,6 +1,6 @@
 r"""
  ______________________
-< it's hidehico's code >
+< this is hidehic0's code >
  ----------------------
    \
     \
@@ -11,6 +11,12 @@ r"""
      (|     | )
     /'\_   _/`\
     \___)=(___/
+
+┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳
+┃                 ┳━━━━┳       ┃
+┃    私は人間です ┃ ✔  ┃       ┃
+┃                 ┻━━━━┻       ┃
+┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻
 """
 
 # ライブラリと関数と便利変数
@@ -25,6 +31,8 @@ from itertools import accumulate, combinations, permutations
 from math import gcd, lcm, pi
 from operator import itemgetter
 from typing import Any, List, Tuple
+
+from atcoder.fenwicktree import FenwickTree
 
 # from atcoder.segtree import SegTree
 # from atcoder.lazysegtree import LazySegTree
@@ -272,7 +280,7 @@ def comb(n: int, r: int, mod: int | None = None) -> int:
 
 
 # 多次元配列作成
-from typing import List, Any
+from typing import Any, List
 
 
 def create_array1(n: int, default: Any = 0) -> List[Any]:
@@ -726,8 +734,64 @@ eは初期化する値
 
 vは配列の長さまたは、初期化する内容
 """
-from collections import defaultdict
+from typing import Any, Callable, List
+
+
+def rerooting(
+    G: List[List[int]],
+    merge: Callable[[Any, Any], Any],
+    add_root: Callable[[int, Any], Any],
+    e,
+) -> List[Any]:
+    _n = len(G)
+    dp: List[List[Any]] = [[]] * _n
+    ans: List[Any] = [e] * _n
+
+    def _dfs(u: int, p: int = -1):
+        nonlocal dp, merge, add_root, e
+
+        res: Any = e
+        dp[u] = [e] * (len(G[u]))
+
+        for i, v in enumerate(G[u]):
+            if v == p:
+                continue
+
+            dp[u][i] = _dfs(v, u)
+            res = merge(res, dp[u][i])
+
+        return add_root(u, res)
+
+    def _bfs(u: int, cur: Any, p: int = -1):
+        nonlocal dp, merge, add_root, e, ans
+        deg = len(G[u])
+
+        for i in range(deg):
+            if G[u][i] == p:
+                dp[u][i] = cur
+
+        dp_l, dp_r = [e] * (deg + 1), [e] * (deg + 1)
+
+        for i in range(deg):
+            dp_l[i + 1] = merge(dp_l[i], dp[u][i])
+
+        for i in reversed(range(deg)):
+            dp_r[i] = merge(dp_r[i + 1], dp[u][i])
+
+        ans[u] = add_root(u, dp_l[deg])
+
+        for i in range(deg):
+            if G[u][i] != p:
+                _bfs(G[u][i], add_root(u, merge(dp_l[i], dp_r[i + 1])), u)
+
+    _dfs(0)
+    _bfs(0, e)
+
+    return ans
+
+
 import math
+from collections import defaultdict
 
 
 class WeightedTreeLCA:
@@ -788,6 +852,35 @@ class WeightedTreeLCA:
         """ノードuとvの間の距離（重みの合計）を求める"""
         lca_node = self.lca(u, v)
         return self.dist[u] + self.dist[v] - 2 * self.dist[lca_node]
+
+
+from typing import List
+
+
+def manacher_algorithm(S: str) -> List[int]:
+    """
+    res_i = S_iを中心とした最長の回文の半径
+    """
+    # いまいち原理は分からないけどうまいことメモ化してそう
+    _n = len(S)
+    res = [0] * _n
+
+    i = k = 0
+
+    while i < _n:
+        while i - k >= 0 and i + k < _n and S[i - k] == S[i + k]:
+            k += 1
+
+        res[i] = k
+        a = 1
+
+        while i - a >= 0 and a + res[i - a] < k:
+            res[i + a] = res[i - a]
+            a += 1
+        i += a
+        k -= a
+
+    return res
 
 
 from typing import List
@@ -1008,27 +1101,27 @@ class UnionFind:
         self.data = [-1] * n
         self.hist = []
 
-    def root(self, vtx: int) -> int:
+    def leader(self, vtx: int) -> int:
         """
         頂点vtxの親を出力します
         """
         if self.data[vtx] < 0:
             return vtx
 
-        return self.root(self.data[vtx])
+        return self.leader(self.data[vtx])
 
     def same(self, a: int, b: int):
         """
         aとbが連結しているかどうか判定します
         """
-        return self.root(a) == self.root(b)
+        return self.leader(a) == self.leader(b)
 
-    def unite(self, a: int, b: int) -> bool:
+    def merge(self, a: int, b: int) -> bool:
         """
         aとbを結合します
-        rootが同じでも、履歴には追加します
+        leaderが同じでも、履歴には追加します
         """
-        ra, rb = self.root(a), self.root(b)
+        ra, rb = self.leader(a), self.leader(b)
 
         # 履歴を作成する
         new_hist = [ra, rb, self.data[ra], self.data[rb]]
@@ -1062,7 +1155,7 @@ class UnionFind:
         D = defaultdict(list)
 
         for i in range(self.size):
-            D[self.root(i)].append(i)
+            D[self.leader(i)].append(i)
 
         res = []
 
@@ -1442,53 +1535,53 @@ class SquareDivisionSpeedy(SquareDivision):
         self.blocks[block_ind] = self.op(self.blocks[block_ind], self.lis[i])
 
 
-from typing import List
+# from typing import List
 
 
-class BIT:
-    """
-    BITです
-    要素更新と、区間和を求める事ができます
-    1-indexedです
-
-    計算量は、一回の動作につきすべてO(log n)です
-    """
-
-    def __init__(self, n: int) -> None:
-        self.n: int = n
-        self.bit: List[int] = [0] * (n + 1)
-
-    def sum(self, i: int) -> int:
-        """
-        i番目までの和を求めます
-        計算量は、O(log n)です
-        """
-        res = 0
-
-        while i:
-            res += self.bit[i]
-            i -= -i & i
-
-        return res
-
-    def interval_sum(self, l: int, r: int) -> int:
-        """
-        lからrまでの総和を求められます
-        lは0-indexedで、rは1-indexedにしてください
-        """
-        return self.sum(r) - self.sum(l)
-
-    def add(self, i: int, x: int):
-        """
-        i番目の要素にxを足します
-        計算量は、O(log n)です
-        """
-        if i == 0:
-            raise IndexError("このデータ構造は、1-indexedです")
-
-        while i <= self.n:
-            self.bit[i] += x
-            i += -i & i
+# class BIT:
+#     """
+#     BITです
+#     要素更新と、区間和を求める事ができます
+#     1-indexedです
+#
+#     計算量は、一回の動作につきすべてO(log n)です
+#     """
+#
+#     def __init__(self, n: int) -> None:
+#         self.n: int = n
+#         self.bit: List[int] = [0] * (n + 1)
+#
+#     def sum(self, i: int) -> int:
+#         """
+#         i番目までの和を求めます
+#         計算量は、O(log n)です
+#         """
+#         res = 0
+#
+#         while i:
+#             res += self.bit[i]
+#             i -= -i & i
+#
+#         return res
+#
+#     def interval_sum(self, l: int, r: int) -> int:
+#         """
+#         lからrまでの総和を求められます
+#         lは0-indexedで、rは1-indexedにしてください
+#         """
+#         return self.sum(r) - self.sum(l)
+#
+#     def add(self, i: int, x: int):
+#         """
+#         i番目の要素にxを足します
+#         計算量は、O(log n)です
+#         """
+#         if i == 0:
+#             raise IndexError("このデータ構造は、1-indexedです")
+#
+#         while i <= self.n:
+#             self.bit[i] += x
+#             i += -i & i
 
 
 from typing import Any, Callable
@@ -1594,3 +1687,19 @@ MOVES1 = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 MOVES2 = MOVES1 + [(1, 1), (1, -1), (-1, 1), (-1, -1)]
 
 # コード
+N, M = il()
+A = il()
+
+bit = FenwickTree(M)
+
+acc = [i % M for i in accumulate(A, initial=0)]
+B = list(accumulate(acc))
+ans = 0
+
+for i, a in enumerate(acc):
+    if i != 0:
+        ans += a * i - B[i - 1] + bit.sum(a + 1, M) * M
+
+    bit.add(a, 1)
+
+print(ans)
