@@ -1,50 +1,49 @@
+#include <atcoder/all>
 #include <bits/stdc++.h>
 using namespace std;
+using namespace atcoder;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+int main() {
+  ll N, M, INF = pow(10, 15);
+  cin >> N >> M;
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+  vi used(N + M, INF);
+  vector G(N + M, vi());
+  queue<ll> Q;
 
-void printbase() { cout << '\n'; }
+  rep(i, N) {
+    ll a;
+    cin >> a;
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+    rep(_, a) {
+      ll s;
+      cin >> s;
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
+      s--;
+      G[i].emplace_back(s + N);
+      G[s + N].emplace_back(i);
+
+      if (s == 0) {
+        used[i] = 0;
+        Q.push(i);
+      }
     }
-    cout << '\n';
-}
+  }
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
+  while (!Q.empty()) {
+    ll cur = Q.front();
+    Q.pop();
 
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
+    for (auto nxt : G[cur]) {
+      if (used[nxt] > used[cur] + 1) {
+        used[nxt] = used[cur] + 1;
+        Q.push(nxt);
+      }
     }
+  }
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
-
-int main()
-{
+  cout << (used[N + M - 1] == INF ? -1 : used[N + M - 1] / 2) << "\n";
 }
