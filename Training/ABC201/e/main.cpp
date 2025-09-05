@@ -1,56 +1,56 @@
 #include <atcoder/all>
 #include <bits/stdc++.h>
 using namespace std;
+using namespace atcoder;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+int main() {
+  ll N;
+  cin >> N;
+  vector<vector<pair<ll, ll>>> G(N);
+  vector<tuple<ll, ll, ll>> E;
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+  rep(_, N - 1) {
+    ll a, b, w;
+    cin >> a >> b >> w;
+    a--;
+    b--;
 
-template <typename T> bool chmin(T &a, T b) {
-  if (a > b) {
-    a = b;
-    return true;
-  }
-  return false;
-}
-template <typename T> bool chmax(T &a, T b) {
-  if (a < b) {
-    a = b;
-    return true;
-  }
-  return false;
-}
-
-void printbase() { cout << '\n'; }
-
-template <typename T> void printbase(const T &t) { cout << t << '\n'; }
-
-template <typename T> void printbase(const std::vector<T> &vec) {
-  for (const auto &v : vec) {
-    cout << v << ' ';
-  }
-  cout << '\n';
-}
-
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail) {
-  cout << head << ' ';
-  printbase(tail...);
-}
-
-#define print(...)                                                             \
-  {                                                                            \
-    printbase(__VA_ARGS__);                                                    \
-    return 0;                                                                  \
+    G[a].emplace_back(b, w);
+    G[b].emplace_back(a, w);
+    E.emplace_back(tie(a, b, w));
   }
 
-const ll INF = (ll)1 << 63;
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
+  function<pair<ll, ll>(ll, ll, ll)> dfs1 = [&](ll cur, ll b, ll par = -1) {
+    pair<ll, ll> l = {1, 0};
 
-int main() {}
+    for (auto [nxt, w] : G[cur]) {
+      if (nxt == par)
+        continue;
+
+      pair<ll, ll> nl = dfs1(nxt, b, cur);
+
+      if (w & (1LL << b)) {
+        swap(nl.first, nl.second);
+      }
+
+      l.first += nl.first;
+      l.second += nl.second;
+    }
+
+    return l;
+  };
+
+  modint1000000007 ans = 0;
+
+  rep(b, 62) {
+
+    auto [v0, v1] = dfs1(0, b, -1);
+
+    ans += modint1000000007{2}.pow(b) * v1 * v0;
+  }
+
+  cout << ans.val() << "\n";
+}

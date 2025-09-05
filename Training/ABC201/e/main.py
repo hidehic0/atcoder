@@ -1,6 +1,6 @@
 r"""
  ______________________
-< it's hidehico's code >
+< this is hidehic0's code >
  ----------------------
    \
     \
@@ -11,6 +11,12 @@ r"""
      (|     | )
     /'\_   _/`\
     \___)=(___/
+
+┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳
+┃                 ┳━━━━┳       ┃
+┃    私は人間です ┃ ✔  ┃       ┃
+┃                 ┻━━━━┻       ┃
+┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻
 """
 
 # ライブラリと関数と便利変数
@@ -28,13 +34,13 @@ from typing import Any, List, Tuple
 
 # from atcoder.segtree import SegTree
 # from atcoder.lazysegtree import LazySegTree
+# from atcoder.fenwicktree import FenwickTree
 # from atcoder.dsu import DSU
-
 # cortedcontainersは使うときだけ wandbox非対応なので
 # from sortedcontainers import SortedDict, SortedSet, SortedList
+import pypyjit
 
-# import pypyjit
-# pypyjit.set_param("max_unroll_recursion=-1")
+pypyjit.set_param("max_unroll_recursion=-1")
 
 sys.setrecursionlimit(5 * 10**5)
 import io
@@ -272,7 +278,7 @@ def comb(n: int, r: int, mod: int | None = None) -> int:
 
 
 # 多次元配列作成
-from typing import List, Any
+from typing import Any, List
 
 
 def create_array1(n: int, default: Any = 0) -> List[Any]:
@@ -726,68 +732,89 @@ eは初期化する値
 
 vは配列の長さまたは、初期化する内容
 """
-from collections import defaultdict
-import math
+from typing import Any, Callable, List
 
 
-class WeightedTreeLCA:
-    def __init__(self, n):
-        """初期化: ノード数nの木を構築（0-indexed）"""
-        self.n = n
-        self.log = math.ceil(math.log2(n)) + 1
-        self.adj = defaultdict(list)  # 隣接リスト: {ノード: [(隣接ノード, 重み), ...]}
-        self.depth = [0] * n  # 各ノードの深さ
-        self.dist = [0] * n  # 根からの重み合計
-        self.ancestor = [[-1] * self.log for _ in range(n)]  # ダブリングテーブル
+def rerooting(
+    G: List[List[int]],
+    merge: Callable[[Any, Any], Any],
+    add_root: Callable[[int, Any], Any],
+    e,
+) -> List[Any]:
+    _n = len(G)
+    dp: List[List[Any]] = [[]] * _n
+    ans: List[Any] = [e] * _n
 
-    def add_edge(self, u, v, w):
-        """辺を追加: uとvを重みwで接続"""
-        self.adj[u].append((v, w))
-        self.adj[v].append((u, w))
+    def _dfs(u: int, p: int = -1):
+        nonlocal dp, merge, add_root, e
 
-    def dfs(self, u, parent, d, w):
-        """DFSで深さ、距離、親を計算"""
-        self.depth[u] = d
-        self.dist[u] = w
-        for v, weight in self.adj[u]:
-            if v != parent:
-                self.ancestor[v][0] = u
-                self.dfs(v, u, d + 1, w + weight)
+        res: Any = e
+        dp[u] = [e] * (len(G[u]))
 
-    def build(self, root=0):
-        """ダブリングテーブルの構築"""
-        # DFSで初期情報収集
-        self.dfs(root, -1, 0, 0)
-        # ダブリングテーブルを埋める
-        for k in range(1, self.log):
-            for u in range(self.n):
-                if self.ancestor[u][k - 1] != -1:
-                    self.ancestor[u][k] = self.ancestor[self.ancestor[u][k - 1]][k - 1]
+        for i, v in enumerate(G[u]):
+            if v == p:
+                continue
 
-    def lca(self, u, v):
-        """ノードuとvのLCAを求める"""
-        # 深さを揃える
-        if self.depth[u] < self.depth[v]:
-            u, v = v, u
-        for k in range(self.log - 1, -1, -1):
-            if (
-                self.ancestor[u][k] != -1
-                and self.depth[self.ancestor[u][k]] >= self.depth[v]
-            ):
-                u = self.ancestor[u][k]
-        if u == v:
-            return u
-        # 同時にジャンプ
-        for k in range(self.log - 1, -1, -1):
-            if self.ancestor[u][k] != self.ancestor[v][k]:
-                u = self.ancestor[u][k]
-                v = self.ancestor[v][k]
-        return self.ancestor[u][0]
+            dp[u][i] = _dfs(v, u)
+            res = merge(res, dp[u][i])
 
-    def get_distance(self, u, v):
-        """ノードuとvの間の距離（重みの合計）を求める"""
-        lca_node = self.lca(u, v)
-        return self.dist[u] + self.dist[v] - 2 * self.dist[lca_node]
+        return add_root(u, res)
+
+    def _bfs(u: int, cur: Any, p: int = -1):
+        nonlocal dp, merge, add_root, e, ans
+        deg = len(G[u])
+
+        for i in range(deg):
+            if G[u][i] == p:
+                dp[u][i] = cur
+
+        dp_l, dp_r = [e] * (deg + 1), [e] * (deg + 1)
+
+        for i in range(deg):
+            dp_l[i + 1] = merge(dp_l[i], dp[u][i])
+
+        for i in reversed(range(deg)):
+            dp_r[i] = merge(dp_r[i + 1], dp[u][i])
+
+        ans[u] = add_root(u, dp_l[deg])
+
+        for i in range(deg):
+            if G[u][i] != p:
+                _bfs(G[u][i], add_root(u, merge(dp_l[i], dp_r[i + 1])), u)
+
+    _dfs(0)
+    _bfs(0, e)
+
+    return ans
+
+
+from typing import List
+
+
+def manacher_algorithm(S: str) -> List[int]:
+    """
+    res_i = S_iを中心とした最長の回文の半径
+    """
+    # いまいち原理は分からないけどうまいことメモ化してそう
+    _n = len(S)
+    res = [0] * _n
+
+    i = k = 0
+
+    while i < _n:
+        while i - k >= 0 and i + k < _n and S[i - k] == S[i + k]:
+            k += 1
+
+        res[i] = k
+        a = 1
+
+        while i - a >= 0 and a + res[i - a] < k:
+            res[i + a] = res[i - a]
+            a += 1
+        i += a
+        k -= a
+
+    return res
 
 
 from typing import List
@@ -823,8 +850,7 @@ class RollingHash:
 
     def get(self, l: int, r: int) -> int:
         """
-        lからrまでのハッシュ値を取得する
-        0-indexed
+        区間[l,r)のハッシュ値を取得する
         """
         return (self.hash[r] - self.hash[l] * self.pow[r - l]) % self.mod
 
@@ -1009,27 +1035,27 @@ class UnionFind:
         self.data = [-1] * n
         self.hist = []
 
-    def root(self, vtx: int) -> int:
+    def leader(self, vtx: int) -> int:
         """
         頂点vtxの親を出力します
         """
         if self.data[vtx] < 0:
             return vtx
 
-        return self.root(self.data[vtx])
+        return self.leader(self.data[vtx])
 
     def same(self, a: int, b: int):
         """
         aとbが連結しているかどうか判定します
         """
-        return self.root(a) == self.root(b)
+        return self.leader(a) == self.leader(b)
 
-    def unite(self, a: int, b: int) -> bool:
+    def merge(self, a: int, b: int) -> bool:
         """
         aとbを結合します
-        rootが同じでも、履歴には追加します
+        leaderが同じでも、履歴には追加します
         """
-        ra, rb = self.root(a), self.root(b)
+        ra, rb = self.leader(a), self.leader(b)
 
         # 履歴を作成する
         new_hist = [ra, rb, self.data[ra], self.data[rb]]
@@ -1063,7 +1089,7 @@ class UnionFind:
         D = defaultdict(list)
 
         for i in range(self.size):
-            D[self.root(i)].append(i)
+            D[self.leader(i)].append(i)
 
         res = []
 
@@ -1071,6 +1097,121 @@ class UnionFind:
             res.append(l)
 
         return res
+
+
+from typing import List, Tuple
+
+
+class EulerTour:
+    def __init__(self, edges: List[Tuple[int, int, int]], root: int = 0) -> None:
+        """
+        edges[i] = (u, v, w)
+        なお閉路がない、連結という前提 エラー処理をしていない
+
+        木上の最短経路は、path_query関数を使うこと
+
+        初期化にO(N + M) それ以外は、$O(log n)$
+
+        Warning:
+        ac-library-pythonを__init__内で使用しているので注意
+        定数倍が遅い事に注意 あとメモリも注意 結構リストを使用している
+        """
+        # assert len(edges) >= 1
+
+        from atcoder.segtree import SegTree
+
+        self.edges = edges
+        self._n = max([max(u, v) for u, v, w in edges]) + 1
+        self.root = root
+        self.graph: List[List[Tuple[int, int, int]]] = [[] for _ in [0] * self._n]
+
+        for i, (u, v, w) in enumerate(edges):
+            self.graph[u].append((v, w, i))
+            self.graph[v].append((u, w, i))
+
+        self._build()
+
+        self.segtree_edgecost = SegTree(lambda a, b: a + b, 0, self.edge_cost)
+        self.segtree_depth = SegTree(
+            min,
+            (1 << 63, 1 << 63),
+            [(d, i) for i, d in enumerate(self.depth)],
+        )
+
+        return
+
+    def _build(self) -> None:
+        self.euler_tour: List[Tuple[int, int]] = [(0, -1)]
+        self.edge_cost: List[int] = [0]
+        self.depth: List[int] = [0]
+
+        def dfs(cur: int, p: int = -1, d: int = 0) -> None:
+            for nxt, w, i in self.graph[cur]:
+                if nxt == p:
+                    continue
+
+                self.euler_tour.append((nxt, i))
+                self.edge_cost.append(w)
+                self.depth.append(d + 1)
+                dfs(nxt, cur, d + 1)
+                self.euler_tour.append((cur, i))
+                self.edge_cost.append(-w)
+                self.depth.append(d)
+
+        dfs(self.root)
+
+        self.first_arrival = [-1] * self._n
+        self.last_arrival = [-1] * self._n
+        self.first_arrival[self.root] = 0
+        self.last_arrival[self.root] = len(self.euler_tour) - 1
+        self.edge_plus = [-1] * (self._n - 1)
+        self.edge_minus = [-1] * (self._n - 1)
+
+        for i, (u, edge_ind) in enumerate(self.euler_tour):
+            if self.edge_cost[i] >= 0:
+                self.edge_plus[edge_ind] = i
+            else:
+                self.edge_minus[edge_ind] = i
+
+            if self.first_arrival[u] == -1:
+                self.first_arrival[u] = i
+
+            self.last_arrival[u] = i
+
+    def lca(self, a: int, b: int) -> int:
+        # assert 0 <= a < self._n and 0 <= b < self._n
+
+        l, r = (
+            min(self.first_arrival[a], self.first_arrival[b]),
+            max(self.last_arrival[a], self.last_arrival[b]),
+        )
+
+        return self.euler_tour[self.segtree_depth.prod(l, r)[1]][0]
+
+    def path_query_from_root(self, u: int) -> int:
+        assert 0 <= u < self._n
+        return self.segtree_edgecost.prod(0, self.first_arrival[u] + 1)
+
+    def path_query(self, a: int, b: int) -> int:
+        """
+        aからbへの最短経路
+        """
+        # assert 0 <= a < self._n and 0 <= b < self._n
+        try:
+            l = self.lca(a, b)
+        except IndexError:
+            return 0
+
+        return (
+            self.path_query_from_root(a)
+            + self.path_query_from_root(b)
+            - (2 * self.path_query_from_root(l))
+        )
+
+    def change_edge_cost(self, i: int, w: int) -> None:
+        # assert 0 <= i < len(self.edges)
+        self.segtree_edgecost.set(self.edge_plus[i], w)
+        self.segtree_edgecost.set(self.edge_minus[i], -w)
 
 
 from typing import List
@@ -1424,53 +1565,75 @@ class SquareDivision:
         return self.lis[i]
 
 
-from typing import List
+class SquareDivisionSpeedy(SquareDivision):
+    def __init__(
+        self,
+        lis: List[Any],
+        op: Callable[[Any, Any], Any],
+        delete: Callable[[Any, Any], Any],
+    ) -> None:
+        self.delete = delete
+        super().__init__(lis, op)
+
+    def update(self, i: int, x: Any) -> None:
+        assert 0 <= i < self.n
+
+        block_ind = self.get_block_index_left(i)
+        self.blocks[block_ind] = self.delete(self.blocks[block_ind], self.lis[i])
+        self.lis[i] = x
+        self.blocks[block_ind] = self.op(self.blocks[block_ind], self.lis[i])
 
 
-class BIT:
-    """
-    BITです
-    要素更新と、区間和を求める事ができます
-    1-indexedです
+from typing import Any, Callable
 
-    計算量は、一回の動作につきすべてO(log n)です
-    """
 
-    def __init__(self, n: int) -> None:
-        self.n: int = n
-        self.bit: List[int] = [0] * (n + 1)
-
-    def sum(self, i: int) -> int:
+class DualSegmentTree:
+    def __init__(self, op: Callable[[Any, Any], Any], e: Any, n: int) -> None:
         """
-        i番目までの和を求めます
-        計算量は、O(log n)です
+        区間作用/一点取得のセグメント木
+        opは区間作用用の関数
+        eは初期値
+        vは長さ
         """
-        res = 0
+        self._op: Callable[[Any, Any], Any] = op
+        self._e: Any = e
+        self._n: int = n
+        self.n: int = 1 << (n - 1).bit_length()
+        self.data = [e] * (self.n * 2)
 
-        while i:
-            res += self.bit[i]
-            i -= -i & i
+    def apply(self, l, r, x) -> None:
+        """
+        区間[l,r)にxを適用
+        """
+        assert 0 <= l <= r <= self.n
+        l += self.n
+        r += self.n
+
+        while l < r:
+            if l & 1:
+                self.data[l] = self._op(self.data[l], x)
+                l += 1
+
+            if r & 1:
+                self.data[r - 1] = self._op(self.data[r - 1], x)
+
+            l >>= 1
+            r >>= 1
+
+    def get(self, p: int) -> Any:
+        """
+        pの値を取得する
+        """
+        assert 0 <= p < self.n
+
+        res = self._e
+        p += self.n
+
+        while p:
+            res = self._op(res, self.data[p])
+            p >>= 1
 
         return res
-
-    def interval_sum(self, l: int, r: int) -> int:
-        """
-        lからrまでの総和を求められます
-        lは0-indexedで、rは1-indexedにしてください
-        """
-        return self.sum(r) - self.sum(l)
-
-    def add(self, i: int, x: int):
-        """
-        i番目の要素にxを足します
-        計算量は、O(log n)です
-        """
-        if i == 0:
-            raise IndexError("このデータ構造は、1-indexedです")
-
-        while i <= self.n:
-            self.bit[i] += x
-            i += -i & i
 
 
 from typing import Tuple
@@ -1524,3 +1687,57 @@ MOVES1 = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 MOVES2 = MOVES1 + [(1, 1), (1, -1), (-1, 1), (-1, -1)]
 
 # コード
+N = ii()
+G = [[] for _ in [0] * N]
+
+for _ in [0] * (N - 1):
+    a, b, w = il()
+    a -= 1
+    b -= 1
+    G[a].append((b, w))
+    G[b].append((a, w))
+
+
+def dfs1(cur, b, par=-1):
+    l = [1, 0]
+
+    for nxt, w in G[cur]:
+        if nxt == par:
+            continue
+
+        nl = dfs1(nxt, b, cur)
+
+        if w & (1 << b):
+            nl.reverse()
+
+        l[0] += nl[0]
+        l[1] += nl[1]
+
+    return l
+
+
+ans = 0
+
+
+def dfs2(cur, l, b, par=-1):
+    global ans
+
+    ans += l[1] * (1 << b)
+    ans %= 10**9 + 7
+
+    for nxt, w in G[cur]:
+        if nxt == par:
+            continue
+
+        nl = l[:]
+
+        if w & (1 << b):
+            nl.reverse()
+
+        dfs2(nxt, nl, b, cur)
+
+
+for b in range(62):
+    dfs2(0, dfs1(0, b), b)
+
+print((ans * pow(2, -1, 10**9 + 7)) % (10**9 + 7))
