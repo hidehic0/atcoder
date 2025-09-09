@@ -1585,6 +1585,40 @@ class SquareDivisionSpeedy(SquareDivision):
         self.blocks[block_ind] = self.op(self.blocks[block_ind], self.lis[i])
 
 
+class PrefixSum2D:
+    def __init__(self, h: int, w: int) -> None:
+        self.data = [[0] * (w + 1) for _ in [0] * (h + 1)]
+        self.builded = False
+        self.h = h
+        self.w = w
+
+    def add(self, x: int, y: int, a: int) -> None:
+        assert 0 <= x < self.h and 0 <= y < self.w
+
+        self.data[x + 1][y + 1] += a
+
+    def build(self) -> None:
+        assert not self.builded
+
+        for i in range(self.h + 1):
+            for k in range(self.w):
+                self.data[i][k + 1] += self.data[i][k]
+
+        for k in range(self.w + 1):
+            for i in range(self.h):
+                self.data[i + 1][k] += self.data[i][k]
+
+    def prod(self, ax: int, ay: int, bx: int, by: int) -> int:
+        assert 0 <= ax <= bx < self.h and 0 <= ay <= by < self.w
+
+        return (
+            self.data[bx + 1][by + 1]
+            + self.data[ax][ay]
+            - self.data[ax][by + 1]
+            - self.data[bx + 1][ay]
+        )
+
+
 from typing import Any, Callable
 
 
@@ -1688,3 +1722,29 @@ MOVES1 = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 MOVES2 = MOVES1 + [(1, 1), (1, -1), (-1, 1), (-1, -1)]
 
 # コード
+N, M = il()
+
+L = set([N])
+
+D = defaultdict(list)
+
+for _ in [0] * M:
+    x, y = il()
+    D[x].append(y)
+
+for x in sorted(D.keys()):
+    a, b = [], []
+    for y in D[x]:
+        if y - 1 in L or y + 1 in L:
+            a.append(y)
+        else:
+            b.append(y)
+
+    for y in b:
+        L.discard(y)
+
+    for y in a:
+        L.add(y)
+
+
+print(len(L))
