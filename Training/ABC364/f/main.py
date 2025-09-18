@@ -25,7 +25,8 @@ from math import gcd, lcm, pi
 from typing import Any, List
 
 # from atcoder.segtree import SegTree
-# from atcoder.lazysegtree import LazySegTree
+from atcoder.lazysegtree import LazySegTree
+
 # from atcoder.dsu import DSU
 
 # cortedcontainersは使うときだけ wandbox非対応なので
@@ -160,7 +161,7 @@ def simple_sigma(n: int) -> int:
 
 
 # 多次元配列作成
-from typing import List, Any
+from typing import Any, List
 
 
 def create_array2(a: int, b: int, default: Any = 0) -> List[List[Any]]:
@@ -686,3 +687,32 @@ lowerlist = list("abcdefghijklmnopqrstuvwxyz")
 upperlist = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # コード
+N, Q = il()
+L = []
+
+for _ in [0] * Q:
+    l, r, c = il()
+    l -= 1
+    r -= 1
+    L.append((l, r, c))
+
+seg = LazySegTree(
+    lambda a, b: a + b,
+    0,
+    lambda f, e: e if f is None else f,
+    lambda f, e: e if f is None else f,
+    None,
+    [1] * N,
+)
+
+L.sort(key=lambda x: x[2])
+ans = 0
+
+for l, r, c in L:
+    ans += (seg.prod(l, r) + 1) * c
+    seg.apply(l, r, 0)
+
+if seg.prod(0, N - 1):
+    print(-1)
+else:
+    print(ans)
