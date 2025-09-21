@@ -1,0 +1,86 @@
+{
+  "contest": {
+    "id": "ABC424",
+    "title": "AtCoder Beginner Contest 424",
+    "url": "https://atcoder.jp/contests/ABC424"
+  },
+  "tasks": [
+    {
+      "id": "abc424_a",
+      "label": "A",
+      "title": "Isosceles",
+      "url": "https://atcoder.jp/contests/ABC424/tasks/abc424_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc424_b",
+      "label": "B",
+      "title": "Perfect",
+      "url": "https://atcoder.jp/contests/ABC424/tasks/abc424_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc424_c",
+      "label": "C",
+      "title": "New Skill Acquired",
+      "url": "https://atcoder.jp/contests/ABC424/tasks/abc424_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc424_d",
+      "label": "D",
+      "title": "2x2 Erasing 2",
+      "url": "https://atcoder.jp/contests/ABC424/tasks/abc424_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc424_e",
+      "label": "E",
+      "title": "Cut in Half",
+      "url": "https://atcoder.jp/contests/ABC424/tasks/abc424_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc424_f",
+      "label": "F",
+      "title": " Adding Chords",
+      "url": "https://atcoder.jp/contests/ABC424/tasks/abc424_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc424_g",
+      "label": "G",
+      "title": "Set list",
+      "url": "https://atcoder.jp/contests/ABC424/tasks/abc424_g",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
