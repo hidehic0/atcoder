@@ -1,50 +1,45 @@
+#include <atcoder/all>
 #include <bits/stdc++.h>
 using namespace std;
+using namespace atcoder;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+ll op(ll a, ll b) { return max(a, b); }
+ll e() { return 0; }
+ll id() { return 0; }
+ll mapping(ll f, ll x) { return f + x; }
+ll composition(ll f, ll g) { return f + g; }
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+int main() {
+  ll N, D, W;
+  cin >> N >> D >> W;
 
-void printbase() { cout << '\n'; }
+  vector<vi> L(5 * pow(10, 5) + 100);
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+  rep(_, N) {
+    ll t, x;
+    cin >> t >> x;
+    L[t].emplace_back(x);
+  }
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
+  ll f = 0, ans = 0;
+  lazy_segtree<ll, op, e, ll, mapping, composition, id> seg(2 * pow(10, 5) +
+                                                            100);
+
+  rep(i, 5 * pow(10, 5) + 100) {
+    if (i - D >= 0) {
+      for (ll x : L[i - D]) {
+        seg.apply(max(0LL, x - W), x, -1);
+      }
     }
-    cout << '\n';
-}
-
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
-
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
+    for (ll x : L[i]) {
+      seg.apply(max(0LL, x - W), x, 1);
     }
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
+    chmax(ans, seg.all_prod());
+  }
 
-int main()
-{
+  cout << ans << "\n";
 }
