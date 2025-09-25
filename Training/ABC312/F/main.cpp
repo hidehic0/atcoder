@@ -1,50 +1,63 @@
+#include <atcoder/all>
 #include <bits/stdc++.h>
 using namespace std;
+using namespace atcoder;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+ll N, ans = 0;
+vi c_size;
+vvi G;
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+ll dfs(ll cur, ll par = -1) {
+  for (auto nxt : G[cur]) {
+    if (nxt != par)
+      c_size[cur] += dfs(nxt, cur);
+  }
 
-void printbase() { cout << '\n'; }
-
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
+  return c_size[cur];
 }
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
-    }
-    cout << '\n';
-}
+void f(ll cur, ll sz, ll par = -1) {
+  vi dp(4, 0);
+  dp[0] = 1;
+  dp[1] = sz;
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
-
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
+  for (auto nxt : G[cur]) {
+    if (nxt == par) {
+      continue;
     }
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
+    rrep(i, 3) { dp[i + 1] += dp[i] * c_size[nxt]; }
+  }
 
-int main()
-{
+  for (auto nxt : G[cur]) {
+    if (nxt == par)
+      continue;
+
+    f(nxt, sz + c_size[cur] - c_size[nxt], cur);
+  }
+
+  ans += dp[3];
+}
+
+int main() {
+  cin >> N;
+  G.resize(N);
+  c_size.resize(N, 1);
+
+  rep(_, N - 1) {
+    ll a, b;
+    cin >> a >> b;
+    a--;
+    b--;
+    G[a].emplace_back(b);
+    G[b].emplace_back(a);
+  }
+
+  dfs(0);
+  f(0, 0);
+
+  cout << ans << "\n";
 }
