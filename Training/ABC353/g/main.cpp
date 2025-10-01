@@ -1,50 +1,46 @@
+#include <atcoder/all>
 #include <bits/stdc++.h>
 using namespace std;
+using namespace atcoder;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+using S = pii;
+S op(S a, S b) { return S{max(a.first, b.first), max(a.second, b.second)}; }
+S e() { return S{LONG_LONG_MIN, LONG_LONG_MIN}; }
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+int main() {
+  ll N, C, M;
+  cin >> N >> C >> M;
+  vector<S> v;
+  rep(i, N) { v.emplace_back(LONG_LONG_MIN, LONG_LONG_MIN); }
+  v[0] = S{-C * N, 0};
 
-void printbase() { cout << '\n'; }
+  segtree<S, op, e> seg(v);
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+  rep(_, M) {
+    ll t, p;
+    cin >> t >> p;
+    t--;
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
-    }
-    cout << '\n';
-}
+    ll ml = seg.prod(0, t).first, mr = seg.prod(t, N).second;
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
+    ml += (C * (N - t));
+    mr += (C * (t));
 
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
-    }
+    ll ma = max(ml, mr) + p;
+    auto [cl, cr] = seg.get(t);
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
+    chmax(cl, ma - (C * (N - t)));
+    chmax(cr, ma - (C * (t)));
 
-int main()
-{
+    seg.set(t, S{cl, cr});
+  }
+
+  ll ans = 0;
+
+  rep(i, N) { chmax(ans, seg.get(i).first + (C * (N - i))); }
+
+  cout << ans << "\n";
 }
