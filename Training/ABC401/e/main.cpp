@@ -1,50 +1,56 @@
+#include <atcoder/all>
 #include <bits/stdc++.h>
 using namespace std;
+using namespace atcoder;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+int main() {
+  ll N, M;
+  cin >> N >> M;
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+  vvi G(N);
 
-void printbase() { cout << '\n'; }
+  rep(_, M) {
+    ll u, v;
+    cin >> u >> v;
+    u--;
+    v--;
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+    G[u].emplace_back(v);
+    G[v].emplace_back(u);
+  }
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
-    }
-    cout << '\n';
-}
+  si S, T;
+  dsu UF(N);
+  rep(i, G[0].size()) S.emplace(G[0][i]);
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
+  REP(i, 1, N) {
+    cout << (UF.size(0) == i ? (ll)S.size() : -1) << "\n";
+    bool flag = false;
+    S.erase(i);
 
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
+    for (ll v : G[i]) {
+      flag |= UF.same(0, v);
+
+      if (v > i) {
+        S.emplace(v);
+      }
     }
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
+    for (ll v : G[i]) {
+      if (v <= i) {
+        UF.merge(v, i);
+      }
+    }
 
-int main()
-{
+    if (!flag) {
+      T.emplace(i);
+    } else {
+      UF.merge(0, i);
+    }
+  }
+
+  cout << (UF.size(0) == N ? (ll)S.size() : -1) << "\n";
 }
