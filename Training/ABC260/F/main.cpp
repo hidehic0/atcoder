@@ -1,50 +1,37 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+int main() {
+  ll S, T, M;
+  cin >> S >> T >> M;
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+  vvi G(S + T), dp(T, vi(T, -1));
 
-void printbase() { cout << '\n'; }
+  rep(_, M) {
+    ll u, v;
+    cin >> u >> v;
+    u--;
+    v--;
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+    G[u].emplace_back(v);
+  }
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
+  rep(i, S) {
+    rep(a, G[i].size()) {
+      REP(b, 0, G[i].size()) {
+        ll x = G[i][a], y = G[i][b];
+        if (dp[x - S][y - S] != -1 && x != y) {
+          cout << dp[x - S][y - S] + 1 dms x + 1 dms i + 1 dms y + 1 << "\n";
+          return 0;
+        }
+
+        dp[x - S][y - S] = i;
+      }
     }
-    cout << '\n';
-}
+  }
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
-
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
-    }
-
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
-
-int main()
-{
+  cout << "-1\n";
 }
