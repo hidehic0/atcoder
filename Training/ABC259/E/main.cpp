@@ -1,50 +1,55 @@
+#include <atcoder/all>
 #include <bits/stdc++.h>
 using namespace std;
+using namespace atcoder;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+int main() {
+  ll N;
+  cin >> N;
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+  map<ll, vi> L;
+  vector<vector<pii>> A(N);
 
-void printbase() { cout << '\n'; }
+  rep(i, N) {
+    ll m;
+    cin >> m;
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
-
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
+    rep(_, m) {
+      ll p, e;
+      cin >> p >> e;
+      L[p].emplace_back(e);
+      A[i].emplace_back(p, e);
     }
-    cout << '\n';
-}
+  }
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
+  for (auto [p, l] : L)
+    sort(all(L[p]));
 
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
+  set<vector<pii>> S;
+  ll flag = 0;
+
+  rep(i, N) {
+    vector<pii> l;
+
+    for (auto [p, e] : A[i]) {
+      if (L[p].back() == e) {
+        if (L[p].size() >= 2) {
+          ll a = *(L[p].end() - 2);
+          if (a != e) {
+            l.emplace_back(p, a);
+          }
+        } else {
+          l.emplace_back(p, 0);
+        }
+      }
     }
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
+    sort(all(l));
+    S.emplace(l);
+  }
 
-int main()
-{
+  cout << S.size() << "\n";
 }
