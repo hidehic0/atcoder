@@ -1,50 +1,59 @@
+#include <atcoder/all>
 #include <bits/stdc++.h>
 using namespace std;
+using namespace atcoder;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+int main() {
+  ll N, M;
+  cin >> N >> M;
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+  vector<bool> used(N);
+  vvi L(M);
+  vi A(N), B(N), ans(M + 1, 0);
 
-void printbase() { cout << '\n'; }
+  rep(i, N) {
+    cin >> A[i] >> B[i];
+    A[i]--;
+    B[i]--;
+    L[A[i]].emplace_back(i);
+    L[B[i]].emplace_back(i);
+  }
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+  ll cnt = 0, right = 0;
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
-    }
-    cout << '\n';
-}
-
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
-
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
+  rep(left, M) {
+    if (left > right) {
+      cnt = 0;
+      right = left;
     }
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
+    while (right < M && cnt < N) {
+      for (ll k : L[right]) {
+        cnt += !used[k];
+        used[k] = true;
+      }
 
-int main()
-{
+      right++;
+    }
+
+    if (cnt == N) {
+      ans[right - left - 1]++;
+      ans[M - right + (right - left)]--;
+    }
+
+    for (ll k : L[left]) {
+      if (B[k] == left || B[k] >= right) {
+        used[k] = false;
+        cnt--;
+      }
+    }
+  }
+
+  rep(i, M) {
+    ans[i + 1] += ans[i];
+    cout << ans[i] << (i + 1 == M ? "\n" : " ");
+  }
 }
