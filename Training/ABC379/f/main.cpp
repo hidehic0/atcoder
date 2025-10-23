@@ -1,50 +1,49 @@
+#include <atcoder/all>
 #include <bits/stdc++.h>
 using namespace std;
+using namespace atcoder;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+int main() {
+  ll N, Q;
+  cin >> N >> Q;
+  vi H(N), L(N), ans(Q, -1);
+  rep(i, N) {
+    cin >> H[i];
+    H[i]--;
+  }
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+  segtree<ll, [](ll a, ll b) -> ll { return max(a, b); },
+          []() -> ll { return 0; }>
+      seg1(N);
 
-void printbase() { cout << '\n'; }
+  rep(i, N) {
+    L[i] = seg1.prod(H[i], N);
+    seg1.set(H[i], i);
+  }
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+  vvpii D(N);
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
-    }
-    cout << '\n';
-}
+  rep(i, Q) {
+    ll l, r;
+    cin >> l >> r;
+    l--;
+    r--;
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
+    D[r].emplace_back(l, i);
+  }
 
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
-    }
+  segtree<ll, [](ll a, ll b) -> ll { return a + b; }, []() -> ll { return 0; }>
+      seg2(N);
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
+  rrep(i, N) {
+    for (auto [l, ind] : D[i])
+      ans[ind] = seg2.prod(0, l + 1);
 
-int main()
-{
+    seg2.set(L[i], seg2.get(L[i]) + 1);
+  }
+
+  rep(i, Q) { cout << ans[i] << "\n"; }
 }
