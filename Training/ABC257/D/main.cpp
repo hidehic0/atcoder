@@ -1,50 +1,70 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+int main() {
+  ll N;
+  cin >> N;
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+  vi P(N);
+  vpii L(N);
 
-void printbase() { cout << '\n'; }
+  rep(i, N) cin >> L[i].first >> L[i].second >> P[i];
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+  ll left = -1, right = 1e10;
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
+  while (abs(right - left) > 1) {
+    ll mid = (left + right) / 2;
+    bool flag = false;
+
+    rep(i, N) {
+      vector<bool> used(N, false);
+      used[i] = true;
+
+      queue<ll> Q;
+      Q.emplace(i);
+
+      while (!Q.empty()) {
+        ll cur = Q.front();
+        Q.pop();
+
+        rep(nxt, N) {
+          if (used[nxt])
+            continue;
+
+          ll dis = llabs(L[cur].first - L[nxt].first) +
+                   llabs(L[cur].second - L[nxt].second);
+
+          if (dis <= P[cur] * mid) {
+            used[nxt] = true;
+            Q.emplace(nxt);
+          }
+        }
+      }
+
+      bool f = true;
+
+      rep(k, N) {
+        if (!used[k]) {
+          f = false;
+          break;
+        }
+      };
+
+      if (f) {
+        flag = true;
+        break;
+      }
     }
-    cout << '\n';
-}
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
-
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
+    if (flag) {
+      right = mid;
+    } else {
+      left = mid;
     }
+  }
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
-
-int main()
-{
+  cout << right << "\n";
 }
