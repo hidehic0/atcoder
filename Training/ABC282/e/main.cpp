@@ -1,50 +1,44 @@
 #include <bits/stdc++.h>
 using namespace std;
+#include <atcoder/all>
+using namespace atcoder;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "data-structure/unionfind.hpp"
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+int main() {
+  ll N, M;
+  input(N, M);
+  vi A(N);
+  input(A);
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+  using mint = modint;
+  mint::set_mod(M);
+  vector<pair<mint, pii>> E;
 
-void printbase() { cout << '\n'; }
-
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
-
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
+  rep(i, N) {
+    REP(k, i + 1, N) {
+      mint w = mint{A[i]}.pow(A[k]) + mint{A[k]}.pow(A[i]);
+      E.emplace_back(w, mp(i, k));
     }
-    cout << '\n';
-}
+  }
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
+  sort(all(E), [](pair<mint, pii> a, pair<mint, pii> b) {
+    return a.first.val() > b.first.val();
+  });
 
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
+  ll ans = 0;
+  UnionFind UF(N);
+
+  for (auto [w, e] : E) {
+    auto [a, b] = e;
+
+    if (!UF.same(a, b)) {
+      UF.merge(a, b);
+      ans += w.val();
     }
+  }
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
-
-int main()
-{
+  cout << ans << "\n";
 }
