@@ -1,50 +1,78 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+int main() {
+  ll N, M, K, D;
+  cin >> N >> M;
+  vvpii G(N);
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+  rep(_, M) {
+    ll u, v, w;
+    input(u, v, w);
+    u--;
+    v--;
 
-void printbase() { cout << '\n'; }
+    G[u].emplace_back(v, w);
+    G[v].emplace_back(u, w);
+  }
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+  cin >> K;
+  vi ans(N, -1);
+  priority_queue<pii, vector<pii>, greater<pii>> L;
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
+  rep(_, K) {
+    ll a;
+    cin >> a;
+    a--;
+    ans[a] = 0;
+
+    for (auto [b, w] : G[a]) {
+      if (ans[b] == -1) {
+        L.emplace(w, b);
+      }
     }
-    cout << '\n';
-}
+  }
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
+  cin >> D;
 
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
+  rep(d, D) {
+    ll x;
+    cin >> x;
+
+    priority_queue<pii, vector<pii>, greater<pii>> PQ;
+
+    while (!L.empty() && L.top().first <= x) {
+      auto [cos, cur] = L.top();
+      L.pop();
+      if (ans[cur] != -1)
+        continue;
+      PQ.emplace(cos, cur);
     }
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
+    while (!PQ.empty()) {
+      auto [cos, cur] = PQ.top();
+      PQ.pop();
 
-int main()
-{
+      if (ans[cur] == -1) {
+        ans[cur] = d + 1;
+      } else {
+        continue;
+      }
+
+      for (auto [nxt, w] : G[cur]) {
+        if (ans[nxt] == -1) {
+          if (cos + w <= x) {
+            PQ.emplace(cos + w, nxt);
+          } else {
+            L.emplace(w, nxt);
+          }
+        }
+      }
+    }
+  }
+
+  rep(i, N) cout << ans[i] << "\n";
 }
