@@ -1,50 +1,50 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+int main() {
+  ll N, M;
+  cin >> N >> M;
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+  vvi G(N);
 
-void printbase() { cout << '\n'; }
+  rep(_, M) {
+    ll a, b;
+    cin >> a >> b;
+    a--;
+    b--;
+    G[a].emplace_back(b);
+    G[b].emplace_back(a);
+  }
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+  vi W(N), A(N), P(N);
+  input(W);
+  input(A);
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
+  iota(all(P), 0);
+  sort(all(P), [&](ll a, ll b) { return W[a] < W[b]; });
+  ll ans = 0;
+  vi memo(N, 0);
+
+  for (ll u : P) {
+    vi dp(W[u], -1e17);
+    dp[0] = 0;
+
+    for (ll v : G[u]) {
+      rrep(i, W[u]) {
+        if (i + W[v] < W[u]) {
+          chmax(dp[i + W[v]], dp[i] + memo[v]);
+        }
+      }
     }
-    cout << '\n';
-}
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
+    ll t = *max_element(all(dp));
 
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
-    }
+    memo[u] = t + 1;
+    ans += (t + 1LL) * A[u];
+  }
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
-
-int main()
-{
+  out(ans);
 }
