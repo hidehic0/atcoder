@@ -1,56 +1,89 @@
-#include <atcoder/all>
 #include <bits/stdc++.h>
 using namespace std;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+int main() {
+  ll N, M;
+  cin >> N >> M;
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+  vvpii G(N);
 
-template <typename T> bool chmin(T &a, T b) {
-  if (a > b) {
-    a = b;
-    return true;
+  rep(i, M) {
+    ll x, y, z;
+    input(x, y, z);
+    x--;
+    y--;
+
+    G[x].emplace_back(y, z);
+    G[y].emplace_back(x, z);
+  };
+
+  vi ans(N, 0), memo(N, -1);
+  vb used(N);
+
+  auto bfs = [&](ll start, ll fv) {
+    ll res = 0;
+
+    queue<ll> Q;
+    Q.emplace(start);
+    si vis;
+    vis.emplace(start);
+    memo[start] = 0;
+
+    while (!Q.empty()) {
+      ll cur = Q.front();
+      used[cur] = true;
+      Q.pop();
+
+      for (auto [nxt, w] : G[cur]) {
+        if (vis.count(nxt) == 0) {
+          memo[nxt] = memo[cur] ^ w;
+          used[nxt] = true;
+          vis.emplace(nxt);
+          Q.emplace(nxt);
+        } else {
+          if (memo[nxt] != (memo[cur] ^ w)) {
+            vis.clear();
+            return vis;
+          }
+        }
+      }
+    }
+
+    return vis;
+  };
+
+  rep(i, N) {
+    if (used[i])
+      continue;
+
+    si vis = bfs(i, 0);
+
+    if (vis.size() == 0) {
+      cout << -1 << "\n";
+      return 0;
+    }
+
+    rep(k, 30) {
+      ll cnt = 0;
+      for (ll p : vis) {
+        if ((memo[p] >> k) & 1)
+          cnt++;
+      }
+
+      for (ll p : vis) {
+        if (vis.size() - cnt < cnt) {
+          memo[p] ^= 1 << k;
+        }
+
+        if ((memo[p] >> k) & 1) {
+          ans[p] += 1 << k;
+        }
+      }
+    }
   }
-  return false;
+
+  out(ans);
 }
-template <typename T> bool chmax(T &a, T b) {
-  if (a < b) {
-    a = b;
-    return true;
-  }
-  return false;
-}
-
-void printbase() { cout << '\n'; }
-
-template <typename T> void printbase(const T &t) { cout << t << '\n'; }
-
-template <typename T> void printbase(const std::vector<T> &vec) {
-  for (const auto &v : vec) {
-    cout << v << ' ';
-  }
-  cout << '\n';
-}
-
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail) {
-  cout << head << ' ';
-  printbase(tail...);
-}
-
-#define print(...)                                                             \
-  {                                                                            \
-    printbase(__VA_ARGS__);                                                    \
-    return 0;                                                                  \
-  }
-
-const ll INF = (ll)1 << 63;
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
-
-int main() {}
