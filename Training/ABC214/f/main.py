@@ -1664,3 +1664,31 @@ MOVES1 = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 MOVES2 = MOVES1 + [(1, 1), (1, -1), (-1, 1), (-1, -1)]
 
 # コード
+S = s()
+N = len(S)
+
+D = defaultdict(list)
+
+for i in range(N):
+    D[S[i]].append(i)
+
+dp = [0] * N
+MOD = 10**9 + 7
+
+for i in reversed(range(N)):
+    for t in lowerlist:
+        if bisect.bisect_right(D[t], i + 1) < len(D[t]):
+            dp[i] += dp[D[t][bisect.bisect_right(D[t], i + 1)]]
+
+    dp[i] += 1
+
+    dp[i] %= MOD
+
+ans = 0
+
+for t in lowerlist:
+    if len(D[t]):
+        ans += dp[D[t][0]]
+        ans %= MOD
+
+print(ans)
