@@ -6,7 +6,8 @@ dependencies = [
   "ac-library-python",
   "aclogin>=0.2.1",
   "debugpy>=1.8.14",
-  "online-judge-tools>=11.5.1",
+  "online-judge-api-client",
+  "online-judge-tools",
   "online-judge-verify-helper>=5.6.0",
   "pulp>=3.2.1",
   "sortedcontainers>=2.4.0",
@@ -21,3 +22,5 @@ ignore = ["F401", "E402", "F811", "E741", "E702"]
 
 [tool.uv.sources]
 ac-library-python = { git = "https://github.com/not522/ac-library-python" }
+online-judge-tools = { git = "https://github.com/hidehic0/oj.git" }
+online-judge-api-client = { git = "https://github.com/hidehic0/api-client.git" }
