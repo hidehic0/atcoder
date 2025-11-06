@@ -1,50 +1,38 @@
 #include <bits/stdc++.h>
 using namespace std;
+#include <atcoder/all>
+using namespace atcoder;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+using mint = modint;
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+int main() {
+  ll N, P;
+  cin >> N >> P;
 
-void printbase() { cout << '\n'; }
+  mint::set_mod(P);
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+  VC dp(N, VC(N, VC(2, mint{0})));
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
+  dp[0][0][1] = 1;
+  dp[0][1][0] = 1;
+
+  rep(i, N - 1) {
+    rep(k, N) {
+      if (k + 1 < N) {
+        dp[i + 1][k + 1][1] += dp[i][k][1] * 3;
+        dp[i + 1][k + 1][0] += dp[i][k][0];
+      }
+
+      if (k + 2 < N) {
+        dp[i + 1][k + 2][0] += dp[i][k][1] * 2;
+      }
+
+      dp[i + 1][k][1] += dp[i][k][1] + dp[i][k][0];
     }
-    cout << '\n';
-}
+  }
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
-
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
-    }
-
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
-
-int main()
-{
+  REP(i, 1, N) { cout << dp[N - 1][i][1].val() << (i + 1 == N ? "\n" : " "); }
 }
