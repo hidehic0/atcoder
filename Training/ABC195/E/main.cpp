@@ -1,50 +1,46 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+ll N;
+string S, X;
+map<pii, bool> memo;
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+bool rec(ll ind, ll cur) {
+  if (memo.count(mp(ind, cur)) != 0)
+    return memo[mp(ind, cur)];
 
-void printbase() { cout << '\n'; }
-
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
-
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
+  if (ind == N - 1) {
+    if (X[ind] == 'A') {
+      if ((cur * 10 + (S[ind] - '0')) % 7 == 0 && (cur * 10) % 7 == 0)
+        return false;
+      else
+        return true;
+    } else {
+      if ((cur * 10 + (S[ind] - '0')) % 7 != 0 && (cur * 10) % 7 != 0)
+        return false;
+      else
+        return true;
     }
-    cout << '\n';
+  }
+
+  if (rec(ind + 1, (cur * 10 + (S[ind] - '0')) % 7) == (X[ind] == X[ind + 1]))
+    return memo[mp(ind, cur)] = true;
+  if (rec(ind + 1, (cur * 10) % 7) == (X[ind] == X[ind + 1]))
+    return memo[mp(ind, cur)] = true;
+
+  return memo[mp(ind, cur)] = false;
 }
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
+int main() {
+  input(N, S, X);
+  bool res = rec(0, 0);
 
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
-    }
+  if (X[0] == 'A') {
+    res ^= 1;
+  }
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
-
-int main()
-{
+  cout << (res ? "Takahashi" : "Aoki") << "\n";
 }
