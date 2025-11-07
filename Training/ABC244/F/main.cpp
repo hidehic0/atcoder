@@ -1,50 +1,49 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+int main() {
+  ll N, M;
+  cin >> N >> M;
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+  vvi G(N), dp(1 << N, vi(N, 1e18));
+  queue<pii> Q;
 
-void printbase() { cout << '\n'; }
+  rep(i, N) {
+    dp[1 << i][i] = 1;
+    Q.emplace(1 << i, i);
+  }
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+  rep(_, M) {
+    ll u, v;
+    cin >> u >> v;
+    u--;
+    v--;
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
+    G[u].emplace_back(v);
+    G[v].emplace_back(u);
+  }
+
+  while (!Q.empty()) {
+    ll bit, cur;
+    tie(bit, cur) = Q.front();
+    Q.pop();
+
+    for (ll nxt : G[cur]) {
+      ll nb = bit ^ (1 << nxt);
+
+      if (dp[nb][nxt] > dp[bit][cur] + 1) {
+        dp[nb][nxt] = dp[bit][cur] + 1;
+        Q.emplace(nb, nxt);
+      }
     }
-    cout << '\n';
-}
+  }
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
+  ll ans = 0;
 
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
-    }
+  REP(bit, 1, 1 << N) { ans += *min_element(all(dp[bit])); }
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
-
-int main()
-{
+  cout << ans << "\n";
 }
