@@ -1,50 +1,55 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+string S;
+mii D;
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+string rec(ll l, ll r, ll rev, ll sf) {
+  vector<string> L;
 
-void printbase() { cout << '\n'; }
+  ll i = l;
+  while (i < r) {
+    if (S[i] == '(') {
+      L.emplace_back(rec(i + 1, D[i], rev ^ 1, sf ^ 1));
+      i = D[i];
+    } else {
+      string tmp = "";
+      tmp += S[i];
+      if (sf)
+        tmp[0] ^= 0x20;
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
-
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
-    }
-    cout << '\n';
-}
-
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
-
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
+      L.emplace_back(tmp);
     }
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
+    i++;
+  }
 
-int main()
-{
+  string ans;
+  if (rev)
+    reverse(all(L));
+
+  for (string s : L)
+    ans += s;
+
+  return ans;
+}
+
+int main() {
+  cin >> S;
+
+  stack<ll> ST;
+
+  rep(i, S.size()) {
+    if (S[i] == '(') {
+      ST.emplace(i);
+    } else if (S[i] == ')') {
+      D[ST.top()] = i;
+      ST.pop();
+    }
+  }
+
+  cout << rec(0, S.size(), false, false) << "\n";
 }
