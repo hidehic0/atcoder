@@ -1,50 +1,60 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+ll N, ans = 0;
+vi D;
+vvpii G;
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+ll dfs(ll cur, ll par = -1) {
+  vi L;
 
-void printbase() { cout << '\n'; }
+  for (auto [nxt, w] : G[cur]) {
+    if (nxt == par)
+      continue;
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+    ll t = dfs(nxt, cur);
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
+    if (w >= t && w - t >= 0 && D[nxt] >= 1) {
+      L.emplace_back(w - t);
     }
-    cout << '\n';
-}
+  }
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
+  sort(all(L), greater<ll>{});
 
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
+  ll res = 0;
+
+  rep(i, L.size()) {
+    if (i < D[cur] - 1) {
+      ans += L[i];
+    } else if (i == D[cur] - 1) {
+      ans += L[i];
+      res = L[i];
     }
+  }
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
+  return res;
+}
 
-int main()
-{
+int main() {
+  cin >> N;
+  D = vi(N);
+  input(D);
+  G = vvpii(N);
+
+  rep(_, N - 1) {
+    ll u, v, w;
+    cin >> u >> v >> w;
+    u--;
+    v--;
+
+    G[u].emplace_back(v, w);
+    G[v].emplace_back(u, w);
+  }
+
+  dfs(0);
+
+  cout << ans << "\n";
 }
