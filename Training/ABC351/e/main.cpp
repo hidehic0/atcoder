@@ -1,50 +1,47 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
-
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
-
-void printbase() { cout << '\n'; }
-
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
+ll solve(vi A) {
+  sort(all(A));
+  ll res = 0;
+  ll cur = 0;
+  rep(i, A.size()) {
+    res += A[i] * i - cur;
+    cur += A[i];
+  }
+  return res;
 }
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
+int main() {
+  ll N;
+  cin >> N;
+
+  vi AX, AY, BX, BY;
+
+  rep(_, N) {
+    ll x, y;
+    cin >> x >> y;
+
+    ll nx = (x + y), ny = (y - x);
+
+    if ((x + y) % 2) {
+      AX.emplace_back(nx);
+      AY.emplace_back(ny);
+    } else {
+      BX.emplace_back(nx);
+      BY.emplace_back(ny);
     }
-    cout << '\n';
-}
+  }
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
+  ll ans = 0;
 
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
-    }
+  ans += solve(AX);
+  ans += solve(AY);
+  ans += solve(BX);
+  ans += solve(BY);
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
-
-int main()
-{
+  cout << ans / 2 << "\n";
 }
