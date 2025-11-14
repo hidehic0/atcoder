@@ -1,50 +1,37 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+int main() {
+  ll N, AL, AC, AK, BL, BC, BK;
+  cin >> N;
+  vi D(N);
+  input(D);
+  input(AL, AC, AK, BL, BC, BK);
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+  vvi dp(N + 1, vi(AK + 1, 1e18));
+  dp[0][0] = 0;
 
-void printbase() { cout << '\n'; }
-
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
-
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
+  rep(i, N) {
+    rep(k, AK + 1) {
+      rep(l, AK - k + 1) {
+        if (k + l <= AK) {
+          chmin(dp[i + 1][k + l],
+                dp[i][k] + ceil_div(max(D[i] - l * AL, 0LL), BL));
+        }
+      }
     }
-    cout << '\n';
-}
+  }
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
+  ll ans = 1e18;
 
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
+  rep(k, AK + 1) {
+    if (dp.back()[k] <= BK) {
+      chmin(ans, dp.back()[k] * BC + k * AC);
     }
+  }
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
-
-int main()
-{
+  cout << (ans == 1e18 ? -1 : ans) << "\n";
 }
