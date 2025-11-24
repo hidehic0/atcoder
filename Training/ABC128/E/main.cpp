@@ -1,50 +1,37 @@
 #include <bits/stdc++.h>
 using namespace std;
+#include <atcoder/lazysegtree>
+using namespace atcoder;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+ll op(ll a, ll b) { return a + b; }
+ll e() { return 1e18; }
+ll mapping(ll a, ll b) { return min(a, b); }
+ll composition(ll a, ll b) { return min(a, b); }
+ll id() { return 1e18; }
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+int main() {
+  ll N, Q;
+  cin >> N >> Q;
+  vi S(N), T(N), X(N), D(Q);
+  rep(i, N) cin >> S[i] >> T[i] >> X[i];
+  input(D);
 
-void printbase() { cout << '\n'; }
+  lazy_segtree<ll, op, e, ll, mapping, composition, id> seg(Q);
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+  rep(i, N) {
+    ll l = ranges::lower_bound(D, S[i] - X[i]) - D.begin(),
+       r = ranges::lower_bound(D, T[i] - X[i]) - D.begin();
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
+    if (l < Q) {
+      seg.apply(l, r, X[i]);
     }
-    cout << '\n';
-}
+  }
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
-
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
-    }
-
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
-
-int main()
-{
+  rep(i, Q) {
+    ll res = seg.get(i);
+    cout << (res == 1e18 ? -1 : res) << "\n";
+  }
 }
