@@ -1,50 +1,34 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+int main() {
+  ll A, B;
+  cin >> A >> B;
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+  vi P = {2,  3,  5,  7,  11, 13, 17, 19, 23, 29,
+          31, 37, 41, 43, 47, 53, 59, 61, 67, 71};
 
-void printbase() { cout << '\n'; }
+  vi dp(1 << 20, 0);
+  dp[0] = 1;
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+  for (ll i = A; i <= B; i++) {
+    ll nb = 0;
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
-    }
-    cout << '\n';
-}
-
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
-
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
+    rep(k, 20) {
+      if (i % P[k] == 0) {
+        nb |= 1 << k;
+      }
     }
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
+    rrep(bit, (1 << 20)) {
+      if ((bit & nb) == 0) {
+        dp[bit | nb] += dp[bit];
+      }
+    }
+  }
 
-int main()
-{
+  cout << reduce(all(dp), 0, [](ll a, ll b) { return a + b; }) << "\n";
 }
