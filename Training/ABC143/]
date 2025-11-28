@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#include "graph/warshall-floyd.hpp"
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
+
+int main() {
+  ll N, M, L;
+  cin >> N >> M >> L;
+  vvi D1(N, vi(N, 1e18)), D2(N, vi(N, 1e18));
+  rep(i, N) {
+    D1[i][i] = 0;
+    D2[i][i] = 0;
+  }
+
+  rep(_, M) {
+    ll a, b, c;
+    cin >> a >> b >> c;
+    a--;
+    b--;
+
+    if (c > L)
+      continue;
+
+    D1[a][b] = c;
+    D1[b][a] = c;
+  }
+
+  warshall_floyd(D1);
+
+  rep(k, N) {
+    rep(u, N) {
+      rep(v, N) {
+        if (D1[u][k] + D1[k][v] <= L) {
+        }
+      }
+    }
+  }
+}
