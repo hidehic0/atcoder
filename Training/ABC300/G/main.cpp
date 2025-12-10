@@ -1,50 +1,71 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+int main() {
+  vi primes = {2,  3,  5,  7,  11, 13, 17, 19, 23, 29, 31, 37, 41,
+               43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+  ll N, P;
+  cin >> N >> P;
+  vi L = {1}, T = {1};
 
-void printbase() { cout << '\n'; }
+  ll ind = 0;
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+  while (ind < primes.size() && primes[ind] <= P) {
+    if (L.size() > 1e7)
+      break;
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
-    }
-    cout << '\n';
-}
+    vi NL;
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
-
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
+    for (ll i : L) {
+      rep(k, 60) {
+        if (pow(primes[ind], k) * i <= N) {
+          NL.emplace_back(pow(primes[ind], k) * i);
+        } else {
+          break;
+        }
+      }
     }
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
+    L = NL;
+    ind++;
+  }
 
-int main()
-{
+  while (ind < primes.size() && primes[ind] <= P) {
+    vi NT;
+
+    for (ll i : T) {
+      rep(k, 60) {
+        if (pow(primes[ind], k) * i <= N) {
+          NT.emplace_back(pow(primes[ind], k) * i);
+        } else {
+          break;
+        }
+      }
+    }
+
+    T = NT;
+    ind++;
+  }
+
+  sort(all(L));
+  sort(all(T));
+
+  ind = L.size() - 1;
+  ll ans = 0;
+
+  for (ll i : T) {
+    ll k = N / i;
+    while (ind >= 0 && L[ind] > k)
+      ind--;
+
+    if (ind < 0)
+      break;
+    ans += ind + 1;
+  }
+
+  cout << ans << "\n";
 }
