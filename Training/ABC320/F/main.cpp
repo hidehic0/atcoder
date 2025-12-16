@@ -1,50 +1,42 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+int main() {
+  ll N, H;
+  cin >> N >> H;
+  vi X(N), P(N), F(N);
+  cin >> X;
+  rep(i, N - 1) cin >> P[i] >> F[i];
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+  vvi dp(H + 1, vi(H + 1, 1e18));
+  dp[H][0] = 0;
 
-void printbase() { cout << '\n'; }
+  rep(i, N) {
+    vvi ndp(H + 1, vi(H + 1, 1e18));
+    ll dis = X[i] - (i - 1 == -1 ? 0 : X[i - 1]);
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
-
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
-    }
-    cout << '\n';
-}
-
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
-
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
+    rep(a, H + 1) {
+      rep(b, H + 1) {
+        if (a - dis >= 0 && b + dis <= H)
+          chmin(ndp[a - dis][b + dis], dp[a][b]);
+        if (i == 0)
+          continue;
+        if (min(a + F[i - 1], H) - dis >= 0 && b + dis <= H)
+          chmin(ndp[min(a + F[i - 1], H) - dis][b + dis], dp[a][b] + P[i - 1]);
+        if (a - dis >= 0 && max(b - F[i - 1], 0LL) + dis <= H)
+          chmin(ndp[a - dis][max(b - F[i - 1], 0LL) + dis],
+                dp[a][b] + P[i - 1]);
+      }
     }
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
+    dp = ndp;
+  }
 
-int main()
-{
+  ll ans = LONG_LONG_MAX;
+  rep(a, H + 1) { rep(b, a + 1) chmin(ans, dp[a][b]); }
+
+  cout << (ans == 1e18 ? -1 : ans) << "\n";
 }
