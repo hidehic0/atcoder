@@ -1,50 +1,61 @@
 #include <bits/stdc++.h>
 using namespace std;
+#include <atcoder/segtree>
+using namespace atcoder;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+ll op(ll a, ll b) { return min(a, b); }
+ll e() { return 1e18; }
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+int main() {
+  ll N, M;
+  cin >> N >> M;
 
-void printbase() { cout << '\n'; }
+  VC<deque<ll>> L(M);
+  vi A(N);
+  cin >> A;
+  rep(i, N) {
+    A[i]--;
+    L[A[i]].emplace_back(i);
+  }
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+  segtree<ll, op, e> seg1(A), seg2(M);
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
+  rep(i, M) { seg2.set(i, L[i].back()); }
+
+  vi res;
+  si S;
+  ll cur = 0;
+
+  rep(_, M) {
+    ll mx = seg2.all_prod();
+    ll t = seg1.prod(cur, mx + 1);
+
+    res.emplace_back(t + 1);
+    S.emplace(t);
+
+    ll nxt = L[t].front();
+
+    while (cur <= nxt) {
+      if (!L[A[cur]].empty()) {
+
+        L[A[cur]].pop_front();
+        if (L[A[cur]].size() == 0)
+          seg2.set(A[cur], e());
+      }
+
+      cur++;
     }
-    cout << '\n';
-}
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
-
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
+    while (!L[t].empty()) {
+      seg1.set(L[t].front(), e());
+      L[t].pop_front();
     }
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
+    seg2.set(t, e());
+  }
 
-int main()
-{
+  rep(i, M) cout << res[i] << (i + 1 == M ? "\n" : " ");
 }
