@@ -1,50 +1,78 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+using T = tuple<ll, ll, ll>;
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+int main() {
+  ll N, M, K, L;
+  cin >> N >> M >> K >> L;
+  vi A(N), B(L);
+  cin >> A >> B;
 
-void printbase() { cout << '\n'; }
+  apply_vec<ll>(A, [](ll a) -> ll { return a - 1; });
+  apply_vec<ll>(B, [](ll a) -> ll { return a - 1; });
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+  vvpii G(N);
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
+  rep(_, M) {
+    ll u, v, c;
+    cin >> u >> v >> c;
+    u--;
+    v--;
+
+    G[u].emplace_back(v, c);
+    G[v].emplace_back(u, c);
+  }
+
+  VC<mii> used;
+
+  rep(i, N) used.emplace_back(mii{});
+
+  priority_queue<T, VC<T>, greater<T>> PQ;
+
+  rep(i, L) {
+    used[B[i]].emplace(A[B[i]], 0);
+    PQ.emplace(0, B[i], A[B[i]]);
+  }
+
+  while (!PQ.empty()) {
+    auto [cos, cur, cut] = PQ.top();
+    PQ.pop();
+
+    if (!used[cur].contains(cut) || used[cur][cut] < cos)
+      continue;
+
+    for (auto [nxt, w] : G[cur]) {
+      if (used[nxt].contains(cut)) {
+        if (used[nxt][cut] <= cos + w)
+          continue;
+        used[nxt].erase(used[nxt].find(cut));
+      } else if (used[nxt].size() == 2) {
+        auto it = used[nxt].begin();
+
+        if (it->second < next(it)->second)
+          it++;
+
+        if (it->second <= cos + w)
+          continue;
+        used[nxt].erase(it);
+      }
+
+      used[nxt].emplace(cut, cos + w);
+      PQ.emplace(cos + w, nxt, cut);
     }
-    cout << '\n';
-}
+  }
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
-
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
+  rep(i, N) {
+    ll res = 2e18;
+    for (auto [k, v] : used[i]) {
+      if (k != A[i]) {
+        chmin(res, v);
+      }
     }
-
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
-
-int main()
-{
+    cout << (res == 2e18 ? -1 : res) << (i + 1 == N ? "\n" : " ");
+  }
 }
