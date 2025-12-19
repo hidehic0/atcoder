@@ -1,50 +1,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "geometry/convexhulltrick.hpp"
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+int main() {
+  ll N, M;
+  cin >> N >> M;
+  vi B(N), C(M), SC;
+  cin >> B >> C;
+  SC = C;
+  sort(all(SC));
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+  vpii F;
+  mii D;
 
-void printbase() { cout << '\n'; }
+  rep(i, N) D[B[i]]++;
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+  ll cur = N;
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
-    }
-    cout << '\n';
-}
+  for (auto [c, n] : D) {
+    F.emplace_back(cur, c * cur);
+    cur -= n;
+  }
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
+  sort(all(F));
 
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
-    }
+  ConvexHullTrick<true, ll> CHT;
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
+  for (auto [a, b] : F)
+    CHT.add_func(a, b);
 
-int main()
-{
+  mii res;
+
+  for (ll x : SC)
+    res[x] = CHT.query(x);
+
+  rep(i, M) { cout << res[C[i]] << (i + 1 == M ? "\n" : " "); }
 }
