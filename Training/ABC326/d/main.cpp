@@ -1,50 +1,129 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+struct S {
+  ll tp, ind;
+  VC<VC<char>> cur;
+};
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+int main() {
+  ll N;
+  string R, C;
+  cin >> N >> R >> C;
 
-void printbase() { cout << '\n'; }
+  map<char, VC<char>> D;
+  D['A'] = {'A', 'B', 'C'};
+  D['B'] = {'B', 'A', 'C'};
+  D['C'] = {'C', 'A', 'B'};
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+  stack<S> Q;
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
+  Q.emplace(S{0, 0, VC<VC<char>>(N, VC<char>(N, '.'))});
+
+  while (!Q.empty()) {
+    S st = Q.top();
+    Q.pop();
+
+    // cout << st.tp dms st.ind << "\n";
+
+    if (st.tp == 0 && st.ind == N) {
+
+      Q.emplace(1, 0, st.cur);
+      continue;
     }
-    cout << '\n';
-}
-
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
-
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
+    if (st.tp == 1 && st.ind == N) {
+      cout << "Yes" << "\n";
+      rep(i, N) {
+        rep(k, N) { cout << st.cur[i][k]; }
+        cout << "\n";
+      }
+      return 0;
     }
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
+    if (st.tp == 0) {
+      rep(a, N) {
+        REP(b, a + 1, N) {
+          REP(c, b + 1, N) {
+            {
+              S nxt = st;
+              nxt.cur[st.ind][a] = D[R[st.ind]][0];
+              nxt.cur[st.ind][b] = D[R[st.ind]][1];
+              nxt.cur[st.ind][c] = D[R[st.ind]][2];
+              nxt.ind++;
+              Q.emplace(nxt);
+            }
 
-int main()
-{
+            {
+              S nxt = st;
+              nxt.cur[st.ind][a] = D[R[st.ind]][0];
+              nxt.cur[st.ind][b] = D[R[st.ind]][2];
+              nxt.cur[st.ind][c] = D[R[st.ind]][1];
+              nxt.ind++;
+              Q.emplace(nxt);
+            }
+          }
+        }
+      }
+    } else {
+      vb isok(N);
+
+      S nxt = st;
+
+      rep(i, st.ind + 1) {
+        rep(k, N) {
+          if (st.cur[k][i] != '-') {
+            isok[k] = true;
+          }
+        }
+      }
+
+      rep(a, N) {
+        if (!isok[a])
+          continue;
+        REP(b, a + 1, N) {
+          if (!isok[b])
+            continue;
+
+          REP(c, b + 1, N) {
+            if (!isok[c])
+              continue;
+
+            if (!((st.cur[a][st.ind] != D[C[st.ind]][0] &&
+                   st.cur[a][st.ind] != '-') ||
+                  (st.cur[b][st.ind] != D[C[st.ind]][1] &&
+                   st.cur[b][st.ind] != '-') ||
+                  (st.cur[c][st.ind] != D[C[st.ind]][2] &&
+                   st.cur[c][st.ind] != '-'))) {
+              nxt.cur[a][st.ind] = D[C[st.ind]][0];
+              nxt.cur[b][st.ind] = D[C[st.ind]][1];
+              nxt.cur[c][st.ind] = D[C[st.ind]][2];
+              goto OK;
+            }
+
+            if (!((st.cur[a][st.ind] != D[C[st.ind]][0] &&
+                   st.cur[a][st.ind] != '-') ||
+                  (st.cur[b][st.ind] != D[C[st.ind]][2] &&
+                   st.cur[b][st.ind] != '-') ||
+                  (st.cur[c][st.ind] != D[C[st.ind]][1] &&
+                   st.cur[c][st.ind] != '-'))) {
+              nxt.cur[a][st.ind] = D[C[st.ind]][0];
+              nxt.cur[b][st.ind] = D[C[st.ind]][2];
+              nxt.cur[c][st.ind] = D[C[st.ind]][1];
+              goto OK;
+            }
+          }
+        }
+      }
+
+      continue;
+    OK:
+      nxt.ind++;
+      Q.emplace(nxt);
+    }
+  }
+
+  cout << "No" << "\n";
 }
