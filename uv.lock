@@ -12,6 +12,12 @@ version = "0.0.1"
 source = { git = "https://github.com/not522/ac-library-python#27fdbb71cd0d566bdeb12746db59c9d908c6b5d5" }
 
 [[package]]
+name = "acl-cpp-python"
+version = "0.6.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/86/c4/f03f7f30970f05fb16f3abda541b96d8a2757fbba6a3ce5d1f40759cb973/acl-cpp-python-0.6.2.tar.gz", hash = "sha256:5ac2d175d1c2b1d116605586a8b72a03e25cf12d349b13ff188cd83d12d9e695", size = 46204, upload-time = "2025-05-02T22:37:14.633Z" }
+
+[[package]]
 name = "aclogin"
 version = "0.2.1"
 source = { registry = "https://pypi.org/simple" }
@@ -381,6 +387,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "ac-library-python" },
+    { name = "acl-cpp-python" },
     { name = "aclogin" },
     { name = "debugpy" },
     { name = "online-judge-api-client" },
@@ -393,6 +400,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "ac-library-python", git = "https://github.com/not522/ac-library-python" },
+    { name = "acl-cpp-python", specifier = ">=0.6.2" },
     { name = "aclogin", specifier = ">=0.2.1" },
     { name = "debugpy", specifier = ">=1.8.17" },
     { name = "online-judge-api-client", git = "https://github.com/hidehic0/api-client.git" },
