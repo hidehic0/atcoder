@@ -1,50 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std;
+#include <atcoder/maxflow>
+using namespace atcoder;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+int main() {
+  ll H, W, N;
+  cin >> H >> W >> N;
+  mf_graph<ll> G(N * 2 + H + W + 2);
+  ll sink = H + N * 2 + W + 1, fx = N * 2, fy = N * 2 + H;
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+  rep(i, N) {
+    ll a, b, c, d;
+    cin >> a >> b >> c >> d;
+    G.add_edge(i, i + N, 1);
 
-void printbase() { cout << '\n'; }
-
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
-
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
+    REP(x, a - 1, c) {
+      G.add_edge(fx + x, i, 1);
+      REP(y, b - 1, d) { G.add_edge(i + N, fy + y, 1); }
     }
-    cout << '\n';
-}
+  }
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
+  rep(x, H) G.add_edge(sink - 1, fx + x, 1);
+  rep(y, W) G.add_edge(fy + y, sink, 1);
 
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
-    }
-
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
-
-int main()
-{
+  cout << G.flow(sink - 1, sink) << "\n";
 }
