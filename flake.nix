@@ -9,7 +9,12 @@
   };
 
   outputs =
-    { nixpkgs, flake-utils,rust-overlay, ... }:
+    {
+      nixpkgs,
+      flake-utils,
+      rust-overlay,
+      ...
+    }:
     flake-utils.lib.eachDefaultSystem (
       system:
       let
@@ -17,12 +22,12 @@
           inherit system;
           overlays = [ rust-overlay.overlays.default ];
         };
-        pahcer = pkgs.callPackage ./nix/pahcer/default.nix {};
+        pahcer = pkgs.callPackage ./nix/pahcer/default.nix { };
       in
       {
         devShells.default = pkgs.mkShell {
-          packages = [ 
-            pkgs.uv 
+          packages = [
+            pkgs.uv
             pahcer
           ];
           shellHook = ''
