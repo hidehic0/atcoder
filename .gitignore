@@ -9,3 +9,5 @@ lang_update/schema_20250108_01.json
 lang_update/taplo.toml
 lang_update
 test
+.direnv
+.envrc
