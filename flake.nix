@@ -13,6 +13,7 @@
       nixpkgs,
       flake-utils,
       rust-overlay,
+      # acc_utils,
       ...
     }:
     flake-utils.lib.eachDefaultSystem (
@@ -29,6 +30,7 @@
           packages = [
             pkgs.uv
             pahcer
+            pkgs.rust-bin.stable.latest.default
           ];
           shellHook = ''
             source .venv/bin/activate
