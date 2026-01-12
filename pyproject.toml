@@ -21,6 +21,9 @@ select = ["C9", "E", "F", "W", "I"]
 [tool.ruff.lint]
 ignore = ["F401", "E402", "F811", "E741", "E702"]
 
+[tool.ty.src]
+respect-ignore-files = false
+
 [tool.uv.sources]
 ac-library-python = { git = "https://github.com/not522/ac-library-python" }
 online-judge-tools = { git = "https://github.com/hidehic0/oj.git" }
