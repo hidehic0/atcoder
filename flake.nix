@@ -6,6 +6,11 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    oj-download-atc = {
+      url = "github:hidehic0/oj-download-atc";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs =
@@ -13,7 +18,7 @@
       nixpkgs,
       flake-utils,
       rust-overlay,
-      # acc_utils,
+      oj-download-atc,
       ...
     }:
     flake-utils.lib.eachDefaultSystem (
@@ -33,6 +38,7 @@
             pahcer
             acc
             pkgs.rust-bin.stable.latest.default
+            oj-download-atc.packages.${system}.default
           ];
           shellHook = ''
             source .venv/bin/activate
