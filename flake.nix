@@ -24,12 +24,14 @@
           overlays = [ rust-overlay.overlays.default ];
         };
         pahcer = pkgs.callPackage ./nix/pahcer/default.nix { };
+        acc = pkgs.callPackage ./nix/atcoder-cli/default.nix { };
       in
       {
         devShells.default = pkgs.mkShell {
           packages = [
             pkgs.uv
             pahcer
+            acc
             pkgs.rust-bin.stable.latest.default
           ];
           shellHook = ''
