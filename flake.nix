@@ -39,6 +39,8 @@
             acc
             pkgs.rust-bin.stable.latest.default
             oj-download-atc.packages.${system}.default
+            pkgs.boost
+            pkgs.ac-library
           ];
           shellHook = ''
             source .venv/bin/activate
