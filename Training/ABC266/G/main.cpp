@@ -1,50 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
+#include <atcoder/modint>
+using mint = atcoder::modint998244353;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-// マクロ
+int main() {
+  ll R, G, B, K;
+  cin >> R >> G >> B >> K;
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+  VC<mint> P(3e6 + 10, 1), PINV(3e6 + 10, 1);
 
-void printbase() { cout << '\n'; }
+  REP(i, 1, 3e6 + 10) {
+    P[i] *= P[i - 1] * i;
+    PINV[i] = P[i].inv();
+  }
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+  mint ans = P[R + B] * PINV[R] * PINV[B];
+  ans *= P[R] * PINV[R - K] * PINV[K];
+  ll n = B + K + (G - K), k = G - K;
+  ans *= P[n] * PINV[k] * PINV[n - k];
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
-    }
-    cout << '\n';
-}
-
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
-
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
-    }
-
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
-
-int main()
-{
+  cout << ans.val() << "\n";
 }
