@@ -30,6 +30,7 @@
         };
         pahcer = pkgs.callPackage ./nix/pahcer/default.nix { };
         acc = pkgs.callPackage ./nix/atcoder-cli/default.nix { };
+        cpp-dump = pkgs.callPackage ./nix/cpp-dump/default.nix { };
       in
       {
         devShells.default = pkgs.mkShell {
@@ -41,6 +42,7 @@
             oj-download-atc.packages.${system}.default
             pkgs.boost
             pkgs.ac-library
+            cpp-dump
           ];
           shellHook = ''
             source .venv/bin/activate
