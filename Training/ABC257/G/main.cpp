@@ -1,50 +1,53 @@
+/**
+ library: https://github.com/hidehic0/library_cpp
+**/
 #include <bits/stdc++.h>
 using namespace std;
+#include <atcoder/string>
+using namespace atcoder;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#ifdef ONLINE_JUDGE
+#define dump(...)
+#define CPP_DUMP_SET_OPTION(...)
+#define CPP_DUMP_SET_OPTION_GLOBAL(...)
+#define CPP_DUMP_DEFINE_EXPORT_OBJECT(...)
+#define CPP_DUMP_DEFINE_EXPORT_ENUM(...)
+#define CPP_DUMP_DEFINE_EXPORT_OBJECT_GENERIC(...)
+#define export_command
+#else
+#include <cpp-dump/cpp-dump.hpp>
+#define dump(...) cpp_dump(__VA_ARGS__)
+#endif
 
-// マクロ
+#include "segtree/dualsegtree.hpp"
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
+ll op(ll a, ll b) { return min(a, b); }
+ll e() { return 1e18; }
 
-void printbase() { cout << '\n'; }
+int main() {
+  string S, T;
+  cin >> S >> T;
 
-template <typename T>
-void printbase(const T &t)
-{
-    cout << t << '\n';
-}
+  string P = S + T;
 
-template <typename T>
-void printbase(const std::vector<T> &vec)
-{
-    for (const auto &v : vec)
-    {
-        cout << v << ' ';
-    }
-    cout << '\n';
-}
+  auto L = z_algorithm(P);
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail)
-{
-    cout << head << ' ';
-    printbase(tail...);
-}
+  DualSegmentTree<ll, op, e> seg(T.size() + 1);
+  seg.apply(0, 1, 0);
+  ll ans = 1e18;
 
-#define print(...)              \
-    {                           \
-        printbase(__VA_ARGS__); \
-        return 0;               \
-    }
+  rep(i, T.size()) {
+    ll t = min((ll)L[i + S.size()], (ll)S.size());
+    dump(i, t, seg.get(i));
+    if (t == 0)
+      continue;
 
-const ll INF = pow(10, 18);
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
+    if (i + t + 1 > T.size())
+      chmin(ans, seg.get(i) + 1);
+    seg.apply(i + 1, min(i + t, (ll)T.size()) + 1, seg.get(i) + 1);
+  }
 
-int main()
-{
+  cout << (ans == 1e18 ? -1 : ans) << "\n";
 }
