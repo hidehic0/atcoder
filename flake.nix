@@ -31,6 +31,7 @@
         pahcer = pkgs.callPackage ./nix/pahcer/default.nix { };
         acc = pkgs.callPackage ./nix/atcoder-cli/default.nix { };
         cpp-dump = pkgs.callPackage ./nix/cpp-dump/default.nix { };
+        codon = pkgs.callPackage ./nix/codon/default.nix { };
       in
       {
         devShells.default = pkgs.mkShell {
@@ -43,9 +44,12 @@
             pkgs.boost
             pkgs.ac-library
             cpp-dump
+            pkgs.zig
+            codon
           ];
           shellHook = ''
             source .venv/bin/activate
+            export ZIG_GLOBAL_CACHE_DIR=/tmp
           '';
         };
       }
