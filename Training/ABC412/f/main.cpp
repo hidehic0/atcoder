@@ -1,56 +1,100 @@
-#include <atcoder/all>
-#include <bits/stdc++.h>
+/**
+ library: https://github.com/hidehic0/library_cpp
+**/
+#include <algorithm>
+#include <array>
+#include <cassert>
+#include <chrono>
+#include <climits>
+#include <clocale>
+#include <cmath>
+#include <functional>
+#include <ios>
+#include <iostream>
+#include <iterator>
+#include <map>
+#include <optional>
+#include <ostream>
+#include <queue>
+#include <ranges>
+#include <set>
+#include <stack>
+#include <string>
+#include <tuple>
+#include <vector>
 using namespace std;
+#include <atcoder/all>
+using namespace atcoder;
 
-// 型テンプレ
-using ll = long long;
-using ull = unsigned long long;
+#ifdef ONLINE_JUDGE
+#define dump(...)
+#define CPP_DUMP_SET_OPTION(...)
+#define CPP_DUMP_SET_OPTION_GLOBAL(...)
+#define CPP_DUMP_DEFINE_EXPORT_OBJECT(...)
+#define CPP_DUMP_DEFINE_EXPORT_ENUM(...)
+#define CPP_DUMP_DEFINE_EXPORT_OBJECT_GENERIC(...)
+#define export_command
+#else
+#include <cpp-dump/cpp-dump.hpp>
+#define dump(...) cpp_dump(__VA_ARGS__)
+#endif
 
-// マクロ
+#include "templates/alias.hpp"
+#include "templates/macro.hpp"
 
-#define rep(i, n) for (ll i = 0; i < (int)(n); i++)
-#define all(a) (a).begin(), (a).end()
-
-template <typename T> bool chmin(T &a, T b) {
-  if (a > b) {
-    a = b;
-    return true;
-  }
-  return false;
+#include <atcoder/modint>
+using mint = atcoder::modint998244353;
+using vm = vector<mint>;
+using vvm = vector<vm>;
+using vvvm = vector<vvm>;
+using pmm = pair<mint, mint>;
+ostream &operator<<(ostream &os, const mint &i) {
+  os << i.val();
+  return os;
 }
-template <typename T> bool chmax(T &a, T b) {
-  if (a < b) {
-    a = b;
-    return true;
-  }
-  return false;
+#ifdef ONLINE_JUDGE
+#else
+namespace cpp_dump::_detail {
+template <int m>
+inline std::string
+export_var(const atcoder::static_modint<m> &mint, const std::string &indent,
+           std::size_t last_line_length, std::size_t current_depth,
+           bool fail_on_newline, const export_command &command) {
+  return export_var(mint.val(), indent, last_line_length, current_depth,
+                    fail_on_newline, command);
 }
-
-void printbase() { cout << '\n'; }
-
-template <typename T> void printbase(const T &t) { cout << t << '\n'; }
-
-template <typename T> void printbase(const std::vector<T> &vec) {
-  for (const auto &v : vec) {
-    cout << v << ' ';
-  }
-  cout << '\n';
+template <int m>
+inline std::string
+export_var(const atcoder::dynamic_modint<m> &mint, const std::string &indent,
+           std::size_t last_line_length, std::size_t current_depth,
+           bool fail_on_newline, const export_command &command) {
+  return export_var(mint.val(), indent, last_line_length, current_depth,
+                    fail_on_newline, command);
 }
+} // namespace cpp_dump::_detail
+#endif
+int main() {
+  ll N, C;
+  cin >> N >> C;
+  vi A(N);
+  cin >> A;
 
-template <typename Head, typename... Tail>
-void printbase(const Head &head, const Tail &...tail) {
-  cout << head << ' ';
-  printbase(tail...);
-}
+  ll c = ++A[C - 1];
 
-#define print(...)                                                             \
-  {                                                                            \
-    printbase(__VA_ARGS__);                                                    \
-    return 0;                                                                  \
+  sort(all(A));
+  mint S = -1;
+  rep(i, N) S += A[i];
+
+  mint cur = 0, prv = 0;
+
+  rep(i, N) prv += A[i];
+
+  rrep(i, N) {
+    prv -= A[i];
+    if (A[i] == c) {
+      cout << (mint)(1 + cur) / (1 - prv / S) << "\n";
+      return 0;
+    }
+    cur += (A[i] * (mint)(1 + cur) / (1 - prv / S)) / S;
   }
-
-const ll INF = (ll)1 << 63;
-const string upperlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const string lowerlist = "abcdefghijklmnopqrstuvwxyz";
-
-int main() {}
+}
