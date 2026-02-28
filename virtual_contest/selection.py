@@ -9,10 +9,10 @@ def select(n: int | NoneType = None):
     L = set()
 
     for _ in [0] * n:
-        rn = random.randrange(200, 370)
+        rn = random.randrange(200, 420)
 
         while rn in L or rn == 316:
-            rn = random.randrange(200, 370)
+            rn = random.randrange(200, 420)
 
         L.add(rn)
 
