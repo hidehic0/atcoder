@@ -4,13 +4,15 @@
   "automergeType": "pr",
   "platformAutomerge": true,
   "extends": [
-    "config:base",
+    "config:recommended"
   ],
   "nix": {
     "enabled": true
   },
   "lockFileMaintenance": {
     "enabled": true,
-    "extends": ["schedule:daily"]
+    "extends": [
+      "schedule:daily"
+    ]
   }
 }
