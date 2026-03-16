@@ -1,0 +1,86 @@
+{
+  "contest": {
+    "id": "ABC449",
+    "title": "AtCoder Beginner Contest 449",
+    "url": "https://atcoder.jp/contests/ABC449"
+  },
+  "tasks": [
+    {
+      "id": "abc449_a",
+      "label": "A",
+      "title": "π",
+      "url": "https://atcoder.jp/contests/ABC449/tasks/abc449_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc449_b",
+      "label": "B",
+      "title": "Deconstruct Chocolate",
+      "url": "https://atcoder.jp/contests/ABC449/tasks/abc449_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc449_c",
+      "label": "C",
+      "title": "Comfortable Distance",
+      "url": "https://atcoder.jp/contests/ABC449/tasks/abc449_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc449_d",
+      "label": "D",
+      "title": "Make Target 2",
+      "url": "https://atcoder.jp/contests/ABC449/tasks/abc449_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc449_e",
+      "label": "E",
+      "title": "A += v",
+      "url": "https://atcoder.jp/contests/ABC449/tasks/abc449_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc449_f",
+      "label": "F",
+      "title": "Grid Clipping",
+      "url": "https://atcoder.jp/contests/ABC449/tasks/abc449_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc449_g",
+      "label": "G",
+      "title": "Many Repunit Sum 2 ",
+      "url": "https://atcoder.jp/contests/ABC449/tasks/abc449_g",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
