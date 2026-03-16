@@ -42,10 +42,14 @@
             pkgs.rust-bin.stable.latest.default
             oj-download-atc.packages.${system}.default
             pkgs.boost
-            pkgs.ac-library
+            # pkgs.ac-library
             cpp-dump
             pkgs.zig
             codon
+            pkgs.gfortran15
+            pkgs.flang
+            pkgs.pkg-config
+            pkgs.openblas
           ];
           shellHook = ''
             source .venv/bin/activate
