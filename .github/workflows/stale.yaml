@@ -1,0 +1,20 @@
+name: close daily_virtual_contests issue
+on:
+  push:
+    paths:
+      - .github/workflows/stale.yaml
+  schedule:
+    - cron: "0 3 * * *"
+
+jobs:
+  close-issues:
+    permissions:
+      actions: write
+      issues: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v10.2.0
+        with:
+          only-labels: daily_virtual_contests
+          days-before-stale: 1
+          days-before-close: 0
