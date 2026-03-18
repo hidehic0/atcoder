@@ -18,3 +18,4 @@ jobs:
           only-labels: daily_virtual_contests
           days-before-stale: 1
           days-before-close: 0
+          close-issue-label: Stale
