@@ -28,7 +28,8 @@ subprocess.run(
         "create",
         "--title",
         datetime.datetime.now().strftime("%Y/%m/%d") + "のバチャコン精進",
-        '--label "daily_virtual_contests"',
+        "--label",
+        "daily_virtual_contests",
         "--body-file",
         "issue.md",
     ]
