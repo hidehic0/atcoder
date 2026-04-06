@@ -1,0 +1,64 @@
+{
+  "contest": {
+    "id": "ARC217",
+    "title": "AtCoder Regular Contest 217",
+    "url": "https://atcoder.jp/contests/ARC217"
+  },
+  "tasks": [
+    {
+      "id": "arc217_a",
+      "label": "A",
+      "title": "Min of Sum of XOR",
+      "url": "https://atcoder.jp/contests/ARC217/tasks/arc217_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc217_b",
+      "label": "B",
+      "title": "Not High Element",
+      "url": "https://atcoder.jp/contests/ARC217/tasks/arc217_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc217_c",
+      "label": "C",
+      "title": "Greedy Customers 2",
+      "url": "https://atcoder.jp/contests/ARC217/tasks/arc217_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc217_d",
+      "label": "D",
+      "title": "Greedy Customer",
+      "url": "https://atcoder.jp/contests/ARC217/tasks/arc217_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc217_e",
+      "label": "E",
+      "title": "Tree Growing",
+      "url": "https://atcoder.jp/contests/ARC217/tasks/arc217_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
