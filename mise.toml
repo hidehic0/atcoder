@@ -1,5 +1,5 @@
 [tools]
-python = "pypy3.11-7.3.20"
+python = "3.14.4"
 # rust = "1.86.0"
 "cargo:pahcer" = "latest"
 
