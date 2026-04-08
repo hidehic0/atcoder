@@ -43,7 +43,7 @@
             oj-download-atc.packages.${system}.default
             pkgs.boost
             # pkgs.ac-library
-            cpp-dump
+            # cpp-dump
             pkgs.zig
             codon
             pkgs.gfortran15
