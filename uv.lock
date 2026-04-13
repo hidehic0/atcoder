@@ -453,7 +453,7 @@ wheels = [
 [[package]]
 name = "online-judge-api-client"
 version = "10.10.1"
-source = { git = "https://github.com/hidehic0/api-client.git#1c08f9c0396efc91a6a6a9ddb95a028839313dad" }
+source = { git = "https://github.com/hidehic0/api-client.git#db10692464bd6a330f25c1694de187e53d3c0b67" }
 dependencies = [
     { name = "appdirs" },
     { name = "beautifulsoup4" },
