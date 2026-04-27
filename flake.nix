@@ -50,6 +50,7 @@
             pkgs.flang
             pkgs.pkg-config
             pkgs.openblas
+            pkgs.zlib
           ];
           shellHook = ''
             source .venv/bin/activate
