@@ -9,6 +9,9 @@
   "nix": {
     "enabled": true
   },
+  "uv": {
+    "enabled": true
+  },
   "lockFileMaintenance": {
     "enabled": true,
     "extends": [
