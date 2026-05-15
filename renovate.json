@@ -9,13 +9,18 @@
   "nix": {
     "enabled": true
   },
-  "uv": {
-    "enabled": true
-  },
   "lockFileMaintenance": {
     "enabled": true,
     "extends": [
       "schedule:daily"
     ]
-  }
+  },
+  "packageRules": [
+    {
+      "matchDatasources": [
+        "pypi"
+      ],
+      "minimumReleaseAge": "1 week"
+    }
+  ]
 }
