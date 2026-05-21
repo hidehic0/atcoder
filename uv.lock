@@ -416,7 +416,7 @@ requires-dist = [
     { name = "online-judge-api-client", git = "https://github.com/hidehic0/api-client.git" },
     { name = "online-judge-tools", git = "https://github.com/hidehic0/oj.git" },
     { name = "online-judge-verify-helper", specifier = ">=5.6.0" },
-    { name = "pulp", specifier = "==3.2.0" },
+    { name = "pulp", specifier = "==3.3.1" },
     { name = "sortedcontainers", specifier = "==2.4.0" },
 ]
 
@@ -495,11 +495,11 @@ wheels = [
 
 [[package]]
 name = "pulp"
-version = "3.2.0"
+version = "3.3.1"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/ef/52/c422009edc25eeb2bd2ca76c09e03ccdb36c6331f09ab7d82fa80503d866/pulp-3.2.0.tar.gz", hash = "sha256:3a42d3dadcc862d60f00410ba3eab33866ee8944d312944606469f83f7d68ee2", size = 16297388, upload-time = "2025-05-29T09:22:44.126Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/58/a8/6e63330798761e0c903091786681651168fda7365f029b8b5d66160861f2/pulp-3.3.1.tar.gz", hash = "sha256:a9ec237a56981b11c2096e8ba6bb72006833410ba5b400aa257426f85df5e293", size = 16304830, upload-time = "2026-05-05T12:25:43.123Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/81/24/1e39d12bcc81aa1972f34994730a5992eb7b103f9f2ee33922e51861dc9f/pulp-3.2.0-py3-none-any.whl", hash = "sha256:6c13d2f7cbac29210ed74e02ffca45da8fa86d5d8f4ddde14a80aaa18cd6bc37", size = 16381409, upload-time = "2025-05-29T09:22:41.864Z" },
+    { url = "https://files.pythonhosted.org/packages/9f/23/5a77fe2b50d962213338ae0fdd9832960186ebc423388fff1a56680e5114/pulp-3.3.1-py3-none-any.whl", hash = "sha256:45aa73db3368eb13b156564e092784c8fa0c1feefa64c2afb0410d9dc0bb5cd9", size = 16390866, upload-time = "2026-05-05T12:25:39.83Z" },
 ]
 
 [[package]]
