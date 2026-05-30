@@ -51,6 +51,7 @@
             pkgs.pkg-config
             pkgs.openblas
             pkgs.zlib
+            pkgs.unordered_dense
           ];
           shellHook = ''
             source .venv/bin/activate
