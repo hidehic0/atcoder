@@ -1,5 +1,8 @@
 import random
 from types import NoneType
+import time
+
+random.seed(int(time.time()))
 
 
 def select(n: int | NoneType = None):
