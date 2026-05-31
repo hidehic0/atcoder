@@ -1,0 +1,86 @@
+{
+  "contest": {
+    "id": "ABC460",
+    "title": "AtCoder Beginner Contest 460",
+    "url": "https://atcoder.jp/contests/ABC460"
+  },
+  "tasks": [
+    {
+      "id": "abc460_a",
+      "label": "A",
+      "title": "Mod While Positive",
+      "url": "https://atcoder.jp/contests/ABC460/tasks/abc460_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc460_b",
+      "label": "B",
+      "title": "Two Rings",
+      "url": "https://atcoder.jp/contests/ABC460/tasks/abc460_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc460_c",
+      "label": "C",
+      "title": "Sushi",
+      "url": "https://atcoder.jp/contests/ABC460/tasks/abc460_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc460_d",
+      "label": "D",
+      "title": "Repeatedly Repainting ",
+      "url": "https://atcoder.jp/contests/ABC460/tasks/abc460_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc460_e",
+      "label": "E",
+      "title": "x + y ≡ x + y",
+      "url": "https://atcoder.jp/contests/ABC460/tasks/abc460_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc460_f",
+      "label": "F",
+      "title": "Farthest Pair Query",
+      "url": "https://atcoder.jp/contests/ABC460/tasks/abc460_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc460_g",
+      "label": "G",
+      "title": "Vertex Flip Query",
+      "url": "https://atcoder.jp/contests/ABC460/tasks/abc460_g",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
