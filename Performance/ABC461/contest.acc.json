@@ -1,0 +1,86 @@
+{
+  "contest": {
+    "id": "ABC461",
+    "title": "AtCoder Beginner Contest 461",
+    "url": "https://atcoder.jp/contests/ABC461"
+  },
+  "tasks": [
+    {
+      "id": "abc461_a",
+      "label": "A",
+      "title": "Armor",
+      "url": "https://atcoder.jp/contests/ABC461/tasks/abc461_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc461_b",
+      "label": "B",
+      "title": "The Honest Woodcutters",
+      "url": "https://atcoder.jp/contests/ABC461/tasks/abc461_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc461_c",
+      "label": "C",
+      "title": "Variety",
+      "url": "https://atcoder.jp/contests/ABC461/tasks/abc461_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc461_d",
+      "label": "D",
+      "title": "Count Subgrid Sum = K",
+      "url": "https://atcoder.jp/contests/ABC461/tasks/abc461_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc461_e",
+      "label": "E",
+      "title": "E-liter",
+      "url": "https://atcoder.jp/contests/ABC461/tasks/abc461_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc461_f",
+      "label": "F",
+      "title": "Total Product is N",
+      "url": "https://atcoder.jp/contests/ABC461/tasks/abc461_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc461_g",
+      "label": "G",
+      "title": "Graph Problem 2026",
+      "url": "https://atcoder.jp/contests/ABC461/tasks/abc461_g",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
