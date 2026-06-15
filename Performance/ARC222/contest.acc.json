@@ -1,0 +1,75 @@
+{
+  "contest": {
+    "id": "ARC222",
+    "title": "AtCoder Regular Contest 222",
+    "url": "https://atcoder.jp/contests/ARC222"
+  },
+  "tasks": [
+    {
+      "id": "arc222_a",
+      "label": "A",
+      "title": "Colorful Intervals",
+      "url": "https://atcoder.jp/contests/ARC222/tasks/arc222_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc222_b",
+      "label": "B",
+      "title": "Circular RPS",
+      "url": "https://atcoder.jp/contests/ARC222/tasks/arc222_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc222_c",
+      "label": "C",
+      "title": "2 Directions vs 4 Directions",
+      "url": "https://atcoder.jp/contests/ARC222/tasks/arc222_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc222_d",
+      "label": "D",
+      "title": "Shift and Add",
+      "url": "https://atcoder.jp/contests/ARC222/tasks/arc222_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc222_e",
+      "label": "E",
+      "title": "XOR Matching",
+      "url": "https://atcoder.jp/contests/ARC222/tasks/arc222_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc222_f",
+      "label": "F",
+      "title": "Triple Transformation",
+      "url": "https://atcoder.jp/contests/ARC222/tasks/arc222_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
