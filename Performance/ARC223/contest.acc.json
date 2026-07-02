@@ -1,0 +1,75 @@
+{
+  "contest": {
+    "id": "ARC223",
+    "title": "AtCoder Regular Contest 223",
+    "url": "https://atcoder.jp/contests/ARC223"
+  },
+  "tasks": [
+    {
+      "id": "arc223_a",
+      "label": "A",
+      "title": "Unusual-Constraint Knapsack",
+      "url": "https://atcoder.jp/contests/ARC223/tasks/arc223_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc223_b",
+      "label": "B",
+      "title": "Valid Arrays by K-Divisible Swaps",
+      "url": "https://atcoder.jp/contests/ARC223/tasks/arc223_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc223_c",
+      "label": "C",
+      "title": "Whole Product of Pairwise Distances",
+      "url": "https://atcoder.jp/contests/ARC223/tasks/arc223_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc223_d",
+      "label": "D",
+      "title": "Xpectation of Cards in Hand with Laboratory",
+      "url": "https://atcoder.jp/contests/ARC223/tasks/arc223_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc223_e",
+      "label": "E",
+      "title": "Yin-Yang Two Bits Insertion",
+      "url": "https://atcoder.jp/contests/ARC223/tasks/arc223_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc223_f",
+      "label": "F",
+      "title": "Zonal Score Maximization",
+      "url": "https://atcoder.jp/contests/ARC223/tasks/arc223_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
