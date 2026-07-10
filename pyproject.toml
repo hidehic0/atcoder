@@ -10,7 +10,7 @@ dependencies = [
   "online-judge-api-client",
   "online-judge-tools",
   "online-judge-verify-helper>=5.6.0",
-  "pulp==3.3.1",
+  "pulp==3.3.2",
   "sortedcontainers==2.4.0",
 ]
 
