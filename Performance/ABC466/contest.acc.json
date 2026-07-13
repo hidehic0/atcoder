@@ -1,0 +1,86 @@
+{
+  "contest": {
+    "id": "ABC466",
+    "title": "AtCoder Beginner Contest 466",
+    "url": "https://atcoder.jp/contests/ABC466"
+  },
+  "tasks": [
+    {
+      "id": "abc466_a",
+      "label": "A",
+      "title": "Compromise ",
+      "url": "https://atcoder.jp/contests/ABC466/tasks/abc466_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc466_b",
+      "label": "B",
+      "title": "Representative Balls",
+      "url": "https://atcoder.jp/contests/ABC466/tasks/abc466_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc466_c",
+      "label": "C",
+      "title": "Count Close Pairs ",
+      "url": "https://atcoder.jp/contests/ABC466/tasks/abc466_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc466_d",
+      "label": "D",
+      "title": "Placing Rooks",
+      "url": "https://atcoder.jp/contests/ABC466/tasks/abc466_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc466_e",
+      "label": "E",
+      "title": "Range Flip",
+      "url": "https://atcoder.jp/contests/ABC466/tasks/abc466_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc466_f",
+      "label": "F",
+      "title": "Many Mod Calculation",
+      "url": "https://atcoder.jp/contests/ABC466/tasks/abc466_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc466_g",
+      "label": "G",
+      "title": "Segment Sum Constraints",
+      "url": "https://atcoder.jp/contests/ABC466/tasks/abc466_g",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
