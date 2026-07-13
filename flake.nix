@@ -46,10 +46,7 @@
             # cpp-dump
             pkgs.zig
             codon
-            pkgs.gfortran15
-            pkgs.flang
             pkgs.pkg-config
-            pkgs.openblas
             pkgs.zlib
             pkgs.unordered_dense
           ];
