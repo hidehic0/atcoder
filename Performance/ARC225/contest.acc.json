@@ -1,0 +1,64 @@
+{
+  "contest": {
+    "id": "ARC225",
+    "title": "AtCoder Regular Contest 225",
+    "url": "https://atcoder.jp/contests/ARC225"
+  },
+  "tasks": [
+    {
+      "id": "arc225_a",
+      "label": "A",
+      "title": "Four Coloring",
+      "url": "https://atcoder.jp/contests/ARC225/tasks/arc225_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc225_b",
+      "label": "B",
+      "title": "Independent Nim",
+      "url": "https://atcoder.jp/contests/ARC225/tasks/arc225_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc225_c",
+      "label": "C",
+      "title": "K Spanning Tree",
+      "url": "https://atcoder.jp/contests/ARC225/tasks/arc225_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc225_d",
+      "label": "D",
+      "title": "Gap Swap (easy)",
+      "url": "https://atcoder.jp/contests/ARC225/tasks/arc225_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc225_e",
+      "label": "E",
+      "title": "Gap Swap (hard)",
+      "url": "https://atcoder.jp/contests/ARC225/tasks/arc225_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "contest": {
+    "id": "ABC467",
+    "title": "AtCoder Beginner Contest 467",
+    "url": "https://atcoder.jp/contests/ABC467"
+  },
+  "tasks": [
+    {
+      "id": "abc467_a",
+      "label": "A",
+      "title": "Obesity",
+      "url": "https://atcoder.jp/contests/ABC467/tasks/abc467_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc467_b",
+      "label": "B",
+      "title": "Keep the Change",
+      "url": "https://atcoder.jp/contests/ABC467/tasks/abc467_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc467_c",
+      "label": "C",
+      "title": "Adjacent Sums (easy)",
+      "url": "https://atcoder.jp/contests/ABC467/tasks/abc467_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc467_d",
+      "label": "D",
+      "title": "Concentric Circles",
+      "url": "https://atcoder.jp/contests/ABC467/tasks/abc467_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc467_e",
+      "label": "E",
+      "title": "Adjacent Sums (hard)",
+      "url": "https://atcoder.jp/contests/ABC467/tasks/abc467_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc467_f",
+      "label": "F",
+      "title": "Email Scheduling Optimization",
+      "url": "https://atcoder.jp/contests/ABC467/tasks/abc467_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc467_g",
+      "label": "G",
+      "title": "Many Sweets Problem",
+      "url": "https://atcoder.jp/contests/ABC467/tasks/abc467_g",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
