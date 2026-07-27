@@ -1,0 +1,86 @@
+{
+  "contest": {
+    "id": "ABC468",
+    "title": "AtCoder Beginner Contest 468",
+    "url": "https://atcoder.jp/contests/ABC468"
+  },
+  "tasks": [
+    {
+      "id": "abc468_a",
+      "label": "A",
+      "title": "Maximal Value",
+      "url": "https://atcoder.jp/contests/ABC468/tasks/abc468_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc468_b",
+      "label": "B",
+      "title": "Corridor Watch",
+      "url": "https://atcoder.jp/contests/ABC468/tasks/abc468_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc468_c",
+      "label": "C",
+      "title": "Between P and Q",
+      "url": "https://atcoder.jp/contests/ABC468/tasks/abc468_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc468_d",
+      "label": "D",
+      "title": "Pre-Palindrome",
+      "url": "https://atcoder.jp/contests/ABC468/tasks/abc468_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc468_e",
+      "label": "E",
+      "title": "Sum of Average",
+      "url": "https://atcoder.jp/contests/ABC468/tasks/abc468_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc468_f",
+      "label": "F",
+      "title": "Chmax",
+      "url": "https://atcoder.jp/contests/ABC468/tasks/abc468_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc468_g",
+      "label": "G",
+      "title": "Restricted Permutation",
+      "url": "https://atcoder.jp/contests/ABC468/tasks/abc468_g",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
