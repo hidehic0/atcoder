@@ -1,0 +1,64 @@
+{
+  "contest": {
+    "id": "ARC226",
+    "title": "UNIQUE VISION Programming Contest 2026 Summer (AtCoder Regular Contest 226)",
+    "url": "https://atcoder.jp/contests/ARC226"
+  },
+  "tasks": [
+    {
+      "id": "arc226_a",
+      "label": "A",
+      "title": "Meeting Division",
+      "url": "https://atcoder.jp/contests/ARC226/tasks/arc226_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc226_b",
+      "label": "B",
+      "title": "Bin-ary Packing",
+      "url": "https://atcoder.jp/contests/ARC226/tasks/arc226_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc226_c",
+      "label": "C",
+      "title": "Square Corner Packing",
+      "url": "https://atcoder.jp/contests/ARC226/tasks/arc226_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc226_d",
+      "label": "D",
+      "title": "Penta-Queue",
+      "url": "https://atcoder.jp/contests/ARC226/tasks/arc226_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc226_e",
+      "label": "E",
+      "title": "Cellular Messenger",
+      "url": "https://atcoder.jp/contests/ARC226/tasks/arc226_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
