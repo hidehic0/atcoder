@@ -1,0 +1,64 @@
+{
+  "contest": {
+    "id": "ARC228",
+    "title": "AtCoder Regular Contest++ 228",
+    "url": "https://atcoder.jp/contests/ARC228"
+  },
+  "tasks": [
+    {
+      "id": "arc228_a",
+      "label": "A",
+      "title": "Row and Col swap",
+      "url": "https://atcoder.jp/contests/ARC228/tasks/arc228_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc228_b",
+      "label": "B",
+      "title": "Minimize Topological Order",
+      "url": "https://atcoder.jp/contests/ARC228/tasks/arc228_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc228_c",
+      "label": "C",
+      "title": "Partially Sort",
+      "url": "https://atcoder.jp/contests/ARC228/tasks/arc228_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc228_d",
+      "label": "D",
+      "title": "Amidakuji 2",
+      "url": "https://atcoder.jp/contests/ARC228/tasks/arc228_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc228_e",
+      "label": "E",
+      "title": "Pair of Permutations",
+      "url": "https://atcoder.jp/contests/ARC228/tasks/arc228_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
