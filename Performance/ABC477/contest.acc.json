@@ -1,0 +1,86 @@
+{
+  "contest": {
+    "id": "ABC477",
+    "title": "UNICORNProgramming Contest2026(AtCoder Beginner Contest 477)",
+    "url": "https://atcoder.jp/contests/ABC477"
+  },
+  "tasks": [
+    {
+      "id": "abc477_a",
+      "label": "A",
+      "title": "Traffic Light",
+      "url": "https://atcoder.jp/contests/ABC477/tasks/abc477_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc477_b",
+      "label": "B",
+      "title": "Standing Outliers",
+      "url": "https://atcoder.jp/contests/ABC477/tasks/abc477_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc477_c",
+      "label": "C",
+      "title": "Range Search Query",
+      "url": "https://atcoder.jp/contests/ABC477/tasks/abc477_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc477_d",
+      "label": "D",
+      "title": "Masking Tape",
+      "url": "https://atcoder.jp/contests/ABC477/tasks/abc477_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc477_e",
+      "label": "E",
+      "title": "Wheel Distance",
+      "url": "https://atcoder.jp/contests/ABC477/tasks/abc477_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc477_f",
+      "label": "F",
+      "title": "Count Cells in a Window",
+      "url": "https://atcoder.jp/contests/ABC477/tasks/abc477_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "abc477_g",
+      "label": "G",
+      "title": "Frequency Query on Tree",
+      "url": "https://atcoder.jp/contests/ABC477/tasks/abc477_g",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
