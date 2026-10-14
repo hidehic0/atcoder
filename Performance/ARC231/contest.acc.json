@@ -1,0 +1,75 @@
+{
+  "contest": {
+    "id": "ARC231",
+    "title": "AtCoder Regular Contest 231",
+    "url": "https://atcoder.jp/contests/ARC231"
+  },
+  "tasks": [
+    {
+      "id": "arc231_a",
+      "label": "A",
+      "title": "Two Dimensional Invader",
+      "url": "https://atcoder.jp/contests/ARC231/tasks/arc231_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc231_b",
+      "label": "B",
+      "title": "Three Mex",
+      "url": "https://atcoder.jp/contests/ARC231/tasks/arc231_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc231_c",
+      "label": "C",
+      "title": "One Sky, Many Stars",
+      "url": "https://atcoder.jp/contests/ARC231/tasks/arc231_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc231_d",
+      "label": "D",
+      "title": "Choose Your Role",
+      "url": "https://atcoder.jp/contests/ARC231/tasks/arc231_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc231_e",
+      "label": "E",
+      "title": "Odd Inversion",
+      "url": "https://atcoder.jp/contests/ARC231/tasks/arc231_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc231_f",
+      "label": "F",
+      "title": "Two Unbalanced Subtrees",
+      "url": "https://atcoder.jp/contests/ARC231/tasks/arc231_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}

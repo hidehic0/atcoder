@@ -1,0 +1,64 @@
+{
+  "contest": {
+    "id": "ARC232",
+    "title": "AtCoder Regular Contest++ 232",
+    "url": "https://atcoder.jp/contests/ARC232"
+  },
+  "tasks": [
+    {
+      "id": "arc232_a",
+      "label": "A",
+      "title": "Two in the Range",
+      "url": "https://atcoder.jp/contests/ARC232/tasks/arc232_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc232_b",
+      "label": "B",
+      "title": "Two Flips",
+      "url": "https://atcoder.jp/contests/ARC232/tasks/arc232_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc232_c",
+      "label": "C",
+      "title": "All Add or Single Negate",
+      "url": "https://atcoder.jp/contests/ARC232/tasks/arc232_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc232_d",
+      "label": "D",
+      "title": "Delete Different",
+      "url": "https://atcoder.jp/contests/ARC232/tasks/arc232_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    },
+    {
+      "id": "arc232_e",
+      "label": "E",
+      "title": "Doubling",
+      "url": "https://atcoder.jp/contests/ARC232/tasks/arc232_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.py"
+      }
+    }
+  ]
+}
